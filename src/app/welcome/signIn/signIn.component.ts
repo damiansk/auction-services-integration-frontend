@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-sign-in',
-  template: '<h3>SignIn</h3>'
+  templateUrl: './signIn.component.html'
 })
 export class SignInComponent {
 }
