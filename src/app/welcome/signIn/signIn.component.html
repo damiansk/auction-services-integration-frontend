@@ -1,11 +1,13 @@
 <div class="content">
   <h2>AukcLinker</h2>
   <h3>Zaloguj sie, aby zarzadzac wszystkimi swoimi aukcjami jednoczesnie</h3>
-  <form>
-    <input id="email" placeholder="E-mail">
-    <input id="password" placeholder="Haslo">
-    <button>Zaloguj</button>
+
+  <form [formGroup]="signInForm" (ngSubmit)="doSignIn($event)">
+    <input formControlName="email" type="email" placeholder="E-mail">
+    <input formControlName="password" type="password" placeholder="Haslo">
+    <button type="submit">Zaloguj</button>
   </form>
+
   <button>Zarejestruj</button>
   <button>Zaloguj przez Facebook</button>
   <button>Zaloguj przez Google+</button>
