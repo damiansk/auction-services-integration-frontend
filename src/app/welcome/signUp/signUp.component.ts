@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from "@angular/router";
-import {runInThisContext} from "vm";
+import {Router} from '@angular/router';
+import {CustomValidators} from '../validators/validators';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +13,7 @@ export class SignUpComponent implements OnInit {
   private formErrors = {
     email: '',
     password: '',
-    retypedPassword: ''
+    confirmPassword: ''
   };
   private validationMessages = {
     email: {
@@ -23,9 +23,11 @@ export class SignUpComponent implements OnInit {
       required: 'To pole jest wymagane',
       minlength: 'Haslo musi sie skladac z co najmniej 6 znakow'
     },
-    retypedPassword: {
-      required: 'To pole jest wymagane'
-    }
+    confirmPassword: {
+      required: 'To pole jest wymagane',
+
+    },
+    mismatchedPasswords: 'Hasla nie sa identyczne'
   };
 
   constructor(
@@ -35,10 +37,11 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      retypedPassword: ['', Validators.required]
-    });
+        email: ['', Validators.required],
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required]
+      },
+      {validator: CustomValidators.matchingPasswords('password', 'confirmPassword')});
 
     this.modelForm.valueChanges.subscribe( () => {
       this.onControlValueChanged();
@@ -65,7 +68,6 @@ export class SignUpComponent implements OnInit {
           this.formErrors[field] += `${validationMessages[key]} `;
         }
       }
-
     }
   }
 

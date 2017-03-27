@@ -3,15 +3,17 @@
   <h3>Zarejestruj sie, aby zarzadzac wszystkimi swoimi aukcjami jednoczesnie</h3>
 
   <form [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
-
     <input name="email" formControlName="email" type="email" placeholder="E-mail">
     <span *ngIf="formErrors.email">{{ formErrors.email }}</span>
 
     <input name="password" formControlName="password" type="password" placeholder="Haslo">
     <span *ngIf="formErrors.password">{{ formErrors.password }}</span>
 
-    <input name="retypedPassword" formControlName="retypedPassword" type="password" placeholder="Powtorz haslo">
-    <span *ngIf="formErrors.retypedPassword">{{ formErrors.retypedPassword }}</span>
+    <input name="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Powtorz haslo">
+    <div *ngIf="modelForm.controls.confirmPassword.touched">
+      <span *ngIf="formErrors.confirmPassword">{{ formErrors.confirmPassword }}</span>
+      <span *ngIf="modelForm.hasError('mismatchedPasswords')">{{ validationMessages.mismatchedPasswords }}</span>
+    </div>
 
     <button [disabled]="!modelForm.valid" type="submit">Zarejestruj</button>
   </form>
