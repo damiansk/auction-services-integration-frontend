@@ -2,7 +2,7 @@
   <h2>AukcLinker</h2>
   <h3>Zaloguj sie, aby zarzadzac wszystkimi swoimi aukcjami jednoczesnie</h3>
 
-  <form [formGroup]="signInForm" (ngSubmit)="doSignIn($event)">
+  <form [formGroup]="modelForm" (ngSubmit)="doSignIn($event)">
     <input formControlName="email" type="email" placeholder="E-mail">
     <input formControlName="password" type="password" placeholder="Haslo">
     <button type="submit">Zaloguj</button>
