@@ -3,9 +3,18 @@
   <h3>Zaloguj sie, aby zarzadzac wszystkimi swoimi aukcjami jednoczesnie</h3>
 
   <form [formGroup]="modelForm" (ngSubmit)="doSignIn($event)">
+
     <input formControlName="email" type="email" placeholder="E-mail">
+    <div *ngIf="modelForm.controls.email.touched">
+      <span *ngIf="modelForm.controls.email.invalid">{{validationMessages.required}}</span>
+    </div>
+
     <input formControlName="password" type="password" placeholder="Haslo">
-    <button type="submit">Zaloguj</button>
+    <div *ngIf="modelForm.controls.password.touched">
+      <span *ngIf="modelForm.controls.password.invalid">{{validationMessages.required}}</span>
+    </div>
+
+    <button [disabled]="!modelForm.valid" type="submit">Zaloguj</button>
   </form>
 
   <h3>Nie posiadasz jeszcze konta?</h3>

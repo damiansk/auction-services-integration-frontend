@@ -9,6 +9,9 @@ import {Router} from "@angular/router";
 export class SignInComponent implements OnInit {
 
   private modelForm: FormGroup;
+  private validationMessages = {
+    required: 'To pole jest wymagane'
+  };
 
   constructor(
     private formBuilder: FormBuilder,
