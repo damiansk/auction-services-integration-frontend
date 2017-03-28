@@ -2,12 +2,6 @@ import {AbstractControl, FormGroup} from "@angular/forms";
 
 export class CustomValidators {
 
-  /**
-   * Invalid: mismatchedPasswords
-   * @param passwordKey
-   * @param confirmPasswordKey
-   * @returns {(group:FormGroup)=>{[p: string]: any}}
-   */
   static matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
     return (group: FormGroup): {[key: string]: any} => {
       const password = group.controls[passwordKey];
@@ -23,19 +17,27 @@ export class CustomValidators {
     }
   }
 
-  /**
-   * Invalid: emailPattern
-   * @param control
-   * @returns {any}
-   */
-  static emailPattern(control: AbstractControl): {[key: string]: any} {
+  static emailValid(control: AbstractControl): {[key: string]: any} {
     const email: string = control.value;
     const emailRegex = /.+@.+/;
 
     if ( !emailRegex.test(email) ) {
       return {
-        emailPattern: true
+        emailValid: true
       };
+    }
+
+    return null;
+  }
+
+  static passwordValid(control: AbstractControl): {[key: string]: any} {
+    const password: string = control.value;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+    if ( !passwordRegex.test(password) ) {
+      return {
+        passwordValid: true
+      }
     }
 
     return null;
