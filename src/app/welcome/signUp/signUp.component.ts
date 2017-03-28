@@ -22,9 +22,10 @@ export class SignUpComponent implements OnInit {
     mismatchedPasswords: 'Hasla nie sa identyczne'
   };
 
-  constructor(private formBuilder: FormBuilder,
-              private router: Router) {
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
