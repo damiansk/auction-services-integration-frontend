@@ -16,34 +16,31 @@ export class SignUpComponent implements OnInit {
     confirmPassword: ''
   };
   private validationMessages = {
-    email: {
-      required: 'To pole jest wymagane'
-    },
-    password: {
-      required: 'To pole jest wymagane',
-      minlength: 'Haslo musi sie skladac z co najmniej 6 znakow'
-    },
-    confirmPassword: {
-      required: 'To pole jest wymagane',
-
-    },
+    required: 'To pole jest wymagane',
+    emailValid: 'Podany e-mail jest nie prawidlowy',
+    passwordValid: 'Haslo musi skladac sie z co najmniej 5 liter i 1 cyfry',
     mismatchedPasswords: 'Hasla nie sa identyczne'
   };
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router
-  ) {}
+  constructor(private formBuilder: FormBuilder,
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
-        email: ['', Validators.required],
-        password: ['', Validators.required],
+        email: ['', [
+          Validators.required,
+          CustomValidators.emailValid
+        ]],
+        password: ['', [
+          Validators.required,
+          CustomValidators.passwordValid
+        ]],
         confirmPassword: ['', Validators.required]
       },
       {validator: CustomValidators.matchingPasswords('password', 'confirmPassword')});
 
-    this.modelForm.valueChanges.subscribe( () => {
+    this.modelForm.valueChanges.subscribe(() => {
       this.onControlValueChanged();
     });
 
@@ -62,13 +59,17 @@ export class SignUpComponent implements OnInit {
       let control = form.get(field);
 
       if (control && control.dirty && !control.valid) {
-        const validationMessages = this.validationMessages[field];
 
         for (const key in control.errors) {
-          this.formErrors[field] += `${validationMessages[key]} `;
+          if (this.validationMessages[key]) {
+            this.formErrors[field] = this.validationMessages[key];
+            break;
+          }
         }
+
       }
     }
+
   }
 
   goToLogin(): void {
