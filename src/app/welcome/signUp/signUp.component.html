@@ -4,10 +4,14 @@
 
   <form [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
     <input name="email" formControlName="email" type="email" placeholder="E-mail">
-    <span *ngIf="formErrors.email">{{ formErrors.email }}</span>
+    <div *ngIf="modelForm.controls.email.touched">
+      <span *ngIf="formErrors.email">{{ formErrors.email }}</span>
+    </div>
 
     <input name="password" formControlName="password" type="password" placeholder="Haslo">
-    <span *ngIf="formErrors.password">{{ formErrors.password }}</span>
+    <div *ngIf="modelForm.controls.password.touched">
+      <span *ngIf="formErrors.password">{{ formErrors.password }}</span>
+    </div>
 
     <input name="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Powtorz haslo">
     <div *ngIf="modelForm.controls.confirmPassword.touched">
