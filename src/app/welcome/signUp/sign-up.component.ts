@@ -5,7 +5,7 @@ import {CustomValidators} from '../validators/validators';
 
 @Component({
   selector: 'app-sign-up',
-  templateUrl: './signUp.component.html'
+  templateUrl: './sign-up.component.html'
 })
 export class SignUpComponent implements OnInit {
 
