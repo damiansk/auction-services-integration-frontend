@@ -1,9 +1,9 @@
-import {FormGroup} from "@angular/forms";
+import {AbstractControl, FormGroup} from "@angular/forms";
 
 export class CustomValidators {
 
   /**
-   * Invaild: mismatchedPasswords
+   * Invalid: mismatchedPasswords
    * @param passwordKey
    * @param confirmPasswordKey
    * @returns {(group:FormGroup)=>{[p: string]: any}}
@@ -21,6 +21,24 @@ export class CustomValidators {
 
       return null;
     }
+  }
+
+  /**
+   * Invalid: emailPattern
+   * @param control
+   * @returns {any}
+   */
+  static emailPattern(control: AbstractControl): {[key: string]: any} {
+    const email: string = control.value;
+    const emailRegex = /.+@.+/;
+
+    if ( !emailRegex.test(email) ) {
+      return {
+        emailPattern: true
+      };
+    }
+
+    return null;
   }
 
 }
