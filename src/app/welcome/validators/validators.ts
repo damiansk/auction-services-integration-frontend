@@ -19,7 +19,7 @@ export class CustomValidators {
 
   static emailValid(control: AbstractControl): {[key: string]: any} {
     const email: string = control.value;
-    const emailRegex = /.+@.+/;
+    const emailRegex = /.+@.+\..+/g;
 
     if ( !emailRegex.test(email) ) {
       return {
