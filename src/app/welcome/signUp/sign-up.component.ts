@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {CustomValidators} from '../validators/validators';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { CustomValidators } from '../validators/validators';
+import { SignUpService } from './sign-up.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -24,7 +26,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private signUpService: SignUpService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +53,8 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(modelForm: FormGroup): void {
     console.log(modelForm);
+
+    this.signUpService.register();
   }
 
   onControlValueChanged(): void {
