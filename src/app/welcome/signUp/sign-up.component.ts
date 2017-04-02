@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { CustomValidators } from '../validators/validators';
 import { SignUpService } from './sign-up.service';
+import { User } from './sign-up.interface';
 
 @Component({
   selector: 'app-sign-up',
@@ -51,10 +52,7 @@ export class SignUpComponent implements OnInit {
     this.onControlValueChanged();
   }
 
-  onSubmit(modelForm: FormGroup): void {
-    console.log(modelForm);
-
-    this.signUpService.register();
+  onSubmit({value, valid}: {value: User, valid: boolean}): void {
   }
 
   onControlValueChanged(): void {
