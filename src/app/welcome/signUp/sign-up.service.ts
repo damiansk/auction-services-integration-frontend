@@ -10,7 +10,7 @@ export class SignUpService {
 
   constructor( private http: Http ) {}
 
-  register(user: User): void {
+  registerUser(user: User): void {
     this.http.post(`${environment.API_URL}/api/v1/user/register`, user)
       .subscribe(
         ( data ) => { console.log( `Data: ${data}`) },
