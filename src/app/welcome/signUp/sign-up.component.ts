@@ -53,6 +53,9 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit({value, valid}: {value: User, valid: boolean}): void {
+    if ( valid === true ) {
+      this.signUpService.registerUser(value);
+    }
   }
 
   onControlValueChanged(): void {
