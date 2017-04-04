@@ -13,9 +13,9 @@
       <span *ngIf="formErrors.password">{{ formErrors.password }}</span>
     </div>
 
-    <input name="confirmPassword" formControlName="confirmPassword" type="password" placeholder="Powtorz haslo">
-    <div *ngIf="modelForm.controls.confirmPassword.touched">
-      <span *ngIf="formErrors.confirmPassword">{{ formErrors.confirmPassword }}</span>
+    <input name="matchingPassword" formControlName="matchingPassword" type="password" placeholder="Powtorz haslo">
+    <div *ngIf="modelForm.controls.matchingPassword.touched">
+      <span *ngIf="formErrors.matchingPassword">{{ formErrors.matchingPassword }}</span>
       <span *ngIf="modelForm.hasError('mismatchedPasswords')">{{ validationMessages.mismatchedPasswords }}</span>
     </div>
 

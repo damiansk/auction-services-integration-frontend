@@ -16,7 +16,7 @@ export class SignUpComponent implements OnInit {
   private formErrors = {
     email: '',
     password: '',
-    confirmPassword: ''
+    matchingPassword: ''
   };
   private validationMessages = {
     required: 'To pole jest wymagane',
@@ -41,9 +41,9 @@ export class SignUpComponent implements OnInit {
           Validators.required,
           CustomValidators.passwordValid
         ]],
-        confirmPassword: ['', Validators.required]
+        matchingPassword: ['', Validators.required]
       },
-      {validator: CustomValidators.matchingPasswords('password', 'confirmPassword')});
+      {validator: CustomValidators.matchingPasswords('password', 'matchingPassword')});
 
     this.modelForm.valueChanges.subscribe(() => {
       this.onControlValueChanged();
