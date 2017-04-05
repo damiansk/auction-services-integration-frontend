@@ -6,4 +6,8 @@ export class SignInService {
 
   constructor(private http: Http) {}
 
+  loginUser(): void {
+    console.log('Service is here!');
+  }
+
 }
