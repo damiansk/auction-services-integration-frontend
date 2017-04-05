@@ -55,18 +55,21 @@ export class SignUpComponent implements OnInit {
   onSubmit({value, valid}: {value: User, valid: boolean}): void {
     if ( valid === true ) {
       this.signUpService
-                .registerUser(value)
-                .subscribe(
-                    (data) => {
-                      if ( data.status === 201 ) {
-                        this.router.navigateByUrl('/register/done');
-                      } else {
-                        console.log('Wrong response status');
-                      }
-                    },
-                    (error) => {
-                      console.error(error);
-                    });
+        .registerUser(value)
+        .subscribe(
+          (data) => {
+            if ( data.status === 201 ) {
+              this.router.navigateByUrl('/register/done');
+            } else {
+              console.log('Wrong response status');
+            }
+          },
+          (error) => {
+            console.error(error);
+            this.modelForm.reset();
+          },
+          () => this.modelForm.reset()
+        );
     }
   }
 
