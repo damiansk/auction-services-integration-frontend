@@ -13,16 +13,13 @@ export class SignUpService {
 
   constructor( private http: Http ) {}
 
-  registerUser(user: User) {
+  registerUser(user: User): Observable<Response> {
     user.username = user.username || '';
 
-    this.http
-      .post( `${environment.API_URL}/api/v1/user/register`, JSON.stringify(user), {headers: this.headers} )
-      .subscribe(
-        data => console.log( `Data: ${data}` ),
-        err => console.error( `Err: ${err}` ),
-        () => console.log( 'Done' )
-      );
+    console.log(JSON.stringify(user));
+
+    return this.http
+      .post( `${environment.API_URL}/api/v1/user/register`, JSON.stringify(user), {headers: this.headers} );
   }
 
 }
