@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Login } from './sing-in.interface';
 
 @Component({
   selector: 'app-sign-in',
@@ -25,9 +26,10 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  doSignIn(event): void {
-    console.log(event);
-    console.log(this.modelForm.value);
+  doSignIn({value, valid}: {value: Login, valid: boolean}): void {
+    if ( valid === true ) {
+      //TODO send value to SignIn service
+    }
   }
 
   goToRegister(): void {
