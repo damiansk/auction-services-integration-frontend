@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { WelcomeComponent, SignInComponent, SignUpComponent, SignUpDoneComponent } from './welcome';
 import { SignUpService, SignInService } from './welcome';
+import { HomeComponent } from './home';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SignUpService, SignInService } from './welcome';
     WelcomeComponent,
     SignInComponent,
     SignUpComponent,
-    SignUpDoneComponent
+    SignUpDoneComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,10 @@ import { SignUpService, SignInService } from './welcome';
       {
         path: 'register/done',
         component: SignUpDoneComponent
+      },
+      {
+        path: 'home',
+        component: HomeComponent
       }
     ])
   ],

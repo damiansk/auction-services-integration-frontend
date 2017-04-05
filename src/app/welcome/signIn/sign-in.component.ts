@@ -34,7 +34,7 @@ export class SignInComponent implements OnInit {
         .subscribe(
           (data) => {
             if ( data.status === 200 ) {
-              console.log('Pomyslnie zalogowany');
+              this.router.navigateByUrl('/home');
             } else {
               console.log('Wrong response status');
             }
