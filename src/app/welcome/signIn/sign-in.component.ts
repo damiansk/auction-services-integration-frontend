@@ -32,9 +32,16 @@ export class SignInComponent implements OnInit {
     if ( valid === true ) {
       this.signInService.loginUser(value)
         .subscribe(
-          data => console.log(data),
-          err => console.error(err),
-          () => console.log('Done')
+          (data) => {
+            if ( data.status === 200 ) {
+              console.log('Pomyslnie zalogowany');
+            } else {
+              console.log('Wrong response status');
+            }
+          },
+          (error) => {
+            console.error(error._body);
+          }
         );
     }
   }
