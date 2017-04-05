@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent, SignInComponent, SignUpComponent, SignUpDoneComponent } from './welcome';
-import { SignUpService } from './welcome/signUp/sign-up.service';
+import { SignUpService, SignInService } from './welcome';
 
 
 @NgModule({
@@ -43,7 +43,8 @@ import { SignUpService } from './welcome/signUp/sign-up.service';
     ])
   ],
   providers: [
-    SignUpService
+    SignUpService,
+    SignInService
   ],
   bootstrap: [
     AppComponent
