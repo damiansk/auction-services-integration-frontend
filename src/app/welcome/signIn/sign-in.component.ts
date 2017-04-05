@@ -30,7 +30,7 @@ export class SignInComponent implements OnInit {
 
   onSubmit({value, valid}: {value: Login, valid: boolean}): void {
     if ( valid === true ) {
-      this.signInService.loginUser();
+      this.signInService.loginUser(value);
     }
   }
 
