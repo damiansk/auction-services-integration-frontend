@@ -16,8 +16,6 @@ export class SignUpService {
   registerUser(user: User): Observable<Response> {
     user.username = user.username || '';
 
-    console.log(JSON.stringify(user));
-
     return this.http
       .post( `${environment.API_URL}/api/v1/user/register`, JSON.stringify(user), {headers: this.headers} );
   }

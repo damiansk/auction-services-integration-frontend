@@ -28,7 +28,7 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  doSignIn({value, valid}: {value: Login, valid: boolean}): void {
+  onSubmit({value, valid}: {value: Login, valid: boolean}): void {
     if ( valid === true ) {
       //TODO send value to SignIn service
     }

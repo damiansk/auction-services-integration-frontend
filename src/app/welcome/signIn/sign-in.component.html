@@ -2,7 +2,7 @@
   <h2>AukcLinker</h2>
   <h3>Zaloguj sie, aby zarzadzac wszystkimi swoimi aukcjami jednoczesnie</h3>
 
-  <form [formGroup]="modelForm" (ngSubmit)="doSignIn($event)">
+  <form [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
 
     <input formControlName="email" type="email" placeholder="E-mail">
     <div *ngIf="modelForm.controls.email.touched">
