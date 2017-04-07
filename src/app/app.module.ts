@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { WelcomeComponent, SignInComponent, SignUpComponent, SignUpDoneComponent } from './welcome';
+import { WelcomeComponent, SignInComponent, SignUpComponent, SignUpDoneComponent, AccountActivationComponent } from './welcome';
 import { SignUpService, SignInService } from './welcome';
 import { HomeComponent } from './home';
 
@@ -17,6 +17,7 @@ import { HomeComponent } from './home';
     SignInComponent,
     SignUpComponent,
     SignUpDoneComponent,
+    AccountActivationComponent,
     HomeComponent
   ],
   imports: [
@@ -31,7 +32,8 @@ import { HomeComponent } from './home';
           { path: '', redirectTo: 'login', pathMatch: 'full'},
           { path: 'login', component: SignInComponent },
           { path: 'register', component: SignUpComponent },
-          { path: 'register/done', component: SignUpDoneComponent }
+          { path: 'register/done', component: SignUpDoneComponent },
+          { path: 'account-activation', component: AccountActivationComponent }
         ]
       },
       {
