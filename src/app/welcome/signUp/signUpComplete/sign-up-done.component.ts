@@ -3,11 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'done',
-  template: `
-    <h2>Twoja rejestracja przebiega pomyslnie!</h2>
-    <p>Nacisnij ponizszy przycisk aby przejsc do strony logowania.</p>
-    <button type="button" (click)="goToLogin()">Dalej</button>
-  `
+  templateUrl: 'sign-up-done.component.html'
 })
 export class SignUpDoneComponent {
 
