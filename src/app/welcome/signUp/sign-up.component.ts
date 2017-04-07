@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { CustomValidators } from '../validators/validators';
 import { SignUpService } from './sign-up.service';
@@ -25,11 +25,10 @@ export class SignUpComponent implements OnInit {
     mismatchedPasswords: 'Hasla nie sa identyczne'
   };
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private signUpService: SignUpService
-  ) {}
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute,
+              private signUpService: SignUpService) {}
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
@@ -59,7 +58,7 @@ export class SignUpComponent implements OnInit {
         .subscribe(
           (data) => {
             if ( data.status === 201 ) {
-              this.router.navigateByUrl('/register/done');
+              this.router.navigate(['done'], {relativeTo: this.route});
             } else {
               console.log('Wrong response status');
             }
@@ -95,7 +94,7 @@ export class SignUpComponent implements OnInit {
   }
 
   goToLogin(): void {
-    this.router.navigate(['/login']);
+    this.router.navigate(['../login'], {relativeTo: this.route});
   }
 
 }

@@ -25,22 +25,14 @@ import { HomeComponent } from './home';
     HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {
-        path: '',
-        redirectTo: '/login',
-        pathMatch: 'full'
-      },
-      {
-        path: 'login',
-        component: SignInComponent
-      },
-      {
-        path: 'register',
-        component: SignUpComponent
-      },
-      {
-        path: 'register/done',
-        component: SignUpDoneComponent
+      { path: '', redirectTo: '/welcome/login', pathMatch: 'full' },
+      { path: 'welcome', component: WelcomeComponent,
+        children: [
+          { path: '', redirectTo: 'login', pathMatch: 'full'},
+          { path: 'login', component: SignInComponent },
+          { path: 'register', component: SignUpComponent },
+          { path: 'register/done', component: SignUpDoneComponent }
+        ]
       },
       {
         path: 'home',

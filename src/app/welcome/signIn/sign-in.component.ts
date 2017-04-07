@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Login } from './sing-in.interface';
 import { SignInService } from './sign-in.service';
 
@@ -15,11 +15,10 @@ export class SignInComponent implements OnInit {
     required: 'To pole jest wymagane'
   };
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private signInService: SignInService
-  ) {}
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute,
+              private signInService: SignInService) {}
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
@@ -49,7 +48,7 @@ export class SignInComponent implements OnInit {
   }
 
   goToRegister(): void {
-    this.router.navigate(['/register']);
+    this.router.navigate(['../register'], {relativeTo: this.route});
   }
 
 }

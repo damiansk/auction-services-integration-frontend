@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'done',
@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 })
 export class SignUpDoneComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              private route: ActivatedRoute) {}
 
   goToLogin(): void {
-    this.router.navigate(['/login']);
+    this.router.navigate(['login'], {relativeTo: this.route.parent});
   }
 
 }
