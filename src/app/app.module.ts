@@ -9,6 +9,8 @@ import { WelcomeComponent, SignInComponent, SignUpComponent, SignUpDoneComponent
 import { SignUpService, SignInService } from './welcome';
 import { HomeComponent } from './home';
 
+import { EbayConnectionComponent } from './eBay/ebay-connection.component';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { HomeComponent } from './home';
     SignUpComponent,
     SignUpDoneComponent,
     AccountActivationComponent,
-    HomeComponent
+    HomeComponent,
+    EbayConnectionComponent
   ],
   imports: [
     BrowserModule,
@@ -36,10 +39,8 @@ import { HomeComponent } from './home';
           { path: 'account-activation', component: AccountActivationComponent }
         ]
       },
-      {
-        path: 'home',
-        component: HomeComponent
-      }
+      { path: 'home', component: HomeComponent },
+      { path: 'ebay-connection', component: EbayConnectionComponent }
     ])
   ],
   providers: [
