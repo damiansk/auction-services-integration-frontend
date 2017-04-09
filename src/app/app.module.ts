@@ -10,6 +10,7 @@ import { SignUpService, SignInService } from './welcome';
 import { HomeComponent } from './home';
 
 import { EbayConnectionComponent } from './eBay/ebay-connection.component';
+import { EbayAuthAcceptedComponent } from './ebay/auth/accepted/ebay-auth-accepted.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { EbayConnectionComponent } from './eBay/ebay-connection.component';
     SignUpDoneComponent,
     AccountActivationComponent,
     HomeComponent,
-    EbayConnectionComponent
+    EbayConnectionComponent,
+    EbayAuthAcceptedComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { EbayConnectionComponent } from './eBay/ebay-connection.component';
         ]
       },
       { path: 'home', component: HomeComponent },
-      { path: 'ebay-connection', component: EbayConnectionComponent }
+      { path: 'ebay-connection', component: EbayConnectionComponent },
+      { path: 'ebay-auth-accepted', component: EbayAuthAcceptedComponent }
     ])
   ],
   providers: [
