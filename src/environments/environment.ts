@@ -5,5 +5,8 @@
 
 export const environment = {
   production: false,
-  'API_URL': 'http://localhost:8080'
+  API_URL: 'https://localhost:9112',
+  AUTH_URL: {
+    login: '/api/v1/rest/auth'
+  }
 };
