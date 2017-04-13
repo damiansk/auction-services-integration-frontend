@@ -8,23 +8,25 @@ import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'ebay-connection',
-  template: '<a href="{{link}}">Connect Your Account</a>'
+  template: '<button (click)="getActivationLink()">Connect Your Account</button>'
 })
 export class EbayConnectionComponent implements OnInit {
 
   private email = 'test@test.test';
-  private link = '#';
 
   constructor(public http: Http) {}
 
   ngOnInit(): void {
-    this.setActivationLink();
+
   }
 
-  setActivationLink(): void {
+  getActivationLink(): void {
     this.http.get( `${environment.API_URL}/api/v1/ebay/auth/redirect/${this.email}`)
       .subscribe(
-        data => this.link = data.text(),
+        data => {
+          console.log( data );
+          //window.location.href= ;
+        },
         err => console.error(err)
       );
 
