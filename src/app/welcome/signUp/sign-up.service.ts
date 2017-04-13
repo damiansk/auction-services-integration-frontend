@@ -14,10 +14,10 @@ export class SignUpService {
   constructor( private http: Http ) {}
 
   registerUser(user: User): Observable<Response> {
-    user.username = user.username || '';
-
     return this.http
-      .post( `${environment.API_URL}/api/v1/user/register`, JSON.stringify(user), {headers: this.headers} );
+      .post( `${environment.API_URL}${environment.AUTH_URL.register}`,
+        JSON.stringify(user),
+        {headers: this.headers} );
   }
 
 }
