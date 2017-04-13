@@ -36,10 +36,7 @@ import { HomeComponent } from './home';
           { path: 'account-activation', component: AccountActivationComponent }
         ]
       },
-      {
-        path: 'home',
-        component: HomeComponent
-      }
+      { path: 'home', component: HomeComponent }
     ])
   ],
   providers: [
