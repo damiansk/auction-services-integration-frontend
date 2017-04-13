@@ -5,9 +5,10 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { WelcomeComponent, SignInComponent, SignUpComponent, SignUpDoneComponent, AccountActivationComponent } from './welcome';
+import { WelcomeComponent, SignInComponent, SignUpComponent, SignUpDoneComponent } from './welcome';
 import { SignUpService, SignInService } from './welcome';
 import { HomeComponent } from './home';
+import { AccountActivationComponent } from './account-activation/account-activation.component';
 
 
 @NgModule({
@@ -32,11 +33,11 @@ import { HomeComponent } from './home';
           { path: '', redirectTo: 'login', pathMatch: 'full'},
           { path: 'login', component: SignInComponent },
           { path: 'register', component: SignUpComponent },
-          { path: 'register/done', component: SignUpDoneComponent },
-          { path: 'account-activation', component: AccountActivationComponent }
+          { path: 'register/done', component: SignUpDoneComponent }
         ]
       },
-      { path: 'home', component: HomeComponent }
+      { path: 'home', component: HomeComponent },
+      { path: 'account-activation', component: AccountActivationComponent }
     ])
   ],
   providers: [
