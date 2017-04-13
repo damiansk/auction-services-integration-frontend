@@ -16,7 +16,7 @@ export class SignInService {
   loginUser(login: Login): Observable<Response> {
     return this.http
                 .post(
-                  `${environment.API_URL}/api/v1/user/login`,
+                  `${environment.API_URL}${environment.AUTH_URL.login}`,
                   JSON.stringify(login),
                   {headers: this.headers}
                 );
