@@ -21,12 +21,10 @@ export class EbayConnectionComponent implements OnInit {
   }
 
   getActivationLink(): void {
-    this.http.get( `${environment.API_URL}/api/v1/ebay/auth/redirect/${this.email}`)
+    this.http
+      .get(`${environment.API_URL}${environment.EBAY_URL.authRedirect}${this.email}`)
       .subscribe(
-        data => {
-          console.log( data );
-          //window.location.href= ;
-        },
+        data => window.location.href = data.json().redirectionUrl,
         err => console.error(err)
       );
 
