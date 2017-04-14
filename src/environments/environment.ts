@@ -5,8 +5,11 @@
 
 export const environment = {
   production: false,
-  'API_URL': 'http://localhost:9222',
-  'eBay_connection-accepted': 'https://localhost:9111/api/v1/ebay/auth/accepted',
-  'eBay_connection-declined': 'https://localhost:9111/api/v1/ebay/auth/declined',
-  'eBay_connection-policy': 'https://localhost:9111/api/v1/rest/policy',
+  API_URL: 'https://localhost:9112',
+  EBAY_URL: {
+    authAccepted: '',
+    authDeclined: '',
+    authPolicy: '',
+    authRedirect: '/secured/api/v1/rest/ebay/auth/'
+  }
 };
