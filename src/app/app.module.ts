@@ -5,9 +5,10 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { WelcomeComponent, SignInComponent, SignUpComponent, SignUpDoneComponent, AccountActivationComponent } from './welcome';
+import { WelcomeComponent, SignInComponent, SignUpComponent, SignUpDoneComponent } from './welcome';
 import { SignUpService, SignInService } from './welcome';
 import { HomeComponent } from './home';
+import { AccountActivationComponent } from './account-activation/account-activation.component';
 
 import { EbayConnectionComponent } from './eBay/ebay-connection.component';
 import { EbayAuthAcceptedComponent } from './ebay/auth/accepted/ebay-auth-accepted.component';
@@ -46,7 +47,9 @@ import { EbayAuthDeclinedComponent } from './eBay/auth/declined/ebay-auth-declin
       { path: 'home', component: HomeComponent },
       { path: 'ebay-connection', component: EbayConnectionComponent },
       { path: 'ebay-auth-accepted', component: EbayAuthAcceptedComponent },
-      { path: 'ebay-auth-declined', component: EbayAuthDeclinedComponent }
+      { path: 'ebay-auth-declined', component: EbayAuthDeclinedComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'account-activation', component: AccountActivationComponent }
     ])
   ],
   providers: [

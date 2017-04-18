@@ -56,13 +56,7 @@ export class SignUpComponent implements OnInit {
       this.signUpService
         .registerUser(value)
         .subscribe(
-          (data) => {
-            if ( data.status === 201 ) {
-              this.router.navigate(['done'], {relativeTo: this.route});
-            } else {
-              console.log('Wrong response status');
-            }
-          },
+          (data) => this.router.navigate(['done'], {relativeTo: this.route}),
           (error) => {
             console.error(error);
             this.modelForm.reset();

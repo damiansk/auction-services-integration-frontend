@@ -6,6 +6,11 @@
 export const environment = {
   production: false,
   API_URL: 'https://localhost:9112',
+  AUTH_URL: {
+    login: '/api/v1/rest/auth',
+    register: '/api/v1/rest/auth/register',
+    accountActivation: '/api/v1/rest/auth/confirmRegistration'
+  },
   EBAY_URL: {
     authAccepted: '',
     authDeclined: '',
