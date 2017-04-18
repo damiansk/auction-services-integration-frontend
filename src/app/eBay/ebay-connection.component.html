@@ -1,0 +1,6 @@
+<div class="content">
+  <h2>eBay</h2>
+  <p>{{ account ? "Polaczono konto" : "Brak polaczonego konta" }}</p>
+  <p *ngIf="account">Data wygasniecia polaczenia: <span>{{expirationTime}}</span></p>
+  <button (click)="getActivationLink()">Polacz swoje konto</button>
+</div>

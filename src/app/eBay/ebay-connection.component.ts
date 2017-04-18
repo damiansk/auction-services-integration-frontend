@@ -8,11 +8,13 @@ import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'ebay-connection',
-  template: '<button (click)="getActivationLink()">Connect Your Account</button>'
+  templateUrl: './ebay-connection.component.html'
 })
 export class EbayConnectionComponent implements OnInit {
 
   private email = 'test@test.test';
+  private account: string;
+  private expirationTime: string;
 
   constructor(public http: Http) {}
 
