@@ -12,14 +12,13 @@ import {environment} from '../../environments/environment';
 })
 export class EbayConnectionComponent implements OnInit {
 
-  private email = 'test@test.test';
-  private account: string;
+  private email = 'test@gmail.com';
   private expirationTime: string;
 
   constructor(public http: Http) {}
 
   ngOnInit(): void {
-
+    this.getAccountExpirationTime();
   }
 
   getActivationLink(): void {
@@ -29,7 +28,20 @@ export class EbayConnectionComponent implements OnInit {
         data => window.location.href = data.json().redirectionUrl,
         err => console.error(err)
       );
+  }
 
+  getAccountExpirationTime(): void {
+    this.http
+      .get(`${environment.API_URL}${environment.EBAY_URL.getTokenExpirationDate}${this.email}`)
+      .subscribe(
+        data => {
+          const dataJSON = data.json();
+          if (dataJSON.isActive === true) {
+            this.expirationTime = dataJSON.expirationTime;
+          }
+        },
+        err => console.error(err)
+      )
   }
 
 }
