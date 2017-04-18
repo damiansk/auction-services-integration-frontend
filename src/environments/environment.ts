@@ -15,6 +15,7 @@ export const environment = {
     authAccepted: '',
     authDeclined: '',
     authPolicy: '',
-    authRedirect: '/secured/api/v1/rest/ebay/auth/'
+    authRedirect: '/secured/api/v1/rest/ebay/auth/',
+    getTokenExpirationDate: '/secured/api/v1/rest/ebay/auth/token/'
   }
 };
