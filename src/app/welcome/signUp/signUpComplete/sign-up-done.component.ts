@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'done',
-  templateUrl: 'sign-up-done.component.html'
+  templateUrl: 'sign-up-done.component.html',
+  styleUrls: ['../sign-up.component.css']
 })
 export class SignUpDoneComponent {
 
