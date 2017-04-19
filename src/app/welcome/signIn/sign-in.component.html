@@ -1,6 +1,5 @@
 <div class="content">
-  <h2>AukcLinker</h2>
-  <h3>Zaloguj sie, aby zarzadzac wszystkimi swoimi aukcjami jednoczesnie</h3>
+  <p>Zaloguj sie, aby zarzadzac wszystkimi swoimi aukcjami jednoczesnie</p>
 
   <form [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
 
@@ -17,7 +16,7 @@
     <button [disabled]="!modelForm.valid" type="submit">Zaloguj</button>
   </form>
 
-  <h3>Nie posiadasz jeszcze konta?</h3>
+  <p>Nie posiadasz jeszcze konta?</p>
   <button (click)="goToRegister()">Zarejestruj</button>
   <button>Zaloguj przez Facebook</button>
   <button>Zaloguj przez Google+</button>
