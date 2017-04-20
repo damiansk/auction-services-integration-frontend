@@ -28,10 +28,12 @@ export class AccountActivationComponent implements OnInit {
         {headers: this.headers})
       .subscribe(
         () => {
-          document.getElementById('message').textContent = "Twoje konto zostalo aktywowane, nastapi przekierowanie do strony logowania";
-          this.goToLogin();
+          document.getElementById('message').textContent = "Twoje konto zostalo aktywowane, aby przejsc do logowania nacisnij ponizszy przycisk.";
         },
-        err => console.error(err)
+        err => {
+          console.error(err);
+          document.getElementById('message').textContent = "W wyniku bledy Twoje konto nie zostalo aktywowane. Prosze skontaktowac sie z administaratorem.";
+        }
       );
   }
 
