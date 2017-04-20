@@ -34,7 +34,7 @@ import { EbayAuthDeclinedComponent } from './eBay/auth/declined/ebay-auth-declin
     HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: '/welcome/login', pathMatch: 'full' },
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: 'welcome', component: WelcomeComponent,
         children: [
           { path: '', redirectTo: 'login', pathMatch: 'full'},
