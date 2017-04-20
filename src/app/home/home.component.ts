@@ -13,10 +13,10 @@ export class HomeComponent implements OnInit {
               private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const cookies = document.cookie.split("; ");
+    const cookies = document.cookie.split(/; |=/);
     const tokenNameIndex = cookies.indexOf('Authorization');
 
-    if ( tokenNameIndex === -1 && cookies[tokenNameIndex+1].length !== 0 ) {
+    if ( tokenNameIndex === -1 ) {
       this.router.navigate([''], {relativeTo: this.route});
     } else {
       //TODO connect to server and check authorization token
