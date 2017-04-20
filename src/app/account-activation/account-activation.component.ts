@@ -7,7 +7,8 @@ import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'account-activation',
-  templateUrl: './account-activation.component.html'
+  templateUrl: './account-activation.component.html',
+  styleUrls: ['./account-activation.component.css']
 })
 export class AccountActivationComponent implements OnInit {
 
@@ -33,13 +34,13 @@ export class AccountActivationComponent implements OnInit {
           },
         err => {
           console.error(err);
-          document.getElementById('message').textContent = "W wyniku bledy Twoje konto nie zostalo aktywowane. Prosze skontaktowac sie z administaratorem.";
+          document.getElementById('message').textContent = "W wyniku bledy Twoje konto nie zostalo aktywowane. W celu rozwiazania problemu prosze skontaktowac sie z administaratorem.";
           this.activateRedirectButton();
         }
       );
   }
 
-  goToLogin():void {
+  goToLogin(): void {
     this.router.navigate([''], {relativeTo: this.route});
 
   }
