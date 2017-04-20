@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'account-activation',
-  template: '<h2>Account activation component</h2><p id="message">Prosze czekać, trwa aktywowanie...</p>'
+  templateUrl: './account-activation.component.html'
 })
 export class AccountActivationComponent implements OnInit {
 
