@@ -1,6 +1,5 @@
 <div class="content">
-  <h2>AukcLinker</h2>
-  <h3>Zarejestruj sie, aby zarzadzac wszystkimi swoimi aukcjami jednoczesnie</h3>
+  <p>Zarejestruj sie, aby zarzadzac wszystkimi swoimi aukcjami jednoczesnie</p>
 
   <form [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
     <input name="email" formControlName="email" type="email" placeholder="E-mail">
@@ -19,8 +18,9 @@
       <span *ngIf="modelForm.hasError('mismatchedPasswords')">{{ validationMessages.mismatchedPasswords }}</span>
     </div>
 
-    <button [disabled]="!modelForm.valid" type="submit">Zarejestruj</button>
+    <button class="btn btn-submit" [disabled]="!modelForm.valid" type="submit">Zarejestruj</button>
   </form>
-  <h3>Posiadasz juz konto?</h3>
-  <button (click)="goToLogin()">Zaloguj sie</button>
+  <hr>
+  <p>Posiadasz juz konto?</p>
+  <button class="btn btn-submit" (click)="goToLogin()">Zaloguj sie</button>
 </div>

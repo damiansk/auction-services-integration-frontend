@@ -7,7 +7,8 @@ import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'account-activation',
-  template: '<h2>Account activation component</h2><p id="message">Prosze czekać, trwa aktywowanie...</p>'
+  templateUrl: './account-activation.component.html',
+  styleUrls: ['./account-activation.component.css']
 })
 export class AccountActivationComponent implements OnInit {
 
@@ -28,16 +29,26 @@ export class AccountActivationComponent implements OnInit {
         {headers: this.headers})
       .subscribe(
         () => {
-          document.getElementById('message').textContent = "Twoje konto zostalo aktywowane, nastapi przekierowanie do strony logowania";
-          this.goToLogin();
-        },
-        err => console.error(err)
+          document.getElementById('message').textContent = "Twoje konto zostalo aktywowane, aby przejsc do logowania nacisnij ponizszy przycisk.";
+          this.activateRedirectButton();
+          },
+        err => {
+          console.error(err);
+          document.getElementById('message').textContent = "W wyniku bledy Twoje konto nie zostalo aktywowane. W celu rozwiazania problemu prosze skontaktowac sie z administaratorem.";
+          this.activateRedirectButton();
+        }
       );
   }
 
-  goToLogin():void {
+  goToLogin(): void {
     this.router.navigate([''], {relativeTo: this.route});
 
+  }
+
+  activateRedirectButton(): void {
+    const btn = document.getElementById('toLoginRedirect');
+
+    btn.classList.remove('invisible');
   }
 
 }
