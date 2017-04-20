@@ -29,10 +29,12 @@ export class AccountActivationComponent implements OnInit {
       .subscribe(
         () => {
           document.getElementById('message').textContent = "Twoje konto zostalo aktywowane, aby przejsc do logowania nacisnij ponizszy przycisk.";
-        },
+          this.activateRedirectButton();
+          },
         err => {
           console.error(err);
           document.getElementById('message').textContent = "W wyniku bledy Twoje konto nie zostalo aktywowane. Prosze skontaktowac sie z administaratorem.";
+          this.activateRedirectButton();
         }
       );
   }
@@ -40,6 +42,12 @@ export class AccountActivationComponent implements OnInit {
   goToLogin():void {
     this.router.navigate([''], {relativeTo: this.route});
 
+  }
+
+  activateRedirectButton(): void {
+    const btn = document.getElementById('toLoginRedirect');
+
+    btn.classList.remove('invisible');
   }
 
 }
