@@ -34,6 +34,7 @@ export class SignInComponent implements OnInit {
         .subscribe(
           (data) => {
             if ( data.status === 200 ) {
+              this.saveTokenToCookie( data.headers.get('Authorization') );
               this.router.navigateByUrl('/home');
             } else {
               console.log('Wrong response status');
@@ -46,6 +47,10 @@ export class SignInComponent implements OnInit {
           () => this.modelForm.reset()
         );
     }
+  }
+
+  saveTokenToCookie(token: string): void {
+    document.cookie = `Authorization = ${token}; path=/`;
   }
 
   goToRegister(): void {
