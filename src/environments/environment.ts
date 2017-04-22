@@ -10,5 +10,12 @@ export const environment = {
     login: '/api/v1/rest/auth',
     register: '/api/v1/rest/auth/register',
     accountActivation: '/api/v1/rest/auth/confirmRegistration'
+  },
+  EBAY_URL: {
+    authAccepted: '',
+    authDeclined: '',
+    authPolicy: '',
+    authRedirect: '/secured/api/v1/rest/ebay/auth/',
+    getTokenExpirationDate: '/secured/api/v1/rest/ebay/auth/token/'
   }
 };
