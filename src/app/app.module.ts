@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { CookieService } from 'ng2-cookies';
+
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app.routing';
@@ -25,6 +27,7 @@ import { AuthService } from './_services/auth.service';
     AppComponent
   ],
   providers: [
+    CookieService,
     AuthGuard,
     AuthService
   ]
