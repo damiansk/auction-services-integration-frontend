@@ -14,10 +14,7 @@ import { WelcomeModule } from './welcome';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    EbayConnectionComponent,
-    EbayAuthAcceptedComponent,
-    EbayAuthDeclinedComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
