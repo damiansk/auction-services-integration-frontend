@@ -14,6 +14,8 @@ import { EbayConnectionComponent } from './eBay/ebay-connection.component';
 import { EbayAuthAcceptedComponent } from './ebay/auth/accepted/ebay-auth-accepted.component';
 import { EbayAuthDeclinedComponent } from './eBay/auth/declined/ebay-auth-declined.component';
 
+import { HomeModule } from './home/home.module';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,6 @@ import { EbayAuthDeclinedComponent } from './eBay/auth/declined/ebay-auth-declin
     SignUpComponent,
     SignUpDoneComponent,
     AccountActivationComponent,
-    HomeComponent,
     EbayConnectionComponent,
     EbayAuthAcceptedComponent,
     EbayAuthDeclinedComponent
@@ -50,7 +51,8 @@ import { EbayAuthDeclinedComponent } from './eBay/auth/declined/ebay-auth-declin
       { path: 'ebay-auth-declined', component: EbayAuthDeclinedComponent },
       { path: 'home', component: HomeComponent },
       { path: 'account-activation', component: AccountActivationComponent }
-    ])
+    ]),
+    HomeModule
   ],
   providers: [
     SignUpService,
