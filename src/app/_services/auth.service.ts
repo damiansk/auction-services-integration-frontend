@@ -9,4 +9,8 @@ export class AuthService {
     return true;
   }
 
+  isLogged(): boolean {
+    return true;
+  }
+
 }
