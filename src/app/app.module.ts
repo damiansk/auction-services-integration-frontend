@@ -8,6 +8,7 @@ import { HomeModule } from './home/home.module';
 import { WelcomeModule } from './welcome';
 
 import { AuthGuard } from './_guards/auth.guard';
+import { AuthService } from './_services/auth.service';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { AuthGuard } from './_guards/auth.guard';
     AppComponent
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    AuthService
   ]
 })
 export class AppModule { }
