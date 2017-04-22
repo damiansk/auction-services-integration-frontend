@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Http, Headers } from '@angular/http';
 
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 
 @Component({

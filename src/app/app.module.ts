@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent, SignInComponent, SignUpComponent, SignUpDoneComponent } from './welcome';
 import { SignUpService, SignInService } from './welcome';
 import { HomeComponent } from './home';
-import { AccountActivationComponent } from './account-activation/account-activation.component';
+import { AccountActivationComponent } from './welcome/account-activation/account-activation.component';
 
 import { EbayConnectionComponent } from './eBay/ebay-connection.component';
 import { EbayAuthAcceptedComponent } from './ebay/auth/accepted/ebay-auth-accepted.component';
