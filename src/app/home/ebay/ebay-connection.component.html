@@ -3,4 +3,5 @@
   <p>{{ expirationTime ? "Polaczono konto" : "Brak polaczonego konta" }}</p>
   <p *ngIf="expirationTime">Data wygasniecia polaczenia: <span>{{expirationTime}}</span></p>
   <button (click)="getActivationLink()">Polacz swoje konto</button>
+  <router-outlet></router-outlet>
 </div>
