@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-import { EbayConnectionComponent } from './eBay/ebay-connection.component';
-import { EbayAuthAcceptedComponent } from './ebay/auth/accepted/ebay-auth-accepted.component';
-import { EbayAuthDeclinedComponent } from './eBay/auth/declined/ebay-auth-declined.component';
+import { EbayConnectionComponent } from './home/ebay/ebay-connection.component';
+import { EbayAuthAcceptedComponent } from './home/ebay/auth/accepted/ebay-auth-accepted.component';
+import { EbayAuthDeclinedComponent } from './home/ebay/auth/declined/ebay-auth-declined.component';
 
 import { HomeModule } from './home/home.module';
 import { WelcomeModule } from './welcome';
