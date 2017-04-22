@@ -10,7 +10,7 @@ import { EbayAuthAcceptedComponent } from './ebay/auth/accepted/ebay-auth-accept
 import { EbayAuthDeclinedComponent } from './eBay/auth/declined/ebay-auth-declined.component';
 
 import { HomeModule } from './home/home.module';
-import { WelcomeModule } from './welcome/welcome.module';
+import { WelcomeModule } from './welcome';
 
 
 @NgModule({
