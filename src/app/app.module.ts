@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app.routing';
 import { HomeModule } from './home/home.module';
 import { WelcomeModule } from './welcome';
 
+import { AuthGuard } from './_guards/auth.guard';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +22,9 @@ import { WelcomeModule } from './welcome';
   ],
   bootstrap: [
     AppComponent
+  ],
+  providers: [
+    AuthGuard
   ]
 })
 export class AppModule { }
