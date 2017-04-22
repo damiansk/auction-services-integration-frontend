@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
+import { AppRoutingModule } from './app.routing';
 import { HomeModule } from './home/home.module';
 import { WelcomeModule } from './welcome';
 
@@ -14,11 +14,9 @@ import { WelcomeModule } from './welcome';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     HomeModule,
-    WelcomeModule,
-    RouterModule.forRoot([
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' }
-    ])
+    WelcomeModule
   ],
   bootstrap: [
     AppComponent
