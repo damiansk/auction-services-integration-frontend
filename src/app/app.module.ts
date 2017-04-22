@@ -4,10 +4,6 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-import { EbayConnectionComponent } from './home/ebay/ebay-connection.component';
-import { EbayAuthAcceptedComponent } from './home/ebay/auth/accepted/ebay-auth-accepted.component';
-import { EbayAuthDeclinedComponent } from './home/ebay/auth/declined/ebay-auth-declined.component';
-
 import { HomeModule } from './home/home.module';
 import { WelcomeModule } from './welcome';
 
@@ -21,10 +17,7 @@ import { WelcomeModule } from './welcome';
     HomeModule,
     WelcomeModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: 'ebay-connection', component: EbayConnectionComponent },
-      { path: 'ebay-auth-accepted', component: EbayAuthAcceptedComponent },
-      { path: 'ebay-auth-declined', component: EbayAuthDeclinedComponent }
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' }
     ])
   ],
   bootstrap: [
