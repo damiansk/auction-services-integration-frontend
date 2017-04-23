@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Login } from './sing-in.interface';
 import { SignInService } from './sign-in.service';
+
+import { CookieService } from 'ng2-cookies';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,7 +22,8 @@ export class SignInComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
-              private signInService: SignInService) {}
+              private signInService: SignInService,
+              private cookieService: CookieService) {}
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
@@ -30,27 +34,22 @@ export class SignInComponent implements OnInit {
 
   onSubmit({value, valid}: {value: Login, valid: boolean}): void {
     if ( valid === true ) {
-      this.signInService.loginUser(value)
+      this.signInService
+        .loginUser(value)
         .subscribe(
-          (data) => {
-            if ( data.status === 200 ) {
-              this.saveTokenToCookie( data.headers.get('Authorization') );
-              this.router.navigateByUrl('/home');
-            } else {
-              console.log('Wrong response status');
-            }
-          },
-          (error) => {
-            console.error(error._body);
-            this.modelForm.reset();
-          },
+          (response) => this.loginSuccess(response.headers, response.json()),
+          (error) => console.error(error._body) && this.modelForm,
           () => this.modelForm.reset()
         );
     }
   }
 
-  saveTokenToCookie(token: string): void {
-    document.cookie = `Authorization = ${token}; path=/`;
+  loginSuccess(headers, body): void {
+    this.cookieService.set('authorization', headers.get('authorization'), null, '/');
+    this.cookieService.set('email', body['email'], null, '/');
+    this.cookieService.set('role', body['role'], null, '/');
+
+    this.router.navigateByUrl('/home');
   }
 
   goToRegister(): void {
