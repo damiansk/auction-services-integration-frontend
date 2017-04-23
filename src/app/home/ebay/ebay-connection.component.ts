@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 
 
 @Component({
