@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 
+import { CookieService } from 'ng2-cookies';
+
 @Injectable()
 export class AuthService {
 
-  constructor() {}
+  constructor(private cookieService: CookieService) {}
 
   isAuthorized(): boolean {
-    return true;
+    //TODO should connect to backend and check authorization valid
+    return !!this.cookieService.get('authorization') &&
+            !!this.cookieService.get('email') &&
+            !!this.cookieService.get('role');
   }
 
   isLogged(): boolean {
-    return true;
+    return !!this.cookieService.get('authorization');
   }
 
 }
