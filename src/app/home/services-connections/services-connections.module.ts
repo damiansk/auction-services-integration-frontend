@@ -8,7 +8,6 @@ import { ServicesConnectionsRoutingModule } from './services-connections.routing
 @NgModule({
   declarations: [ServicesConnectionsComponent],
   imports: [
-    BrowserModule,
     ServicesConnectionsRoutingModule
   ]
 })

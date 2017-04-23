@@ -9,7 +9,11 @@ import { EbayAuthDeclinedComponent } from './ebay/auth/declined/ebay-auth-declin
 import { AuthGuard } from '../_guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
+    children: [
+      { path: 'services-connections', loadChildren: './services-connections/services-connections.module#ServicesConnectionsModule'}
+    ]
+  },
   { path: 'ebay-connection', component: EbayConnectionComponent,
     children: [
       { path: 'auth-accepted', component: EbayAuthAcceptedComponent },

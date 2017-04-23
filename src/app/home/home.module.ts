@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { ServicesConnectionsModule } from './services-connections/services-connections.module';
+
 import { HomeComponent } from './home.component';
 import { EbayConnectionComponent} from './ebay/ebay-connection.component';
 import { EbayAuthAcceptedComponent} from './ebay/auth/accepted/ebay-auth-accepted.component';
@@ -18,6 +20,7 @@ import { HomeRoutingModule } from './home.routing';
   ],
   imports: [
     BrowserModule,
+    ServicesConnectionsModule,
     HomeRoutingModule
   ]
 })
