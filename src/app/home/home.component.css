@@ -12,19 +12,19 @@
 .content header {
   background-color: #2196F3;
   padding-left: 20pt;
+  padding-top: 16pt;
+  padding-bottom: 24pt;
   margin: 0 0 10pt;
 }
 
 .content header h2 {
   font-size: 30pt;
-  padding-top: 16pt;
   margin: 0;
 }
 
 .content header p {
   font-size: 12pt;
   margin: 0;
-  padding-bottom: 24pt;
 }
 
 .main-nav {
@@ -38,4 +38,12 @@
   display: inline-flex;
   margin-left: 2.5%;
   width: 75%;
+}
+
+footer {
+  background-color: #343434;
+  color: #dddddd;
+  margin-top: 10pt;
+  text-align: right;
+  padding: 10pt 20pt;
 }
