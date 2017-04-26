@@ -18,4 +18,16 @@ export class AuthService {
     return !!this.cookieService.get('authorization');
   }
 
+  public getAuthToken(): string {
+    return this.cookieService.get('authorization');
+  }
+
+  public getEmail(): string {
+    return this.cookieService.get('email');
+  }
+
+  public getRole(): string {
+    return this.cookieService.get('role');
+  }
+
 }
