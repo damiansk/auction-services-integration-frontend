@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/map';
+
+import { AuthService } from '../../../_services/auth.service';
 
 import { environment } from '../../../../environments/environment';
 
@@ -12,27 +14,31 @@ import { environment } from '../../../../environments/environment';
 })
 export class EbayAuthComponent implements OnInit {
 
-  private email = 'test@gmail.com';
+  private headers: Headers;
   private expirationTime: string;
 
-  constructor(public http: Http) {}
+  constructor(private http: Http,
+              private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.appendSecureHeaders();
     this.getAccountExpirationTime();
   }
 
   getActivationLink(): void {
     this.http
-      .get(`${environment.API_URL}${environment.EBAY_URL.authRedirect}${this.email}`)
+      .get(`${environment.API_URL}${environment.EBAY_URL.authRedirect}${this.authService.getEmail()}`,
+            {headers: this.headers})
       .subscribe(
         data => window.location.href = data.json().redirectionUrl,
-        err => console.error(err)
+        err => console.error( err )
       );
   }
 
   getAccountExpirationTime(): void {
     this.http
-      .get(`${environment.API_URL}${environment.EBAY_URL.getTokenExpirationDate}${this.email}`)
+      .get(`${environment.API_URL}${environment.EBAY_URL.getTokenExpirationDate}${this.authService.getEmail()}`,
+        new RequestOptions({headers: this.headers}) )
       .subscribe(
         data => {
           const dataJSON = data.json();
@@ -42,6 +48,12 @@ export class EbayAuthComponent implements OnInit {
         },
         err => console.error(err)
       )
+  }
+
+  private appendSecureHeaders() {
+    this.headers = new Headers();
+    this.headers.set('Content-Type', 'application/json');
+    this.headers.set('Authorization', this.authService.getAuthToken());
   }
 
 }
