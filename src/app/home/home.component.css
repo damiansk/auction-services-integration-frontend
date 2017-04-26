@@ -26,3 +26,16 @@
   margin: 0;
   padding-bottom: 24pt;
 }
+
+.main-nav {
+  background-color: aquamarine;
+  display: inline-flex;
+  width: 20%;
+}
+
+.main-content {
+  background-color: coral;
+  display: inline-flex;
+  margin-left: 2.5%;
+  width: 75%;
+}
