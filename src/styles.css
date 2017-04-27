@@ -15,4 +15,5 @@ body {
   font-size: 10px;
   width: inherit;
   height: inherit;
+  position: relative;
 }
