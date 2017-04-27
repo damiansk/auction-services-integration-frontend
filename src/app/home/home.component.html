@@ -1,2 +1,31 @@
-<h2>Witamy na AukcLink!</h2>
-
+<div class="wrapper">
+  <div class="content">
+    <header>
+      <h2>Witamy na AukcLink!</h2>
+      <p>Zapewniamy niezapomniane wrazenia i emocje jakie zapamietasz do konca zycia!</p>
+    </header>
+    <section class="navigation-display"> A gdzie my jestesmy??</section>
+    <nav class="main-nav">
+      <ul class="menu">
+        <li class="main-nav__label"><a href="#">Menu</a></li>
+        <li class="menu--item"><a href="#">Wystaw przedmiot</a></li>
+        <li class="menu--item"><a href="#">Historia</a></li>
+        <li class="menu--item"><a href="#">Moje konto</a>
+          <ul class="menu sub-menu">
+            <li class="menu--item sub-menu--item"><a href="#">Serwisy</a></li>
+            <li class="menu--item sub-menu--item"><a href="#">Zmiana hasla</a></li>
+          </ul>
+        </li>
+        <li class="menu--item"><a href="#">Wyloguj</a></li>
+      </ul>
+    </nav>
+    <main class="main-content">
+      <p>Cala tresc</p>
+      <router-outlet></router-outlet>
+    </main>
+    <div style="clear: both;"></div>
+    <footer>
+      A co my tu mamy?
+    </footer>
+  </div>
+</div>
