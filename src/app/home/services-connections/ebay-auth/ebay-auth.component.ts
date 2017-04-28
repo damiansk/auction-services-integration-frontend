@@ -30,7 +30,10 @@ export class EbayAuthComponent implements OnInit {
       .get(`${environment.API_URL}${environment.EBAY_URL.authRedirect}${this.authService.getEmail()}`,
             {headers: this.headers})
       .subscribe(
-        data => window.location.href = data.json().redirectionUrl,
+        response => {
+          this.updateAuthToken(response.headers.get('authorization'));
+          window.location.href = response.json().redirectionUrl;
+        },
         err => console.error( err )
       );
   }
@@ -40,8 +43,9 @@ export class EbayAuthComponent implements OnInit {
       .get(`${environment.API_URL}${environment.EBAY_URL.getTokenExpirationDate}${this.authService.getEmail()}`,
         new RequestOptions({headers: this.headers}) )
       .subscribe(
-        data => {
-          const dataJSON = data.json();
+        response => {
+          this.updateAuthToken(response.headers.get('authorization'));
+          const dataJSON = response.json();
           if (dataJSON.isActive === true) {
             this.expirationTime = dataJSON.expirationTime;
           }
@@ -54,6 +58,10 @@ export class EbayAuthComponent implements OnInit {
     this.headers = new Headers();
     this.headers.set('Content-Type', 'application/json');
     this.headers.set('Authorization', this.authService.getAuthToken());
+  }
+
+  private updateAuthToken(token: string) {
+    this.authService.setAuthToken(token);
   }
 
 }
