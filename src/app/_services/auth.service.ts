@@ -18,4 +18,28 @@ export class AuthService {
     return !!this.cookieService.get('authorization');
   }
 
+  public getAuthToken(): string {
+    return this.cookieService.get('authorization');
+  }
+
+  public setAuthToken(token: string): void {
+    this.cookieService.set('authorization', token, null, '/');
+  }
+
+  public getEmail(): string {
+    return this.cookieService.get('email');
+  }
+
+  public setEmail(email: string): void {
+    this.cookieService.set('email', email, null, '/');
+  }
+
+  public getRole(): string {
+    return this.cookieService.get('role');
+  }
+
+  public setRole(role: string): void {
+    this.cookieService.set('role', role, null, '/');
+  }
+
 }

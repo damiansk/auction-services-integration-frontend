@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Login } from './sing-in.interface';
 import { SignInService } from './sign-in.service';
 
-import { CookieService } from 'ng2-cookies';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,7 +23,7 @@ export class SignInComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private signInService: SignInService,
-              private cookieService: CookieService) {}
+              private authService: AuthService) {}
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
@@ -45,9 +45,9 @@ export class SignInComponent implements OnInit {
   }
 
   loginSuccess(headers, body): void {
-    this.cookieService.set('authorization', headers.get('authorization'), null, '/');
-    this.cookieService.set('email', body['email'], null, '/');
-    this.cookieService.set('role', body['role'], null, '/');
+    this.authService.setAuthToken( headers.get('authorization') );
+    this.authService.setEmail( body['email'] );
+    this.authService.setRole( body['role'] );
 
     this.router.navigateByUrl('/home');
   }
