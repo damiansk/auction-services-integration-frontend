@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'done',
   templateUrl: 'sign-up-done.component.html',
-  styleUrls: ['../sign-up.component.css']
+  styleUrls: ['../sign-up.component.scss']
 })
 export class SignUpDoneComponent {
 

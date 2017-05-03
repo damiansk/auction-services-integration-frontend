@@ -1,0 +1,168 @@
+@import "../../colors";
+
+.wrapper {
+  background-color: $baseGray;
+  width: 100%;
+  min-width: 300px;
+}
+
+.content {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  background-color: $baseBlue;
+  padding: 16pt 20pt 10pt;
+
+  &__title {
+    font-size: 26pt;
+    margin: 0;
+  }
+  &__greeting {
+    font-size: 1.5em;
+    margin: 0;
+  }
+}
+
+
+.position-tree {
+  background-color: $baseDarkBlue;
+  color: $baseWhite;
+  padding: 6pt 20pt;
+  margin-bottom: 2pt;
+  font-size: 1.1em;
+
+  &__item {
+    background-color: $baseBlue;
+    color: $baseBlack;
+    font-weight: bold;
+    display: inline;
+    padding: 2pt 6pt;
+  }
+}
+
+.main-nav {
+  display: inline-flex;
+  width: 100%;
+  margin-bottom: 2pt;
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+    &__label {
+      display: block;
+      text-decoration: none;
+      padding: 9pt 20pt;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 1.8em;
+      background-color: $baseDarkGrayLabel;
+      color: $baseWhite;
+    }
+
+    &__item {
+      &__link {
+        color: $baseWhite;
+        font-weight: 500;
+        font-size: 1.4em;
+        display: block;
+        text-decoration: none;
+        background-color: $baseDarkGray;
+        padding: 10pt 20pt;
+        border-bottom: 1px solid $baseBlack;
+      }
+
+      &__link:hover {
+        background-color: $baseDarkGrayButton;
+      }
+    }
+  }
+}
+
+.main-content {
+  background-color: $baseLightBlue;
+  display: inline-flex;
+  padding-left: 10pt;
+  padding-right: 10pt;
+  margin-bottom: 8pt;
+}
+
+
+.footer {
+  position: absolute;
+  background-color: $baseDarkGrayLabel;
+  color: $baseWhite;
+  right: 0;
+  left: 0;
+  padding: 10pt 20pt;
+  text-align: right;
+  font-size: 1.2em;
+  min-width: 184pt;
+}
+
+
+
+@media screen and (min-width: 720px) {
+  .main-nav {
+    width: 140pt;
+
+    &__label {
+      width: 140pt;
+      font-weight: bold;
+    }
+
+    &__list__item__link {
+      font-weight: 400;
+    }
+  }
+
+  .position-tree {
+    margin-bottom: 4pt;
+  }
+
+}
+
+
+@media screen and (min-width: 960px) {
+  .content {
+    width: 75%;
+    max-width: 800pt;
+  }
+
+  .header {
+    padding-bottom: 20pt;
+  }
+
+  .position-tree {
+    margin-bottom: 6pt;
+  }
+
+  .main-nav {
+    display: inline-flex;
+    width: 160pt;
+    margin-bottom: 8pt;
+
+    &__label {
+      width: 160pt;
+    }
+
+    &__list__item__link {
+      font-weight: 400;
+    }
+  }
+
+  .main-content {
+    margin-left: 10pt;
+  }
+
+  .footer {
+    text-align: center;
+  }
+}
+
