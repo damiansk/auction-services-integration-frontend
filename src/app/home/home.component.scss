@@ -1,5 +1,7 @@
+@import "../../colors";
+
 .wrapper {
-  background-color: lightgray;
+  background-color: $baseGray;
   width: 100%;
   min-width: 300px;
 }
@@ -11,7 +13,7 @@
 }
 
 .header {
-  background-color: #2196F3;
+  background-color: $baseBlue;
   padding: 16pt 20pt 10pt;
 
   &__title {
@@ -26,15 +28,16 @@
 
 
 .position-tree {
-  background-color: #1a599b;
-  color: azure;
+  background-color: $baseDarkBlue;
+  color: $baseWhite;
   padding: 6pt 20pt;
   margin-bottom: 2pt;
   font-size: 1.1em;
 
   &__item {
-    background-color: #164b82;
-    border-color: #343434;
+    background-color: $baseBlue;
+    color: $baseBlack;
+    font-weight: bold;
     display: inline;
     padding: 2pt 6pt;
   }
@@ -54,36 +57,36 @@
     &__label {
       display: block;
       text-decoration: none;
-      padding: 8pt 20pt;
+      padding: 9pt 20pt;
       text-align: center;
       text-transform: uppercase;
-      font-weight: bold;
-      font-size: 1.4em;
-      background-color: #424543;
-      color: #dddddd;
+      font-weight: 500;
+      font-size: 1.8em;
+      background-color: $baseDarkGrayLabel;
+      color: $baseWhite;
     }
 
     &__item {
       &__link {
-        color: white;
+        color: $baseWhite;
         font-weight: 500;
         font-size: 1.4em;
         display: block;
         text-decoration: none;
-        background-color: gray;
+        background-color: $baseDarkGray;
         padding: 10pt 20pt;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid $baseBlack;
       }
 
       &__link:hover {
-        background-color: dimgray;
+        background-color: $baseDarkGrayButton;
       }
     }
   }
 }
 
 .main-content {
-  background-color: #c3c3c3;
+  background-color: $baseLightBlue;
   display: inline-flex;
   padding-left: 10pt;
   padding-right: 10pt;
@@ -93,8 +96,8 @@
 
 .footer {
   position: absolute;
-  background-color: #343434;
-  color: #dddddd;
+  background-color: $baseDarkGrayLabel;
+  color: $baseWhite;
   right: 0;
   left: 0;
   padding: 10pt 20pt;
@@ -141,7 +144,6 @@
   }
 
   .main-nav {
-    background-color: aquamarine;
     display: inline-flex;
     width: 160pt;
     margin-bottom: 8pt;
