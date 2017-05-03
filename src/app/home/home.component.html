@@ -1,30 +1,26 @@
 <div class="wrapper">
   <div class="content">
-    <header>
-      <h2>Witamy na AukcLink!</h2>
-      <p>Zapewniamy niezapomniane wrazenia i emocje jakie zapamietasz do konca zycia!</p>
+    <header class="header">
+      <h2 class="header__title">Witamy na AukcLink!</h2>
+      <p class="header__greeting">Zapewniamy niezapomniane wrazenia i emocje jakie zapamietasz do konca zycia!</p>
     </header>
-    <section class="navigation-display"> A gdzie my jestesmy??</section>
+    <section class="position-tree"><div class="position-tree__item">A gdzie my jestesmy??</div></section>
     <nav class="main-nav">
-      <ul class="menu">
-        <li class="main-nav__label"><a href="#">Menu</a></li>
-        <li class="menu--item"><a href="#">Wystaw przedmiot</a></li>
-        <li class="menu--item"><a href="#">Historia</a></li>
-        <li class="menu--item"><a href="#">Moje konto</a>
-          <ul class="menu sub-menu">
-            <li class="menu--item sub-menu--item"><a href="#">Serwisy</a></li>
-            <li class="menu--item sub-menu--item"><a href="#">Zmiana hasla</a></li>
-          </ul>
-        </li>
-        <li class="menu--item"><a href="#">Wyloguj</a></li>
+      <ul class="main-nav__list">
+        <li class="main-nav__list__label">Menu</li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" href="#">Wystaw przedmiot</a></li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" href="#">Historia</a></li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" href="#">Moje konto</a></li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" href="#">Serwisy</a></li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" href="#">Zmiana hasla</a></li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" href="#">Wyloguj</a></li>
       </ul>
     </nav>
     <main class="main-content">
       <p>Cala tresc</p>
       <router-outlet></router-outlet>
     </main>
-    <div style="clear: both;"></div>
-    <footer>
+    <footer class="footer">
       A co my tu mamy?
     </footer>
   </div>
