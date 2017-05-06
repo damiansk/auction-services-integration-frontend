@@ -9,13 +9,13 @@ export class AuthService {
 
   isAuthorized(): boolean {
     //TODO should connect to backend and check authorization valid
-    return !!this.cookieService.get('authorization') &&
-            !!this.cookieService.get('email') &&
-            !!this.cookieService.get('role');
+    return this.cookieService.check('authorization') &&
+            this.cookieService.check('email') &&
+            this.cookieService.check('role');
   }
 
   isLogged(): boolean {
-    return !!this.cookieService.get('authorization');
+    return this.cookieService.check('authorization');
   }
 
   public getAuthToken(): string {
