@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { CookieService } from 'ng2-cookies';
+
 import { Login } from './sing-in.interface';
 import { SignInService } from './sign-in.service';
 
@@ -22,6 +24,7 @@ export class SignInComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
+              private cookieService: CookieService,
               private signInService: SignInService,
               private authService: AuthService) {}
 
@@ -49,7 +52,17 @@ export class SignInComponent implements OnInit {
     this.authService.setEmail( body['email'] );
     this.authService.setRole( body['role'] );
 
-    this.router.navigateByUrl('/home');
+    this.redirectUser();
+  }
+
+  redirectUser(): void {
+      if ( this.cookieService.check('desired-url') ) {
+        const redirect = this.cookieService.get('desired-url');
+        this.cookieService.delete('desired-url');
+        this.router.navigate([redirect]);
+      } else {
+        this.router.navigate(['/home'])
+      }
   }
 
   goToRegister(): void {
