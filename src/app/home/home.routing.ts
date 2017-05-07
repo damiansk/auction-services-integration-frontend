@@ -8,7 +8,8 @@ import { AuthGuard } from '../_guards/auth.guard';
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
     children: [
-      { path: 'account', loadChildren: './account/account.module#AccountModule'}
+      { path: 'account', loadChildren: './account/account.module#AccountModule'},
+      { path: 'auctions-history', loadChildren: './auctions-history/auctions-history.module#AuctionsHistoryModule'}
     ]
   }
 ];
