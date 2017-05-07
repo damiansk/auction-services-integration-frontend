@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class SignInService {
 
-  private headers = new Headers({'Content-Type': 'application/json;charset=UTF-8;'})
+  private headers = new Headers({'Content-Type': 'application/json;charset=UTF-8;'});
 
   constructor(private http: Http) {}
 
