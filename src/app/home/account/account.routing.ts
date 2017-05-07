@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {PasswordManagementComponent} from './password-management/password-management.component';
 
 const routes: Routes = [
   //TODO Add not fount page
   { path: '', redirectTo: 'services-connections' },
-  { path: 'services-connections', loadChildren: './services-connections/services-connections.module#ServicesConnectionsModule' }
+  { path: 'password-management', component: PasswordManagementComponent }
 ];
 
 @NgModule({
