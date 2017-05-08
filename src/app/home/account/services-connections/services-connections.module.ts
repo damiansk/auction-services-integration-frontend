@@ -5,11 +5,13 @@ import { ServicesConnectionsComponent } from './services-connections.component';
 
 import { ServicesConnectionsRoutingModule } from './services-connections.routing';
 import { EbayAuthComponent } from './ebay-auth/ebay-auth.component';
+import { AllegroAuthComponent } from './allegro-auth/allegro-auth.component';
 
 @NgModule({
   declarations: [
     ServicesConnectionsComponent,
-    EbayAuthComponent
+    EbayAuthComponent,
+    AllegroAuthComponent
   ],
   imports: [
     ServicesConnectionsRoutingModule,
