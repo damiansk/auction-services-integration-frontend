@@ -21,9 +21,12 @@
       <p>Cala tresc</p>
       <router-outlet></router-outlet>
     </main>
-    <footer class="footer">
-      A co my tu mamy?
-      <a class="footer__link" [routerLink]="['help/contact']">Kontakt</a>
-    </footer>
+
   </div>
+  <div class="footer__push"></div>
 </div>
+<footer class="footer">
+  <div class="footer__logo">AukcLinker</div>
+  <a class="footer__link" [routerLink]="['help/contact']">Kontakt</a>
+  <p>A co my tu mamy?</p>
+</footer>
