@@ -3,9 +3,9 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
-import { AuthService } from '../../../_services/auth.service';
+import { AuthService } from '../../../../_services/auth.service';
 
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 
 
 @Component({

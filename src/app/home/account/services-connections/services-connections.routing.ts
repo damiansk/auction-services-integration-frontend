@@ -5,8 +5,12 @@ import { ServicesConnectionsComponent } from './services-connections.component';
 
 
 const routes: Routes = [
-  { path: '', component: ServicesConnectionsComponent },
-  { path: ':service/:options', component: ServicesConnectionsComponent }
+  { path: 'services-connections', component: ServicesConnectionsComponent,
+    children: [
+      { path: ':service/:options', component: ServicesConnectionsComponent }
+    ]
+  },
+
 ];
 
 @NgModule({
