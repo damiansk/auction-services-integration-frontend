@@ -1,3 +1,5 @@
+@import '../../fonts';
+
 .wrapper {
   display: flex;
   justify-content: center;
@@ -14,4 +16,12 @@
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 2%;
   padding: 2em 2em;
+}
+
+.logo {
+  font-family: $logoFont;
+  text-align: center;
+  font-size: 4.5em;
+  font-weight: 100;
+  margin: 0 0 18pt;
 }
