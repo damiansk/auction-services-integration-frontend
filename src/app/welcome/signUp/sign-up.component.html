@@ -3,18 +3,18 @@
   <form [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
     <input name="email" formControlName="email" type="email" placeholder="E-mail">
     <div *ngIf="modelForm.controls.email.touched">
-      <span *ngIf="formErrors.email">{{ formErrors.email }}</span>
+      <div class="error-label" *ngIf="formErrors.email">{{ formErrors.email }}</div>
     </div>
 
     <input name="password" formControlName="password" type="password" placeholder="Haslo">
     <div *ngIf="modelForm.controls.password.touched">
-      <span *ngIf="formErrors.password">{{ formErrors.password }}</span>
+      <div class="error-label" *ngIf="formErrors.password">{{ formErrors.password }}</div>
     </div>
 
     <input name="matchingPassword" formControlName="matchingPassword" type="password" placeholder="Powtorz haslo">
     <div *ngIf="modelForm.controls.matchingPassword.touched">
       <span *ngIf="formErrors.matchingPassword">{{ formErrors.matchingPassword }}</span>
-      <span *ngIf="modelForm.hasError('mismatchedPasswords')">{{ validationMessages.mismatchedPasswords }}</span>
+      <div class="error-label" *ngIf="modelForm.hasError('mismatchedPasswords')">{{ validationMessages.mismatchedPasswords }}</div>
     </div>
 
     <button class="btn btn-submit" [disabled]="!modelForm.valid" type="submit">Zarejestruj</button>
