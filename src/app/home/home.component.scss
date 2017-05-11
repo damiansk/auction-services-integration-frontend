@@ -1,4 +1,5 @@
 @import "../../colors";
+@import "../../fonts";
 
 .wrapper {
   background-color: $baseGray;
@@ -19,8 +20,9 @@
   padding: 16pt 20pt 10pt;
 
   &__title {
-    font-size: 26pt;
+    font-size: 36pt;
     margin: 0;
+    font-family: $logoFont;
   }
   &__greeting {
     font-size: 1.5em;
