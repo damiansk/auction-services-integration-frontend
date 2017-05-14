@@ -1,7 +1,10 @@
 <div class="content">
   <h2>eBay</h2>
-  <p>{{ expirationTime ? "Polaczono konto" : "Brak polaczonego konta" }}</p>
-  <p *ngIf="expirationTime">Data wygasniecia polaczenia: <span>{{expirationTime}}</span></p>
-  <button (click)="getActivationLink()">Polacz swoje konto</button>
+  <p *ngIf="!expirationTime">Brak polaczonego konta</p>
+  <div *ngIf="expirationTime">
+    <p>Status polaczonego konta: <span [style.color]="statusColor">{{isActive ? 'Aktywne' : 'Nie aktywne'}}</span></p>
+    <p>Data wygasniecia polaczenia: <span>{{expirationTime}}</span></p>
+  </div>
+  <button (click)="getActivationLink()" [disabled]="isActive">Polacz swoje konto</button>
   <router-outlet></router-outlet>
 </div>
