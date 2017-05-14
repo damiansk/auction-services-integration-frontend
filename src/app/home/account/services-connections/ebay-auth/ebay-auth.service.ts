@@ -14,10 +14,10 @@ export class EbayAuthService {
 
   public getAccountExpirationTime(): Observable<Response> {
     return this.http
-                .get(`${environment.API_URL}${environment.EBAY_URL.getTokenExpirationDate}`,
-                {headers: new Headers( {'Content-Type': 'application/json',
-                                        'Authorization': this.authService.getAuthToken()} )
-                });
+      .get(`${environment.API_URL}${environment.EBAY_URL.getTokenExpirationDate}`,
+        {headers: new Headers( {'Content-Type': 'application/json',
+                                'Authorization': this.authService.getAuthToken()} )
+        });
   }
 
   public getActivationLink(): Observable<Response> {

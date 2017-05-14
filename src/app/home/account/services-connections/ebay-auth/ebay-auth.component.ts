@@ -32,7 +32,7 @@ export class EbayAuthComponent implements OnInit {
           this.updateAuthToken(response.headers.get('authorization'));
           this.updateAccountStatus(response.json());
         },
-        err => console.error(err)
+        (err) => {}
       )
   }
 
