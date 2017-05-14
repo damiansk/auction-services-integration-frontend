@@ -3,5 +3,4 @@
   <p>Status polaczenia: <span [style.color]="statusColor">{{ isActive ? 'Aktywne' : 'Nie aktywne' }}</span></p>
   <p *ngIf="expirationTime">Data wygasniecia polaczenia: <span>{{getExpirationDate()}}</span></p>
   <button (click)="getActivationLink()" [disabled]="isActive">Polacz swoje konto</button>
-  <router-outlet></router-outlet>
 </div>
