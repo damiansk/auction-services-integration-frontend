@@ -14,8 +14,8 @@ import {EbayAuthService} from './ebay-auth.service';
 export class EbayAuthComponent implements OnInit {
 
   private expirationTime: string;
-  private isActive: boolean;
-  private statusColor: string;
+  private isActive: boolean = false;
+  private statusColor: string = 'red';
 
   constructor(private authService: AuthService,
               private ebayAuthService: EbayAuthService) {}
@@ -30,8 +30,7 @@ export class EbayAuthComponent implements OnInit {
       .subscribe(
         response => {
           this.updateAuthToken(response.headers.get('authorization'));
-          const dataJSON = response.json();
-          this.updateAccountStatus(dataJSON);
+          this.updateAccountStatus(response.json());
         },
         err => console.error(err)
       )
@@ -59,6 +58,10 @@ export class EbayAuthComponent implements OnInit {
       this.isActive = status.isActive;
       this.statusColor = status.isActive ? 'green' : 'red';
     }
+  }
+
+  getExpirationDate(): string {
+    return this.expirationTime ? this.ebayAuthService.decodeDate(new Date(this.expirationTime)) : '-';
   }
 
 }
