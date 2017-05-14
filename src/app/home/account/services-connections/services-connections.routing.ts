@@ -5,9 +5,11 @@ import { ServicesConnectionsComponent } from './services-connections.component';
 
 
 const routes: Routes = [
-  { path: 'services-connections', component: ServicesConnectionsComponent,
+  { path: 'services-connections',
     children: [
-      { path: ':service/:options', component: ServicesConnectionsComponent }
+      { path: '', component: ServicesConnectionsComponent },
+      { path: ':service/:options', component: ServicesConnectionsComponent },
+      { path: '**', redirectTo: '' }
     ]
   },
 
