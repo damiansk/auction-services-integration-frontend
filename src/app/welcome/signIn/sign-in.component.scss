@@ -23,6 +23,54 @@ hr {
 
 .btn-submit {
   background-color: $baseDarkBlue;
+  position: relative;
+  color: rgba(255,255,255,0.8);
+
+  cursor: pointer;
+  overflow: hidden;
+  transition: width 0.3s 0.15s, font-size 0.1s 0.15s;
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 16pt;
+    height: 16pt;
+    top: 5px;
+    left: 4px;
+    border: 2px dotted #fff;
+    border-radius: 50%;
+    border-left: none;
+    border-bottom: none;
+    transition: opacity 0.1s 0.4s;
+    opacity: 0;
+  }
+
+  &.processing {
+    width: 2rem;
+    font-size: 0;
+    border-radius: 3rem;
+    margin: 0 auto 12pt;
+    height: 2rem;
+
+    &:after {
+      opacity: 1;
+      animation: rotate 0.5s 0.4s infinite linear;
+    }
+  }
+
+  &.success {
+    transition: transform 0.3s 0.1s ease-out, opacity 0.1s 0.3s, background-color 0.1s 0.3s;
+    transform: scale(30);
+    opacity: 0.9;
+    //background-color: rgba(255,255,255,0.95);
+
+    &:after {
+      transition: opacity 0.1s 0s;
+      opacity: 0;
+      animation: none;
+    }
+  }
+
 }
 
 .btn-fb {
@@ -53,4 +101,10 @@ input {
   padding: 4pt;
   border: 1px solid #a53131;
   background-color: rgba(245, 129, 129, 0.43);
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
 }
