@@ -7,6 +7,8 @@ import { ServicesConnectionsRoutingModule } from './services-connections.routing
 import { EbayAuthComponent } from './ebay-auth/ebay-auth.component';
 import { AllegroAuthComponent } from './allegro-auth/allegro-auth.component';
 
+import { EbayAuthService } from './ebay-auth/ebay-auth.service';
+
 @NgModule({
   declarations: [
     ServicesConnectionsComponent,
@@ -16,6 +18,9 @@ import { AllegroAuthComponent } from './allegro-auth/allegro-auth.component';
   imports: [
     ServicesConnectionsRoutingModule,
     CommonModule
+  ],
+  providers: [
+    EbayAuthService
   ]
 })
 export class ServicesConnectionsModule {
