@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, URLSearchParams } from '@angular/http';
 
 import { AuthService} from '../../../../_services/auth.service';
 import { environment } from '../../../../../environments/environment';
@@ -23,8 +23,24 @@ export class EbayAuthService {
   public getActivationLink(): Observable<Response> {
     return this.http
       .get(`${environment.API_URL}${environment.EBAY_URL.authRedirect}`,
-        {headers: new Headers( {'Content-Type': 'application/json',
-                                'Authorization': this.authService.getAuthToken()} )
+        {headers: new Headers( {
+          'Content-Type': 'application/json',
+          'Authorization': this.authService.getAuthToken()} )
+        });
+  }
+
+  public connectAccount(state: string, code: string): Observable<Response> {
+    const params = new URLSearchParams();
+    params.set('state', state);
+    params.set('code', code);
+
+    return this.http
+      .get(`${environment.API_URL}${environment.EBAY_URL.authAccepted}`,
+        { headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': this.authService.getAuthToken()
+          }),
+          search: params
         });
   }
 
