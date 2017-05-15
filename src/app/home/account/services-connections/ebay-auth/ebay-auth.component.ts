@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 import { AuthService } from '../../../../_services/auth.service';
 
-import {EbayAuthService} from './ebay-auth.service';
+import { EbayAuthService } from './ebay-auth.service';
 
 
 @Component({
@@ -62,6 +62,19 @@ export class EbayAuthComponent implements OnInit {
 
   getExpirationDate(): string {
     return this.expirationTime ? this.ebayAuthService.decodeDate(new Date(this.expirationTime)) : '-';
+  }
+
+  public connectAccount(state: string, code: string): void {
+    if ( state && code ) {
+      this.ebayAuthService
+        .connectAccount(state, code)
+        .subscribe(
+          response => {
+            this.updateAuthToken(response.headers.get('authorization'));
+          },
+          err => console.error(err)
+        );
+    }
   }
 
 }
