@@ -7,13 +7,17 @@ import { EbayAuthService } from './ebay-auth.service';
 
 @Component({
   selector: 'ebay-auth',
-  templateUrl: './ebay-auth.component.html'
+  templateUrl: './ebay-auth.component.html',
+  styleUrls: ['./ebay-auth.component.scss']
 })
 export class EbayAuthComponent implements OnInit {
 
   private expirationTime: string;
   private isActive: boolean = false;
-  private statusColor: string = 'red';
+  private statusColor: string;
+
+  private red: string = '#ff7272';
+  private green: string = 'rgba(124, 251, 81, 0.63)';
 
   constructor(private authService: AuthService,
               private ebayAuthService: EbayAuthService) {}
@@ -54,7 +58,10 @@ export class EbayAuthComponent implements OnInit {
     if ( status.expirationTime ) {
       this.expirationTime = status.expirationTime;
       this.isActive = status.isActive;
-      this.statusColor = status.isActive ? 'green' : 'red';
+      this.statusColor = status.isActive ? this.green : this.red;
+      if (status.isActive) {
+        document.getElementById('ebay-connection-button').style.display = 'none';
+      }
     }
   }
 

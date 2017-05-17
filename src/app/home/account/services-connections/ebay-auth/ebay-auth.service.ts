@@ -48,7 +48,7 @@ export class EbayAuthService {
     if ( isNaN(date.getMinutes()) ) return '-';
 
     const day = date.getDay();
-    const month = date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth;
+    const month = date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
     const year = date.getFullYear();
 
     return `${day}/${month}/${year}`;

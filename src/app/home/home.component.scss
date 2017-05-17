@@ -2,7 +2,7 @@
 @import "../../fonts";
 
 .wrapper {
-  background-color: $baseGray;
+  //background-color: $baseGray;
   width: 100%;
   min-width: 300px;
   min-height: 100%;
@@ -90,9 +90,7 @@
 }
 
 .main-content {
-  display: inline-flex;
-  padding-left: 10pt;
-  padding-right: 10pt;
+  display: block;
   margin-bottom: 8pt;
 }
 

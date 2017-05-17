@@ -8,13 +8,17 @@ import { AllegroAuthService } from './allegro-auth.service';
 
 @Component({
   selector: 'allegro-auth',
-  templateUrl: './allegro-auth.component.html'
+  templateUrl: './allegro-auth.component.html',
+  styleUrls: ['./allegro-auth.component.scss']
 })
 export class AllegroAuthComponent implements OnInit {
 
   private expirationTime: string;
   private isActive: boolean = false;
-  private statusColor: string = 'red';
+  private statusColor: string;
+
+  private red: string = '#ff7272';
+  private green: string = 'rgba(124, 251, 81, 0.63)';
 
   constructor(private authService: AuthService,
               private cookieService: CookieService,
@@ -60,7 +64,10 @@ export class AllegroAuthComponent implements OnInit {
     if ( status.expirationDate ) {
       this.expirationTime = status.expirationDate;
       this.isActive = status.active;
-      this.statusColor = status.active ? 'green' : 'red';
+      this.statusColor = status.active ? this.green : this.red;
+      if (status.active) {
+        document.getElementById('allegro-connection-button').style.display = 'none';
+      }
     }
   }
 
