@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import 'rxjs/add/operator/map';
-
 import { AuthService } from '../../../../_services/auth.service';
 
 import { EbayAuthService } from './ebay-auth.service';
