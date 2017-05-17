@@ -8,6 +8,7 @@ import { EbayAuthComponent } from './ebay-auth/ebay-auth.component';
 import { AllegroAuthComponent } from './allegro-auth/allegro-auth.component';
 
 import { EbayAuthService } from './ebay-auth/ebay-auth.service';
+import { AllegroAuthService } from './allegro-auth/allegro-auth.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EbayAuthService } from './ebay-auth/ebay-auth.service';
     CommonModule
   ],
   providers: [
-    EbayAuthService
+    EbayAuthService,
+    AllegroAuthService
   ]
 })
 export class ServicesConnectionsModule {
