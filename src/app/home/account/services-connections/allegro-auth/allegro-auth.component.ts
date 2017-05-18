@@ -13,12 +13,12 @@ import { AllegroAuthService } from './allegro-auth.service';
 })
 export class AllegroAuthComponent implements OnInit {
 
-  private expirationTime: string;
-  private isActive: boolean = false;
-  private statusColor: string;
-
   private red: string = '#ff7272';
   private green: string = 'rgba(124, 251, 81, 0.63)';
+
+  private expirationTime: string;
+  private isActive: boolean = false;
+  private statusColor: string = this.red;
 
   constructor(private authService: AuthService,
               private cookieService: CookieService,

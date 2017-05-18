@@ -123,7 +123,9 @@
 
 @media screen and (min-width: 720px) {
   .main-nav {
-    width: 140pt;
+    width: 30%;
+    float: left;
+    margin-top: 5pt;
 
     &__label {
       width: 140pt;
@@ -137,6 +139,13 @@
 
   .position-tree {
     margin-bottom: 4pt;
+  }
+
+  .main-content {
+    display: inline-block;
+    margin-bottom: 8pt;
+    margin-left: 2pt;
+    width: 69%;
   }
 
 }

@@ -53,13 +53,40 @@
   }
 }
 
-@media (min-width: 460px) {
+@media (min-width: 500px) {
   .service {
+    width: initial;
 
     &__logo {
       display: inline-block;
-      width: 40%;
-      float: left;
+      width: 36%;
+      float: none;
+      vertical-align: bottom;
     }
+
+    &__status {
+      display: inline-block;
+      margin-left: 10pt;
+      width: 60%;
+    }
+  }
+}
+
+@media (min-width: 720px) {
+  .service {
+    margin-top: 5pt;
+    margin-bottom: 15pt;
+    width: 89%;
+    margin-left: 10pt;
+
+    &__logo {
+      width: 33%;
+      vertical-align: initial;
+    }
+
+    &__status {
+      width: 62%;
+    }
+
   }
 }
