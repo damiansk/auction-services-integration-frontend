@@ -3,7 +3,7 @@
     <img src="../../../../../assets/pic/ebay_logo.png">
   </div>
   <div class="service__status">
-    <p class="service__status__info">Status polaczenia: <span [style.color]="statusColor">{{ isActive ? 'Aktywne' : 'Nie aktywne' }}</span></p>
+    <p class="service__status__info">Status polaczenia: <span [style.color]="statusColor">{{ isActive ? 'Aktywne' : 'Nieaktywne' }}</span></p>
     <p class="service__status__info" *ngIf="expirationTime">Polaczenie wygasnie: <span class="expiration-date">{{getExpirationDate()}}</span></p>
     <button id="ebay-connection-button" class="service__status__button" (click)="getActivationLink()" [disabled]="isActive">Polacz swoje konto</button>
   </div>

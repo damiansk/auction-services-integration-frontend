@@ -83,7 +83,6 @@ export class AllegroAuthComponent implements OnInit {
         .subscribe(
           response => {
             this.updateAuthToken(response.headers.get('authorization'));
-            console.log('activated');
             this.updateAccountExpirationTime();
           },
           err => console.error(err)

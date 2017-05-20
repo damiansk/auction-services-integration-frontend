@@ -23,10 +23,10 @@ export class EbayAuthComponent implements OnInit {
               private ebayAuthService: EbayAuthService) {}
 
   ngOnInit(): void {
-    this.getAccountExpirationTime();
+    this.updateAccountExpirationTime();
   }
 
-  getAccountExpirationTime(): void {
+  updateAccountExpirationTime(): void {
     this.ebayAuthService
       .getAccountExpirationTime()
       .subscribe(
@@ -76,6 +76,7 @@ export class EbayAuthComponent implements OnInit {
         .subscribe(
           response => {
             this.updateAuthToken(response.headers.get('authorization'));
+            this.updateAccountExpirationTime();
           },
           err => console.error(err)
         );
