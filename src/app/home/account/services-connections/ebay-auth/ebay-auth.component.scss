@@ -1,0 +1,92 @@
+@import "../../../../../colors";
+
+.service {
+  background: rgba(0, 0, 0, 0.4);
+  margin-top: 15pt;
+  padding: 10pt 15pt;
+
+  &__logo {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+
+    img {
+      width: 100%;
+    }
+
+  }
+
+  &__status {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+
+    &__info {
+      font-size: 1.6em;
+      margin: 0;
+      padding-bottom: 5pt;
+      padding-top: 5pt;
+      color: $baseWhite;
+
+      span {
+        font-weight: 700;
+      }
+
+      .expiration-date {
+        color: rgba(124, 251, 81, 0.63);
+      }
+    }
+
+    &__button {
+      background-color: rgba(124, 251, 81, 0.63);
+      border: none;
+      font-size: 1.4em;
+      padding: 8pt 20pt;
+      color: $baseBlack;
+      width: 100%;
+      font-weight: 600;
+      margin-bottom: 5pt;
+      margin-top: 10pt;
+    }
+  }
+}
+
+@media (min-width: 500px) {
+  .service {
+    width: initial;
+
+    &__logo {
+      display: inline-block;
+      width: 36%;
+      float: none;
+      vertical-align: bottom;
+    }
+
+    &__status {
+      display: inline-block;
+      margin-left: 10pt;
+      width: 60%;
+    }
+  }
+}
+
+@media (min-width: 720px) {
+  .service {
+    margin-top: 5pt;
+    margin-bottom: 15pt;
+    width: 89%;
+    margin-left: 10pt;
+
+    &__logo {
+      width: 33%;
+      vertical-align: initial;
+    }
+
+    &__status {
+      width: 62%;
+    }
+
+  }
+}

@@ -16,5 +16,10 @@ export const environment = {
     authAccepted: '/secured/api/v1/rest/ebay/auth/accepted',
     authRedirect: '/secured/api/v1/rest/ebay/auth/',
     getTokenExpirationDate: '/secured/api/v1/rest/ebay/auth/token/'
+  },
+  ALLEGRO_URL: {
+    authAccepted: '/secured/api/v1/allegro/auth',
+    authRedirect: '/secured/api/v1/allegro/auth',
+    getTokenExpirationDate: '/secured/api/v1/allegro/auth/status'
   }
 };

@@ -9,6 +9,7 @@ const routes: Routes = [
     children: [
       { path: '', component: ServicesConnectionsComponent },
       { path: ':service/:options', component: ServicesConnectionsComponent },
+      { path: ':service', component: ServicesConnectionsComponent },
       { path: '**', redirectTo: '' }
     ]
   },

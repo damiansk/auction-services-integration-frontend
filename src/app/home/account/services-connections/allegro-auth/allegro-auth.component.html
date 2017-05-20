@@ -1,6 +1,10 @@
-<div class="content">
-  <h2>Allegro</h2>
-  <p>{{ expirationTime ? "Polaczono konto" : "Brak polaczonego konta" }}</p>
-  <p *ngIf="expirationTime">Data wygasniecia polaczenia: <span>{{expirationTime}}</span></p>
-  <button (click)="getActivationLink()">Polacz swoje konto</button>
+<div class="service">
+  <div class="service__logo">
+    <img src="../../../../../assets/pic/allegro_logo.png">
+  </div>
+  <div class="service__status">
+    <p class="service__status__info">Status polaczenia: <span [style.color]="statusColor">{{ isActive ? 'Aktywne' : 'Nieaktywne' }}</span></p>
+    <p class="service__status__info" *ngIf="expirationTime">Polaczenie wygasnie: <span class="expiration-date">{{getExpirationDate()}}</span></p>
+    <button id="allegro-connection-button" class="service__status__button" (click)="getActivationLink()" [disabled]="isActive">Polacz swoje konto</button>
+  </div>
 </div>

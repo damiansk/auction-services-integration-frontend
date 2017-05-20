@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import 'rxjs/add/operator/map';
-
 import { AuthService } from '../../../../_services/auth.service';
 
 import { EbayAuthService } from './ebay-auth.service';
@@ -9,22 +7,26 @@ import { EbayAuthService } from './ebay-auth.service';
 
 @Component({
   selector: 'ebay-auth',
-  templateUrl: './ebay-auth.component.html'
+  templateUrl: './ebay-auth.component.html',
+  styleUrls: ['./ebay-auth.component.scss']
 })
 export class EbayAuthComponent implements OnInit {
 
+  private green: string = 'rgba(124, 251, 81, 0.63)';
+  private red: string = '#ff7272';
+
   private expirationTime: string;
   private isActive: boolean = false;
-  private statusColor: string = 'red';
+  private statusColor: string = this.red;
 
   constructor(private authService: AuthService,
               private ebayAuthService: EbayAuthService) {}
 
   ngOnInit(): void {
-    this.getAccountExpirationTime();
+    this.updateAccountExpirationTime();
   }
 
-  getAccountExpirationTime(): void {
+  updateAccountExpirationTime(): void {
     this.ebayAuthService
       .getAccountExpirationTime()
       .subscribe(
@@ -56,7 +58,10 @@ export class EbayAuthComponent implements OnInit {
     if ( status.expirationTime ) {
       this.expirationTime = status.expirationTime;
       this.isActive = status.isActive;
-      this.statusColor = status.isActive ? 'green' : 'red';
+      this.statusColor = status.isActive ? this.green : this.red;
+      if (status.isActive) {
+        document.getElementById('ebay-connection-button').style.display = 'none';
+      }
     }
   }
 
@@ -71,6 +76,7 @@ export class EbayAuthComponent implements OnInit {
         .subscribe(
           response => {
             this.updateAuthToken(response.headers.get('authorization'));
+            this.updateAccountExpirationTime();
           },
           err => console.error(err)
         );
