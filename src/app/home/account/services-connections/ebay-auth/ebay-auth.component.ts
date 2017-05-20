@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 
 import { AuthService } from '../../../../_services/auth.service';
 
-import { environment } from '../../../../../environments/environment';
+import { EbayAuthService } from './ebay-auth.service';
 
 
 @Component({
@@ -14,21 +13,32 @@ import { environment } from '../../../../../environments/environment';
 })
 export class EbayAuthComponent implements OnInit {
 
-  private headers: Headers;
   private expirationTime: string;
+  private isActive: boolean = false;
+  private statusColor: string = 'red';
 
-  constructor(private http: Http,
-              private authService: AuthService) {}
+  constructor(private authService: AuthService,
+              private ebayAuthService: EbayAuthService) {}
 
   ngOnInit(): void {
-    this.appendSecureHeaders();
     this.getAccountExpirationTime();
   }
 
+  getAccountExpirationTime(): void {
+    this.ebayAuthService
+      .getAccountExpirationTime()
+      .subscribe(
+        response => {
+          this.updateAuthToken(response.headers.get('authorization'));
+          this.updateAccountStatus(response.json());
+        },
+        (err) => {}
+      )
+  }
+
   getActivationLink(): void {
-    this.http
-      .get(`${environment.API_URL}${environment.EBAY_URL.authRedirect}${this.authService.getEmail()}`,
-            {headers: this.headers})
+    this.ebayAuthService
+      .getActivationLink()
       .subscribe(
         response => {
           this.updateAuthToken(response.headers.get('authorization'));
@@ -38,30 +48,33 @@ export class EbayAuthComponent implements OnInit {
       );
   }
 
-  getAccountExpirationTime(): void {
-    this.http
-      .get(`${environment.API_URL}${environment.EBAY_URL.getTokenExpirationDate}${this.authService.getEmail()}`,
-        new RequestOptions({headers: this.headers}) )
-      .subscribe(
-        response => {
-          this.updateAuthToken(response.headers.get('authorization'));
-          const dataJSON = response.json();
-          if (dataJSON.isActive === true) {
-            this.expirationTime = dataJSON.expirationTime;
-          }
-        },
-        err => console.error(err)
-      )
-  }
-
-  private appendSecureHeaders() {
-    this.headers = new Headers();
-    this.headers.set('Content-Type', 'application/json');
-    this.headers.set('Authorization', this.authService.getAuthToken());
-  }
-
   private updateAuthToken(token: string) {
     this.authService.setAuthToken(token);
+  }
+
+  private updateAccountStatus(status: any) {
+    if ( status.expirationTime ) {
+      this.expirationTime = status.expirationTime;
+      this.isActive = status.isActive;
+      this.statusColor = status.isActive ? 'green' : 'red';
+    }
+  }
+
+  getExpirationDate(): string {
+    return this.expirationTime ? this.ebayAuthService.decodeDate(new Date(this.expirationTime)) : '-';
+  }
+
+  public connectAccount(state: string, code: string): void {
+    if ( state && code ) {
+      this.ebayAuthService
+        .connectAccount(state, code)
+        .subscribe(
+          response => {
+            this.updateAuthToken(response.headers.get('authorization'));
+          },
+          err => console.error(err)
+        );
+    }
   }
 
 }

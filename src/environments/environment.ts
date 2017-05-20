@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+  //API_URL: 'https://192.168.1.6:9112',
   API_URL: 'https://localhost:9112',
   AUTH_URL: {
     login: '/api/v1/rest/auth',
@@ -12,9 +13,7 @@ export const environment = {
     accountActivation: '/api/v1/rest/auth/confirmRegistration'
   },
   EBAY_URL: {
-    authAccepted: '',
-    authDeclined: '',
-    authPolicy: '',
+    authAccepted: '/secured/api/v1/rest/ebay/auth/accepted',
     authRedirect: '/secured/api/v1/rest/ebay/auth/',
     getTokenExpirationDate: '/secured/api/v1/rest/ebay/auth/token/'
   }
