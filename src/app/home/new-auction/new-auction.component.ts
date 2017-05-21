@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { NewAuctionService } from './new-auction.service';
+import { Attribute } from './attribute-interface';
 
 @Component({
   selector: 'new-auction',
@@ -30,15 +31,22 @@ export class NewAuctionComponent implements OnInit {
     'DATE'
   ];
 
+  private attributes: Attribute[] = [];
+
   constructor(private newAuctionService: NewAuctionService) {}
 
   ngOnInit() {
     this.newAuctionService
       .getCategoryParameters(20)
       .subscribe(
-        (data) => console.log(data.json()),
+        (data) => {
+          const body = data.json();
+          this.attributes = body.parameters;
+          console.log(this.attributes);
+        },
         (err) => console.error(err)
       );
   }
+
 
 }
