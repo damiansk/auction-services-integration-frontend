@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { NewAuctionComponent } from './new-auction.component';
 import { NewAuctionRoutingModule } from './new-auction.routing';
@@ -18,7 +19,8 @@ import { ComboboxAttributeComponent } from './attributes-inputs/combobox-attribu
   imports: [
     NewAuctionRoutingModule,
     HttpModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   providers: [
     NewAuctionService

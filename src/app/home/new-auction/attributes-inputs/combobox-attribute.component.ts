@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 import { Attribute } from '../attribute-interface';
 
@@ -10,5 +11,6 @@ import { Attribute } from '../attribute-interface';
 export class ComboboxAttributeComponent {
 
   @Input() attribute: Attribute;
+  @Input() form: FormGroup;
 
 }

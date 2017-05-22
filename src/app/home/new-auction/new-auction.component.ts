@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 import { NewAuctionService } from './new-auction.service';
 import { Attribute } from './attribute-interface';
@@ -17,7 +18,6 @@ export class NewAuctionComponent implements OnInit {
     'DATETIME',
     'DATE'
   ];
-
   private formType: string[] = [
     'STRING',
     'INTEGER',
@@ -32,6 +32,7 @@ export class NewAuctionComponent implements OnInit {
   ];
 
   private attributes: Attribute[] = [];
+  private form: FormGroup;
 
   constructor(private newAuctionService: NewAuctionService) {}
 
@@ -43,10 +44,16 @@ export class NewAuctionComponent implements OnInit {
           const body = data.json();
           this.attributes = body.parameters;
           console.log(this.attributes);
+
+          this.form = this.newAuctionService.toFormGroup(this.attributes);
         },
         (err) => console.error(err)
       );
+
   }
 
+  private addNewAuction(): void {
+    console.log( this.form.value );
+  }
 
 }

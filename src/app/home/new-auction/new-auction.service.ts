@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response, ResponseOptions, ResponseType } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
+import {Attribute} from './attribute-interface';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Injectable()
 export class NewAuctionService {
@@ -1109,5 +1111,18 @@ export class NewAuctionService {
 
     return Observable.of( new Response( responseOpts) );
   }
+
+  toFormGroup(attributes: Attribute[] ): FormGroup {
+    let group: any = {};
+
+    attributes.forEach( attribute => {
+      group[attribute.id] = attribute.required ? new FormControl(attribute.name || '', Validators.required)
+                                               : new FormControl(attribute.name || '');
+      group[attribute.id].type = attribute.fieldType;
+    });
+
+    return new FormGroup(group);
+  }
+
 
 }

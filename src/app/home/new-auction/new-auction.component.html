@@ -1,8 +1,11 @@
 <div class="content">
-  <span *ngFor="let attribute of attributes">
-    <span [ngSwitch]="attribute.formType">
-      <attr-combobox *ngSwitchCase="'COMBOBOX'" [attribute]="attribute"></attr-combobox>
-      <attr-text *ngSwitchDefault="" [attribute]="attribute"></attr-text>
+  <form (ngSubmit)="addNewAuction()" [formGroup]="form">
+    <span *ngFor="let attribute of attributes">
+      <span [ngSwitch]="attribute.formType">
+        <attr-combobox *ngSwitchCase="'COMBOBOX'" [attribute]="attribute" [form]="form"></attr-combobox>
+        <attr-text *ngSwitchDefault="" [attribute]="attribute" [form]="form"></attr-text>
+      </span>
     </span>
-  </span>
+    <button type="submit">Add new auction!</button>
+  </form>
 </div>
