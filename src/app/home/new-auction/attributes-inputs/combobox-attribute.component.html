@@ -1,5 +1,7 @@
 <div>
-  <span *ngIf="attribute.required" style="color: red;">***</span>
-  <label for="textId{{attribute.id}}">{{attribute.name}}</label>
-  <input id="textId{{attribute.id}}" name="{{attribute.name}}" type="checkbox">
+  <span *ngIf="attribute.required" style="color: red;">*</span>
+  <select name="attribute.name">
+    <option value="" selected>Wybierz {{attribute.name}}</option>
+    <option *ngFor="let opt of attribute.possibleValues" value="{{opt.id}}">{{opt.name}}</option>
+  </select>
 </div>
