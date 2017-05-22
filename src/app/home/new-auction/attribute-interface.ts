@@ -4,4 +4,5 @@ export interface Attribute {
   id: number;
   name: string;
   possibleValues: string[];
+  required: boolean;
 }

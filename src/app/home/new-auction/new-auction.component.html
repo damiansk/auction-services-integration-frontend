@@ -1,5 +1,8 @@
 <div class="content">
-  <ul>
-    <li *ngFor="let attribute of attributes">{{attribute.name}}</li>
-  </ul>
+  <span *ngFor="let attribute of attributes">
+    <span [ngSwitch]="attribute.formType">
+      <attr-combobox *ngSwitchCase="'COMBOBOX'" [attribute]="attribute"></attr-combobox>
+      <attr-text *ngSwitchDefault="" [attribute]="attribute"></attr-text>
+    </span>
+  </span>
 </div>

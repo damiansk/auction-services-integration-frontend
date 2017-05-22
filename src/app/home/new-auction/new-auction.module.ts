@@ -6,9 +6,14 @@ import { NewAuctionComponent } from './new-auction.component';
 import { NewAuctionRoutingModule } from './new-auction.routing';
 import { NewAuctionService } from './new-auction.service';
 
+import { TextAttributeComponent } from './attributes-inputs/text-attribute.component';
+import { ComboboxAttributeComponent } from './attributes-inputs/combobox-attribute.component';
+
 @NgModule({
   declarations: [
-    NewAuctionComponent
+    NewAuctionComponent,
+    TextAttributeComponent,
+    ComboboxAttributeComponent
   ],
   imports: [
     NewAuctionRoutingModule,
