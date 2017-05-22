@@ -1,6 +1,7 @@
-<div>
+<div class="attr-input">
   <span *ngIf="attribute.required" style="color: red;">*</span>
-  <select name="attribute.name">
+  <label for="textId{{attribute.id}}">{{attribute.name}}</label>
+  <select id="textId{{attribute.id}}" name="attribute.name">
     <option value="" selected>Wybierz {{attribute.name}}</option>
     <option *ngFor="let opt of attribute.possibleValues" value="{{opt.id}}">{{opt.name}}</option>
   </select>
