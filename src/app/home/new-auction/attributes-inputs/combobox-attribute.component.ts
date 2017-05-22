@@ -4,7 +4,8 @@ import { Attribute } from '../attribute-interface';
 
 @Component({
   selector: 'attr-combobox',
-  templateUrl: './combobox-attribute.component.html'
+  templateUrl: './combobox-attribute.component.html',
+  styleUrls: ['./input-attribute.sass']
 })
 export class ComboboxAttributeComponent {
 
