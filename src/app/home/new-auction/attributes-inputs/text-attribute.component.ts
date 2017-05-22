@@ -5,7 +5,7 @@ import { Attribute } from '../attribute-interface';
 @Component({
   selector: 'attr-text',
   templateUrl: './text-attribute.component.html',
-  styleUrls: ['./input-attribute.sass']
+  styleUrls: ['./input-attribute.scss']
 })
 export class TextAttributeComponent {
 
