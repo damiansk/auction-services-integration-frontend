@@ -3,6 +3,7 @@
     <span *ngFor="let attribute of attributes">
       <span [ngSwitch]="attribute.formType">
         <attr-combobox *ngSwitchCase="'COMBOBOX'" [attribute]="attribute" [form]="form"></attr-combobox>
+        <attr-checkbox ngModel *ngSwitchCase="'CHECKBOX'" [attribute]="attribute" [formControlName]="attribute.id"></attr-checkbox>
         <attr-text *ngSwitchDefault="" [attribute]="attribute" [form]="form"></attr-text>
       </span>
     </span>

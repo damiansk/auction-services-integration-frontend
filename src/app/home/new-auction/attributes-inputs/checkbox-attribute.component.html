@@ -1,0 +1,13 @@
+<div class="attr-input">
+  <span *ngIf="attribute.required" style="color: red;">*</span>
+  <label>{{attribute.name}}-------------</label>
+  <select [(ngModel)]="data" style="display: none;"></select>
+  <span *ngFor="let opt of attribute.possibleValues">
+    <input type="checkbox"
+           id="textId{{opt.id}}"
+           name="opt.name"
+           (change)="onChange($event)"
+           (keyup)="onChange($event)">
+    <label for="textId{{opt.id}}">{{opt.name}}</label>
+  </span>
+</div>
