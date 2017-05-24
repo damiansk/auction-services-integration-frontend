@@ -21,6 +21,7 @@ export const environment = {
     authAccepted: '/secured/api/v1/allegro/auth',
     authRedirect: '/secured/api/v1/allegro/auth',
     getTokenExpirationDate: '/secured/api/v1/allegro/auth/status',
-    getCategoryList: '/secured/api/v1/allegro/category'
+    getCategoryList: '/secured/api/v1/allegro/category',
+    getCategoryParameters: '/secured/api/v1/allegro/category/parameters/'
   }
 };
