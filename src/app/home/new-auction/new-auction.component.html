@@ -4,6 +4,7 @@
       <span [ngSwitch]="attribute.formType">
         <attr-combobox *ngSwitchCase="'COMBOBOX'" [attribute]="attribute" [form]="form"></attr-combobox>
         <attr-checkbox *ngSwitchCase="'CHECKBOX'" [attribute]="attribute" [form]="form"></attr-checkbox>
+        <attr-radio-btn *ngSwitchCase="'RADIOBUTTON'" [attribute]="attribute" [form]="form"></attr-radio-btn>
         <attr-text *ngSwitchDefault="" [attribute]="attribute" [form]="form"></attr-text>
       </span>
     </span>

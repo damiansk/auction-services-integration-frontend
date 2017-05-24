@@ -10,13 +10,15 @@ import { NewAuctionService } from './new-auction.service';
 import { TextAttributeComponent } from './attributes-inputs/text-attribute.component';
 import { ComboboxAttributeComponent } from './attributes-inputs/combobox-attribute.component';
 import { CheckboxAttributeComponent } from './attributes-inputs/checkbox-attribute.component';
+import { RadioButtonAttributeComponent } from './attributes-inputs/radio-button-attribute.component';
 
 @NgModule({
   declarations: [
     NewAuctionComponent,
     TextAttributeComponent,
     ComboboxAttributeComponent,
-    CheckboxAttributeComponent
+    CheckboxAttributeComponent,
+    RadioButtonAttributeComponent
   ],
   imports: [
     NewAuctionRoutingModule,
