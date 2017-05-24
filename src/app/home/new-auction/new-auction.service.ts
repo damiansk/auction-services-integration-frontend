@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, ResponseOptions, ResponseType } from '@angular/http';
+import { Headers, Http, Response, ResponseOptions, ResponseType } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import {Attribute} from './attribute-interface';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import {environment} from '../../../environments/environment';
+import { AuthService } from '../../_services/auth.service';
 
 @Injectable()
 export class NewAuctionService {
+
+  constructor(private http: Http,
+              private authService: AuthService) {}
 
   getCategoryParameters(categoryNumber: number): Observable<Response> {
     const body = JSON.stringify({
@@ -1112,6 +1117,22 @@ export class NewAuctionService {
     return Observable.of( new Response( responseOpts) );
   }
 
+  getAllegroCategoryList(): void {
+    this.http
+      .get(`${environment.API_URL}/${environment.ALLEGRO_URL.getCategoryList}`,
+        {headers: new Headers( {
+          'Content-Type': 'application/json',
+          'Authorization': this.authService.getAuthToken()} )
+        })
+      .subscribe(
+        data => {
+          console.log('Done');
+          console.log(data);
+        },
+        err => console.error( err )
+      );
+  }
+
   toFormGroup(attributes: Attribute[] ): FormGroup {
     let group: any = {};
 
@@ -1133,5 +1154,6 @@ export class NewAuctionService {
 
     return new FormGroup(group);
   }
+
 
 }
