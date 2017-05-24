@@ -1117,20 +1117,13 @@ export class NewAuctionService {
     return Observable.of( new Response( responseOpts) );
   }
 
-  getAllegroCategoryList(): void {
-    this.http
+  getAllegroCategoryList(): Observable<Response> {
+    return this.http
       .get(`${environment.API_URL}/${environment.ALLEGRO_URL.getCategoryList}`,
         {headers: new Headers( {
           'Content-Type': 'application/json',
           'Authorization': this.authService.getAuthToken()} )
-        })
-      .subscribe(
-        data => {
-          console.log('Done');
-          console.log(data);
-        },
-        err => console.error( err )
-      );
+        });
   }
 
   toFormGroup(attributes: Attribute[] ): FormGroup {

@@ -4,6 +4,8 @@ import { FormGroup } from '@angular/forms';
 import { NewAuctionService } from './new-auction.service';
 import { Attribute } from './attribute-interface';
 
+import { AuthService } from '../../_services/auth.service';
+
 @Component({
   selector: 'new-auction',
   templateUrl: './new-auction.component.html'
@@ -31,15 +33,17 @@ export class NewAuctionComponent implements OnInit {
     'DATE'
   ];
 
+  private categories = {};
   private attributes: Attribute[] = [];
   private attributesFormGroup: FormGroup;
   private picturesBase64 = {};
 
-  constructor(private newAuctionService: NewAuctionService) {}
+  constructor(private newAuctionService: NewAuctionService,
+              private authService: AuthService) {}
 
   ngOnInit() {
     this.newAuctionService
-      .getCategoryParameters(20)
+      .getCategoryParameters(89266)
       .subscribe(
         (data) => {
           const body = data.json();
@@ -50,6 +54,16 @@ export class NewAuctionComponent implements OnInit {
         (err) => console.error(err)
       );
 
+    this.newAuctionService
+      .getAllegroCategoryList()
+      .subscribe(
+        response => {
+          this.updateAuthToken(response.headers.get('authorization'));
+          this.categories = response.json();
+          console.log(this.categories);
+        },
+        err => console.error( err )
+      );
   }
 
   getFile(event): void {
@@ -75,6 +89,12 @@ export class NewAuctionComponent implements OnInit {
     console.log(attributes);
   }
 
+  updateCategorySelect(event): void {
+    console.log(event);
+  }
 
+  private updateAuthToken(token: string) {
+    this.authService.setAuthToken(token);
+  }
 
 }
