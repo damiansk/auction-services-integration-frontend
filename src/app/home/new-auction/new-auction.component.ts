@@ -32,7 +32,8 @@ export class NewAuctionComponent implements OnInit {
   ];
 
   private attributes: Attribute[] = [];
-  private form: FormGroup;
+  private attributesFormGroup: FormGroup;
+  private picturesBase64 = {};
 
   constructor(private newAuctionService: NewAuctionService) {}
 
@@ -43,18 +44,37 @@ export class NewAuctionComponent implements OnInit {
         (data) => {
           const body = data.json();
           this.attributes = body.parameters;
-          console.log(this.attributes);
 
-          this.form = this.newAuctionService.toFormGroup(this.attributes);
+          this.attributesFormGroup = this.newAuctionService.toFormGroup(this.attributes);
         },
         (err) => console.error(err)
       );
 
   }
 
-  private addNewAuction(): void {
-    console.log( this.form.value );
-    console.log( this.form );
+  getFile(event): void {
+    const formControlNumber = event.target.dataset.pic;
+    const picCache = this.picturesBase64;
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+      picCache[formControlNumber] = reader.result;
+      console.log(`Pic ${formControlNumber} load`);
+    };
   }
+
+  private addNewAuction(): void {
+    const attributes = this.attributesFormGroup.value;
+    for (let obj in this.picturesBase64) {
+      attributes[obj] = this.picturesBase64[obj];
+    }
+
+    console.log(attributes);
+  }
+
+
 
 }

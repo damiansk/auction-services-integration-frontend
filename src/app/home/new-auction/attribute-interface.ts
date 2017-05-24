@@ -3,7 +3,12 @@ export interface Attribute {
   formType: string;
   id: number;
   name: string;
-  possibleValues: string[];
+  possibleValues: AttributePossibleValue[];
   required: boolean;
   description: string;
+}
+
+export interface AttributePossibleValue {
+  id: number;
+  name: string;
 }

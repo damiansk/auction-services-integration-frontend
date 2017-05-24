@@ -1116,13 +1116,22 @@ export class NewAuctionService {
     let group: any = {};
 
     attributes.forEach( attribute => {
-      group[attribute.id] = attribute.required ? new FormControl(attribute.name || '', Validators.required)
-                                               : new FormControl(attribute.name || '');
-      group[attribute.id].type = attribute.fieldType;
+      if ( attribute.formType === 'CHECKBOX' ) {
+        let subGroup: any = {};
+        for ( const val of attribute.possibleValues ) {
+          subGroup[val.id] = new FormControl();
+        }
+        group[attribute.id] = new FormGroup(subGroup);
+      } else {
+        group[attribute.id] = new FormControl();
+
+        if (attribute.formType === 'COMBOBOX') {
+          group[attribute.id].setValue('0');
+        }
+      }
     });
 
     return new FormGroup(group);
   }
-
 
 }

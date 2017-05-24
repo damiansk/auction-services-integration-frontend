@@ -1,13 +1,66 @@
-<div class="content">
-  <form (ngSubmit)="addNewAuction()" [formGroup]="form">
-    <span *ngFor="let attribute of attributes">
-      <span [ngSwitch]="attribute.formType">
-        <attr-combobox *ngSwitchCase="'COMBOBOX'" [attribute]="attribute" [form]="form"></attr-combobox>
-        <attr-checkbox *ngSwitchCase="'CHECKBOX'" [attribute]="attribute" [form]="form"></attr-checkbox>
-        <attr-radio-btn *ngSwitchCase="'RADIOBUTTON'" [attribute]="attribute" [form]="form"></attr-radio-btn>
-        <attr-text *ngSwitchDefault="" [attribute]="attribute" [form]="form"></attr-text>
-      </span>
-    </span>
-    <button type="submit">Add new auction!</button>
-  </form>
-</div>
+<form [formGroup]="attributesFormGroup" novalidate>
+
+  <span *ngFor="let attribute of attributes">
+      <div [ngSwitch]="attribute.formType" style="background-color: rgba(255,255,255,0.45); margin: 10px; padding: 10px; font-size: 14px">
+        <span *ngIf="attribute.required === true" style="color: red;">*</span>
+
+        <span *ngSwitchCase="'RADIOBUTTON'">
+          <fieldset>
+            <legend>{{attribute.name}}</legend>
+            <div *ngFor="let val of attribute.possibleValues">
+              <input type="radio" name="{{attribute.id}}" id="{{attribute.id}}_{{val.id}}" formControlName="{{attribute.id}}" [value]="val.id"/>
+              <label for="{{attribute.id}}_{{val.id}}">{{val.name}}</label>
+            </div>
+          </fieldset>
+        </span>
+
+        <span *ngSwitchCase="'COMBOBOX'">
+          <label for="{{attribute.id}}">{{attribute.name}}</label>
+          <select id="{{attribute.id}}" name="{{attribute.name}}" formControlName="{{attribute.id}}">
+            <option *ngFor="let val of attribute.possibleValues" value="{{val.id}}">{{val.name}}</option>
+          </select>
+        </span>
+
+        <span *ngSwitchCase="'CHECKBOX'" formGroupName="{{attribute.id}}">
+          <span><b>{{attribute.name}}</b></span>
+          <div *ngFor="let val of attribute.possibleValues">
+            <label>{{val.name}}</label>
+            <input type="checkbox" formControlName="{{val.id}}">
+          </div>
+        </span>
+
+        <span *ngSwitchCase="'INTEGER'">
+           <label>{{attribute.name}}</label>
+           <input type="number" formControlName="{{attribute.id}}">
+        </span>
+
+        <span *ngSwitchCase="'IMAGE'">
+           <label>{{attribute.name}}</label>
+           <input [attr.data-pic]="attribute.id" type="file" accept="image/*" formControlName="{{attribute.id}}" (change)="getFile($event)" value="gg">
+        </span>
+
+        <span *ngSwitchCase="'TEXTAREA'">
+           <label>{{attribute.name}}</label>
+          <textarea formControlName="{{attribute.id}}"></textarea>
+        </span>
+
+        <span *ngSwitchCase="'DATA'">
+           <label>{{attribute.name}}</label>
+           <input type="date" formControlName="{{attribute.id}}">
+        </span>
+
+        <span *ngSwitchCase="'DATATIME'">
+           <label>{{attribute.name}}</label>
+           <input type="datetime" formControlName="{{attribute.id}}">
+        </span>
+
+        <span *ngSwitchDefault="">
+           <label>{{attribute.name}}</label>
+           <input type="text" formControlName="{{attribute.id}}">
+        </span>
+
+      </div>
+  </span>
+
+  <button type="submit" (click)="addNewAuction()">Submit</button>
+</form>
