@@ -54,6 +54,7 @@ export class NewAuctionComponent implements OnInit {
 
   private addNewAuction(): void {
     console.log( this.form.value );
+    console.log( this.form );
   }
 
 }

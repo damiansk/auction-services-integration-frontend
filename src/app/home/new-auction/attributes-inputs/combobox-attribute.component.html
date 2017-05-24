@@ -1,6 +1,6 @@
 <div class="attr-input" [formGroup]="form">
   <span *ngIf="attribute.required" style="color: red;">*</span>
-  <label for="textId{{attribute.id}}">{{attribute.name}}</label>
+  <label for="textId{{attribute.id}}"><b>Combobox</b> {{attribute.name}}</label>
   <select id="textId{{attribute.id}}" name="attribute.name" [formControlName]="attribute.id">
     <option value="" selected>Wybierz {{attribute.name}}</option>
     <option *ngFor="let opt of attribute.possibleValues" value="{{opt.id}}">{{opt.name}}</option>

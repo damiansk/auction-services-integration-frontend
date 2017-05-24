@@ -1,13 +1,8 @@
-<div class="attr-input">
+<div class="attr-input" [formGroup]="form">
   <span *ngIf="attribute.required" style="color: red;">*</span>
-  <label>{{attribute.name}}-------------</label>
-  <select [(ngModel)]="data" style="display: none;"></select>
-  <span *ngFor="let opt of attribute.possibleValues">
-    <input type="checkbox"
-           id="textId{{opt.id}}"
-           name="opt.name"
-           (change)="onChange($event)"
-           (keyup)="onChange($event)">
-    <label for="textId{{opt.id}}">{{opt.name}}</label>
-  </span>
+  <label for="textId{{attribute.id}}"><b>Checkbox</b> {{attribute.name}}</label>
+  <select id="textId{{attribute.id}}" name="attribute.name" [formControlName]="attribute.id">
+    <option value="" selected>Wybierz {{attribute.name}}</option>
+    <option *ngFor="let opt of attribute.possibleValues" value="{{opt.id}}">{{opt.name}}</option>
+  </select>
 </div>
