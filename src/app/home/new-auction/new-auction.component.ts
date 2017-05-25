@@ -95,6 +95,40 @@ export class NewAuctionComponent implements OnInit {
     }
 
     console.log(attributes);
+
+    const requestBody = { 'userId': this.authService.getEmail() };
+    const parameters = [];
+
+    for (const attribute in attributes ) {
+      const id = attribute;
+      let value;
+      let subAttributes;
+
+      if ( attributes[attribute] !== null ) {
+        subAttributes = Object.keys(attributes[attribute]);
+      }
+
+      if ( subAttributes && typeof subAttributes === 'string' ) {
+        value = [];
+
+        for (const attr of attributes[attribute]) {
+          if (attributes[attribute][attr] !== null) {
+            value.push(attributes[attribute][attr]);
+          }
+        }
+
+      } else {
+        value = attributes[attribute];
+      }
+
+      parameters.push({ 'id': id,
+                        'value': value });
+    }
+
+    requestBody['parameters'] = parameters;
+
+    console.log(requestBody);
+    // console.log(JSON.stringify(requestBody));
   }
 
   updateCategorySelect(event): void {

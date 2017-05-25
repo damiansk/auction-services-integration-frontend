@@ -10,7 +10,7 @@ export interface Attribute {
 
 export interface AttributePossibleValue {
   id: number;
-  name: string;
+  value: string;
 }
 
 export interface Category {
