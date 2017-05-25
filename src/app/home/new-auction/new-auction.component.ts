@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { NewAuctionService } from './new-auction.service';
-import { Attribute } from './attribute-interface';
+import { Attribute, Category } from './attribute-interface';
 
 import { AuthService } from '../../_services/auth.service';
 
@@ -33,27 +33,35 @@ export class NewAuctionComponent implements OnInit {
     'DATE'
   ];
 
-  private categories = {};
+  private categories: { 'categories': Category[] };
   private attributes: Attribute[] = [];
   private attributesFormGroup: FormGroup;
   private picturesBase64 = {};
+  private categoryNav = [];
 
   constructor(private newAuctionService: NewAuctionService,
               private authService: AuthService) {}
 
   ngOnInit() {
+    this.getCategoryList();
+  }
+
+  private getCategoryAttributes(categoryNumber: number) {
     this.newAuctionService
-      .getCategoryParameters(89266)
+      .getCategoryAttributes(categoryNumber)
       .subscribe(
         (data) => {
           const body = data.json();
+          console.log(body);
           this.attributes = body.parameters;
 
           this.attributesFormGroup = this.newAuctionService.toFormGroup(this.attributes);
         },
         (err) => console.error(err)
       );
+  }
 
+  private getCategoryList() {
     this.newAuctionService
       .getAllegroCategoryList()
       .subscribe(
@@ -62,7 +70,7 @@ export class NewAuctionComponent implements OnInit {
           this.categories = response.json();
           console.log(this.categories);
         },
-        err => console.error( err )
+        err => console.error(err)
       );
   }
 
@@ -90,7 +98,23 @@ export class NewAuctionComponent implements OnInit {
   }
 
   updateCategorySelect(event): void {
-    console.log(event);
+    const categoryName = event.target.value;
+
+    for (let category of this.categories.categories ) {
+      if ( category.name === categoryName ) {
+        const subcategories = category.subcategories;
+
+        if (subcategories.length) {
+          this.categories.categories = subcategories;
+          this.categoryNav.push(category.name);
+        } else {
+          this.getCategoryAttributes(category.id);
+        }
+
+        break;
+      }
+    }
+
   }
 
   private updateAuthToken(token: string) {

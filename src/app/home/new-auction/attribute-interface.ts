@@ -12,3 +12,11 @@ export interface AttributePossibleValue {
   id: number;
   name: string;
 }
+
+export interface Category {
+  id: number;
+  name: string;
+  parameters: any;
+  parentCategory: any;
+  subcategories: Category[];
+}
