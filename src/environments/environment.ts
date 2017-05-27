@@ -18,7 +18,8 @@ export const environment = {
     getTokenExpirationDate: '/secured/api/v1/rest/ebay/auth/token/',
     getCategoryRootId: '/secured/api/v1/ebay/categories/root/',
     getCategoryTreeRoot: '/secured/api/v1/ebay/categories/tree/',
-    TEST: '/secured/api/v1/ebay/categories/tree/{categoryRootId}/{categoryId}'
+    getCategory: '/secured/api/v1/ebay/categories/tree/',
+    TEST: '/secured/api/v1/ebay/categories/tree/'
   },
   ALLEGRO_URL: {
     authAccepted: '/secured/api/v1/allegro/auth',

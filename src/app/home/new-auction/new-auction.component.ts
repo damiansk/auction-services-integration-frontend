@@ -157,7 +157,7 @@ export class NewAuctionComponent implements OnInit {
   }
 
   testEndpoint() {
-    this.newAuctionService.endpointTest('0').subscribe(
+    this.newAuctionService.endpointTest('0', '238').subscribe(
       data => console.log(data) && console.log(data.json()),
       err => console.error(err)
     );

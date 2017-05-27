@@ -1170,6 +1170,14 @@ export class NewAuctionService {
       });
   }
 
+  getCategory(categoryRootId: string, categoryId: string): Observable<Response> {
+    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.TEST}${categoryRootId}/${categoryId}`,
+      {headers: new Headers( {
+        'Content-Type': 'application/json',
+        'Authorization': this.authService.getAuthToken()} )
+      });
+  }
+
   endpointTest(categoryRootId: string, categoryId: string): Observable<Response> {
     return this.http.get(`${environment.API_URL}${environment.EBAY_URL.TEST}${categoryRootId}/${categoryId}`,
       {headers: new Headers( {
