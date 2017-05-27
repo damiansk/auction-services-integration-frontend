@@ -43,7 +43,8 @@ export class NewAuctionComponent implements OnInit {
               private authService: AuthService) {}
 
   ngOnInit() {
-    this.getCategoryList();
+    // this.getCategoryList();
+    this.testEndpoint();
   }
 
   private getCategoryAttributes(categoryNumber: number) {
@@ -131,7 +132,7 @@ export class NewAuctionComponent implements OnInit {
     // console.log(JSON.stringify(requestBody));
   }
 
-  updateCategorySelect(event): void {
+  updateAllegroCategorySelect(event): void {
     const categoryName = event.target.value;
 
     for (let category of this.categories.categories ) {
@@ -153,6 +154,13 @@ export class NewAuctionComponent implements OnInit {
 
   private updateAuthToken(token: string) {
     this.authService.setAuthToken(token);
+  }
+
+  testEndpoint() {
+    this.newAuctionService.endpointTest('0').subscribe(
+      data => console.log(data) && console.log(data.json()),
+      err => console.error(err)
+    );
   }
 
 }

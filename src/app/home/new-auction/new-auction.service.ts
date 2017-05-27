@@ -1154,16 +1154,24 @@ export class NewAuctionService {
     return new FormGroup(group);
   }
 
-  getCategoryRoot(marketplace: string = 'EBAY_US'): Observable<Response> {
-    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.getCategoryRoot}${marketplace}`,
+  getCategoryRootId(marketplace: string = 'EBAY_US'): Observable<Response> {
+    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.getCategoryRootId}${marketplace}`,
       {headers: new Headers( {
         'Content-Type': 'application/json',
         'Authorization': this.authService.getAuthToken()} )
       });
   }
 
-  endpointTest(): Observable<Response> {
-    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.TEST}EBAY_US`,
+  getCategoryTreeRoot(treeId: string): Observable<Response> {
+    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.getCategoryTreeRoot}${treeId}/0`,
+      {headers: new Headers( {
+        'Content-Type': 'application/json',
+        'Authorization': this.authService.getAuthToken()} )
+      });
+  }
+
+  endpointTest(categoryRootId: string, categoryId: string): Observable<Response> {
+    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.TEST}${categoryRootId}/${categoryId}`,
       {headers: new Headers( {
         'Content-Type': 'application/json',
         'Authorization': this.authService.getAuthToken()} )
