@@ -15,7 +15,9 @@ export const environment = {
   EBAY_URL: {
     authAccepted: '/secured/api/v1/rest/ebay/auth/accepted',
     authRedirect: '/secured/api/v1/rest/ebay/auth/',
-    getTokenExpirationDate: '/secured/api/v1/rest/ebay/auth/token/'
+    getTokenExpirationDate: '/secured/api/v1/rest/ebay/auth/token/',
+    getCategoryRoot: '/secured/api/v1/ebay/categories/root/',
+    TEST: '/secured/api/v1/ebay/categories/root/'
   },
   ALLEGRO_URL: {
     authAccepted: '/secured/api/v1/allegro/auth',

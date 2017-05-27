@@ -1125,7 +1125,7 @@ export class NewAuctionService {
 
   getAllegroCategoryList(): Observable<Response> {
     return this.http
-      .get(`${environment.API_URL}/${environment.ALLEGRO_URL.getCategoryList}`,
+      .get(`${environment.API_URL}${environment.ALLEGRO_URL.getCategoryList}`,
         {headers: new Headers( {
           'Content-Type': 'application/json',
           'Authorization': this.authService.getAuthToken()} )
@@ -1154,5 +1154,20 @@ export class NewAuctionService {
     return new FormGroup(group);
   }
 
+  getCategoryRoot(marketplace: string = 'EBAY_US'): Observable<Response> {
+    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.getCategoryRoot}${marketplace}`,
+      {headers: new Headers( {
+        'Content-Type': 'application/json',
+        'Authorization': this.authService.getAuthToken()} )
+      });
+  }
+
+  endpointTest(): Observable<Response> {
+    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.TEST}EBAY_US`,
+      {headers: new Headers( {
+        'Content-Type': 'application/json',
+        'Authorization': this.authService.getAuthToken()} )
+      });
+  }
 
 }
