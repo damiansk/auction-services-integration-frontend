@@ -43,7 +43,7 @@ export class NewAuctionComponent implements OnInit {
               private authService: AuthService) {}
 
   ngOnInit() {
-    // this.getCategoryList();
+    // this.updateCategoryList();
   }
 
   private getCategoryAttributes(categoryNumber: number) {

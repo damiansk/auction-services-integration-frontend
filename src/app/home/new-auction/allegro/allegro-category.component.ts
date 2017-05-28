@@ -16,7 +16,7 @@ export class AllegroCategoryComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getCategoryList();
+    this.updateCategoryList();
 
     const categoryAll: AllegroCategory = <AllegroCategory> {
       name: 'Wszystko',
@@ -31,7 +31,7 @@ export class AllegroCategoryComponent implements OnInit {
     const chosenCategory = this.categories
                             .find( category => category.id == categoryId );
 
-    this.getCategoryList(categoryId);
+    this.updateCategoryList(categoryId);
     this.chosenCategories.push(chosenCategory);
   }
 
@@ -40,12 +40,12 @@ export class AllegroCategoryComponent implements OnInit {
     const categoryIndex = this.chosenCategories
                             .findIndex(category => category.id == categoryId);
 
-    this.getCategoryList(categoryId);
+    this.updateCategoryList(categoryId);
     this.chosenCategories = this.chosenCategories
                               .slice(0, categoryIndex+1);
   }
 
-  private getCategoryList(categoryId: string = '0'): void {
+  private updateCategoryList(categoryId: string = '0'): void {
     this.allegroCategoryService
       .getCategoryList(categoryId)
       .subscribe(
