@@ -1,26 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component } from '@angular/core';
 
 
 @Component({
   selector: 'home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-
-  constructor(private router: Router,
-              private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    const cookies = document.cookie.split(/; |=/);
-    const tokenNameIndex = cookies.indexOf('Authorization');
-
-    if ( tokenNameIndex === -1 ) {
-      this.router.navigate([''], {relativeTo: this.route});
-    } else {
-      //TODO connect to server and check authorization token
-    }
-  }
+  constructor() {}
 
 }

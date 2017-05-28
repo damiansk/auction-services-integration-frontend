@@ -1,2 +1,30 @@
-<h2>Witamy na AukcLink!</h2>
+<div class="wrapper">
+  <div class="content">
+    <header class="header">
+      <h2 class="header__title">aLinker</h2>
+      <p class="header__greeting">Zapewniamy niezapomniane wrazenia i emocje jakie zapamietasz do konca zycia!</p>
+    </header>
+    <section class="position-tree"><div class="position-tree__item">A gdzie my jestesmy??</div></section>
+    <nav class="main-nav">
+      <ul class="main-nav__list">
+        <li class="main-nav__list__label">Menu</li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" [routerLink]="['new-auction']">Wystaw przedmiot</a></li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" [routerLink]="['current-auctions']">Aktualne sprzedaze</a></li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" [routerLink]="['auctions-history']">Historia</a></li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link">Moje konto</a></li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" [routerLink]="['account/services-connections']">Serwisy</a></li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" [routerLink]="['account/password-management']">Zmiana hasla</a></li>
+        <li class="main-nav__list__item"><a class="main-nav__list__item__link" href="#">Wyloguj</a></li>
+      </ul>
+    </nav>
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
 
+  </div>
+  <div class="footer__push"></div>
+</div>
+<footer class="footer">
+  <div class="footer__logo">AukcLinker</div>
+  <a class="footer__link" [routerLink]="['help/contact']">Kontakt</a>
+</footer>

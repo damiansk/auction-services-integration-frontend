@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'account-activation',
   templateUrl: './account-activation.component.html',
-  styleUrls: ['./account-activation.component.css']
+  styleUrls: ['./account-activation.component.scss']
 })
 export class AccountActivationComponent implements OnInit {
 

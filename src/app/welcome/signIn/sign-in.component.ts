@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { CookieService } from 'ng2-cookies';
+
 import { Login } from './sing-in.interface';
 import { SignInService } from './sign-in.service';
+
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sing-in.component.css']
+  styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
 
@@ -19,7 +24,9 @@ export class SignInComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
-              private signInService: SignInService) {}
+              private cookieService: CookieService,
+              private signInService: SignInService,
+              private authService: AuthService) {}
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
@@ -30,27 +37,32 @@ export class SignInComponent implements OnInit {
 
   onSubmit({value, valid}: {value: Login, valid: boolean}): void {
     if ( valid === true ) {
-      this.signInService.loginUser(value)
+      this.signInService
+        .loginUser(value)
         .subscribe(
-          (data) => {
-            if ( data.status === 200 ) {
-              this.saveTokenToCookie( data.headers.get('Authorization') );
-              this.router.navigateByUrl('/home');
-            } else {
-              console.log('Wrong response status');
-            }
-          },
-          (error) => {
-            console.error(error._body);
-            this.modelForm.reset();
-          },
+          (response) => this.loginSuccess(response.headers, response.json()),
+          (error) => console.error(error._body) && this.modelForm,
           () => this.modelForm.reset()
         );
     }
   }
 
-  saveTokenToCookie(token: string): void {
-    document.cookie = `Authorization = ${token}; path=/`;
+  loginSuccess(headers, body): void {
+    this.authService.setAuthToken( headers.get('authorization') );
+    this.authService.setEmail( body['email'] );
+    this.authService.setRole( body['role'] );
+
+    this.redirectUser();
+  }
+
+  redirectUser(): void {
+      if ( this.cookieService.check('desired-url') ) {
+        const redirect = this.cookieService.get('desired-url');
+        this.cookieService.delete('desired-url');
+        this.router.navigate([redirect]);
+      } else {
+        this.router.navigate(['/home'])
+      }
   }
 
   goToRegister(): void {
