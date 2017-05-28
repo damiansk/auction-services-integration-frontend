@@ -7,18 +7,13 @@ import { NewAuctionComponent } from './new-auction.component';
 import { NewAuctionRoutingModule } from './new-auction.routing';
 import { NewAuctionService } from './new-auction.service';
 
-import { TextAttributeComponent } from './attributes-inputs/text-attribute.component';
-import { ComboboxAttributeComponent } from './attributes-inputs/combobox-attribute.component';
-import { CheckboxAttributeComponent } from './attributes-inputs/checkbox-attribute.component';
-import { RadioButtonAttributeComponent } from './attributes-inputs/radio-button-attribute.component';
+import { AllegroCategoryComponent } from './allegro/allegro-category.component';
+import { AllegroCategoryService } from './allegro/allegro-category.service';
 
 @NgModule({
   declarations: [
     NewAuctionComponent,
-    TextAttributeComponent,
-    ComboboxAttributeComponent,
-    CheckboxAttributeComponent,
-    RadioButtonAttributeComponent
+    AllegroCategoryComponent
   ],
   imports: [
     NewAuctionRoutingModule,
@@ -28,7 +23,8 @@ import { RadioButtonAttributeComponent } from './attributes-inputs/radio-button-
     FormsModule
   ],
   providers: [
-    NewAuctionService
+    NewAuctionService,
+    AllegroCategoryService
   ]
 })
 export class NewAuctionModule {}
