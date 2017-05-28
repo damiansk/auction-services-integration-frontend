@@ -62,16 +62,16 @@ export class NewAuctionComponent implements OnInit {
   }
 
   private getCategoryList() {
-    this.newAuctionService
-      .getAllegroCategoryList()
-      .subscribe(
-        response => {
-          this.updateAuthToken(response.headers.get('authorization'));
-          this.categories = response.json();
-          console.log(this.categories);
-        },
-        err => console.error(err)
-      );
+    // this.newAuctionService
+    //   .getAllegroCategoryList()
+    //   .subscribe(
+    //     response => {
+    //       this.updateAuthToken(response.headers.get('authorization'));
+    //       this.categories = response.json();
+    //       console.log(this.categories);
+    //     },
+    //     err => console.error(err)
+    //   );
   }
 
   getFile(event): void {

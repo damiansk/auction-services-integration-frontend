@@ -27,14 +27,6 @@ export class NewAuctionService {
         });
   }
 
-  getAllegroCategoryList(): Observable<Response> {
-    return this.http
-      .get(`${environment.API_URL}${environment.ALLEGRO_URL.getCategoryList}`,
-        {headers: new Headers( {
-          'Content-Type': 'application/json',
-          'Authorization': this.authService.getAuthToken()} )
-        });
-  }
 
   toFormGroup(attributes: Attribute[] ): FormGroup {
     let group: any = {};
