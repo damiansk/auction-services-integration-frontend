@@ -107,7 +107,7 @@ export class NewAuctionService {
       });
   }
 
-  endpointTest(marketplace: string): Observable<Response> {
+  getFulfillmentPolicy(marketplace: string = 'EBAY_US'): Observable<Response> {
     const params = new URLSearchParams();
     params.append('marketPlace', marketplace);
 
