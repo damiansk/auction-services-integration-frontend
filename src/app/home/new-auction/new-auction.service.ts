@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response, ResponseOptions, ResponseType } from '@angular/http';
+import { Headers, Http, Response, ResponseOptions, ResponseType, URLSearchParams } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import {Attribute} from './attribute-interface';
@@ -95,11 +95,27 @@ export class NewAuctionService {
     //   });
   }
 
-  endpointTest(categoryRootId: string, categoryId: string): Observable<Response> {
-    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.TEST}${categoryRootId}/${categoryId}`,
-      {headers: new Headers( {
+  getPaymentPolicy(marketplace: string): Observable<Response> {
+    const params = new URLSearchParams();
+    params.append('marketplace', marketplace);
+
+    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.getPaymentPolicy}`,
+      { search: params,
+        headers: new Headers( {
         'Content-Type': 'application/json',
         'Authorization': this.authService.getAuthToken()} )
+      });
+  }
+
+  endpointTest(marketplace: string): Observable<Response> {
+    const params = new URLSearchParams();
+    params.append('marketPlace', marketplace);
+
+    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.getFulfillmentPolicy}`,
+      { search: params,
+        headers: new Headers( {
+          'Content-Type': 'application/json',
+          'Authorization': this.authService.getAuthToken()} )
       });
   }
 
