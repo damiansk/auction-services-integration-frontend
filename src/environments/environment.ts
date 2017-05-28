@@ -20,6 +20,9 @@ export const environment = {
     getCategoryTreeRoot: '/secured/api/v1/ebay/categories/tree/',
     getCategory: '/secured/api/v1/ebay/categories/tree/',
     getCategoryParameters: null,
+    getPaymentPolicy: '/secured/api/v1/ebay/policy/payment',
+    getReturnPolicy: '/secured/api/v1/ebay/policy/return',
+    getFulfillmentPolicy: '/secured/api/v1/ebay/policy/fulfillment',
     TEST: '/secured/api/v1/ebay/categories/tree/'
   },
   ALLEGRO_URL: {
