@@ -44,7 +44,6 @@ export class NewAuctionComponent implements OnInit {
 
   ngOnInit() {
     // this.getCategoryList();
-    this.testEndpoint();
   }
 
   private getCategoryAttributes(categoryNumber: number) {
@@ -154,13 +153,6 @@ export class NewAuctionComponent implements OnInit {
 
   private updateAuthToken(token: string) {
     this.authService.setAuthToken(token);
-  }
-
-  testEndpoint() {
-    this.newAuctionService.endpointTest('0', '238').subscribe(
-      data => console.log(data) && console.log(data.json()),
-      err => console.error(err)
-    );
   }
 
 }
