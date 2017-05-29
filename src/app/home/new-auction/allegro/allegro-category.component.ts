@@ -52,6 +52,7 @@ export class AllegroCategoryComponent implements OnInit {
         response => {
           this.allegroCategoryService.updateAuthToken(response.headers.get('authorization'));
           this.categories = (response.json()).categories;
+          console.log(this.chosenCategories);
         },
         err => console.error(err)
       )
