@@ -18,7 +18,7 @@ export const environment = {
     getTokenExpirationDate: '/secured/api/v1/rest/ebay/auth/token/',
     getCategoryRootId: '/secured/api/v1/ebay/categories/root/',
     getCategory: '/secured/api/v1/ebay/categories/tree/',
-    getCategoryParameters: null,
+    getCategoryParameters: '/secured/api/v1/ebay/rest/offers/template/',
     getPaymentPolicy: '/secured/api/v1/ebay/policy/payment',
     getReturnPolicy: '/secured/api/v1/ebay/policy/return',
     getFulfillmentPolicy: '/secured/api/v1/ebay/policy/fulfillment',

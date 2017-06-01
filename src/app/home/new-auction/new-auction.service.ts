@@ -69,40 +69,6 @@ export class NewAuctionService {
     //   });
   }
 
-  getPaymentPolicy(marketplace: string = 'EBAY_US'): Observable<Response> {
-    const params = new URLSearchParams();
-    params.append('marketplace', marketplace);
 
-    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.getPaymentPolicy}`,
-      { search: params,
-        headers: new Headers( {
-        'Content-Type': 'application/json',
-        'Authorization': this.authService.getAuthToken()} )
-      });
-  }
-
-  getFulfillmentPolicy(marketplace: string = 'EBAY_US'): Observable<Response> {
-    const params = new URLSearchParams();
-    params.append('marketPlace', marketplace);
-
-    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.getFulfillmentPolicy}`,
-      { search: params,
-        headers: new Headers( {
-          'Content-Type': 'application/json',
-          'Authorization': this.authService.getAuthToken()} )
-      });
-  }
-
-  getReturnPolicy(marketplace: string = 'EBAY_US'): Observable<Response> {
-    const params = new URLSearchParams();
-    params.append('marketplace', marketplace);
-
-    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.getReturnPolicy}`,
-      { search: params,
-        headers: new Headers( {
-          'Content-Type': 'application/json',
-          'Authorization': this.authService.getAuthToken()} )
-      });
-  }
 
 }
