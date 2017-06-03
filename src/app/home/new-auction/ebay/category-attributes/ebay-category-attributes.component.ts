@@ -3,6 +3,7 @@ import {FormGroup} from '@angular/forms';
 import {EbayCategoryAttributesService} from './ebay-category-attributes.service';
 import {AuthService} from '../../../../_services/auth.service';
 import {Attribute} from './attribute.interface';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'ebay-category-attributes',
@@ -26,18 +27,49 @@ export class EbayCategoryAttributesComponent implements OnInit {
   }
 
   private getCategoryAttributes(categoryNumber: number) {
-    this.ebayCategoryAttributesService
-      .getCategoryAttributes(2988)
-      .subscribe(
-        (data) => {
-          const body = data.json();
-          console.log(body);
-          // this.attributes = body.fields;
-          //
-          // this.attributesFormGroup = this.ebayCategoryAttributesService.toFormGroup(this.attributes);
-        },
-        (err) => console.error(err)
-      );
+    Observable.forkJoin([
+      this.ebayCategoryAttributesService.getCategoryAttributes(2988).map( data => data.json()),
+      this.ebayCategoryAttributesService.getPaymentPolicy().map( data => data.json()),
+      this.ebayCategoryAttributesService.getFulfillmentPolicy().map( data => data.json()),
+      this.ebayCategoryAttributesService.getReturnPolicy().map( data => data.json())
+    ]).subscribe(
+      (data) => {
+        console.log(data);
+
+        const aspects = data[0].aspects;
+        const fields = data[0].fields;
+        this.attributes = aspects.concat(fields);
+
+        const paymentPolicies = data[1].paymentPolicies.map( data => {
+         return {
+           'id': data.paymentPolicyId,
+           'value': data.name
+         }
+        });
+        const fulfillmentPolicies = data[2].fulfillmentPolicies.map( data => {
+          return {
+            'id': data.fulfillmentPolicyId,
+            'value': data.name
+          }
+        });
+        const returnPolicies = data[3].returnPolicies.map( data => {
+          return {
+            'id': data.returnPolicyId,
+            'value': data.name
+          }
+        });
+
+        this.attributes
+          .map( attr => attr.id == '13' ? attr.possibleValues = paymentPolicies : attr )
+          .map( attr => attr.id == '12' ? attr.possibleValues = returnPolicies : attr )
+          .map( attr => attr.id == '11' ? attr.possibleValues = fulfillmentPolicies : attr );
+
+
+        console.log(this.attributes);
+
+        this.attributesFormGroup = this.ebayCategoryAttributesService.toFormGroup(this.attributes);
+      }
+    );
   }
 
   private getFile(event): void {
@@ -92,7 +124,19 @@ export class EbayCategoryAttributesComponent implements OnInit {
       parameters.push({ 'id': id, 'value': value });
     }
 
-    requestBody['parameters'] = parameters;
+    let newParameters = parameters.filter( data => !isNaN(parseInt(data.id)) );
+    let newAspects = parameters
+      .filter( data => isNaN(parseInt(data.id)) )
+      .map( data => {
+        const temp = {};
+        temp[data.id] = data.value;
+        return temp;
+      } );
+
+    newParameters[25] = newAspects;
+    console.log(newParameters);
+
+    requestBody['parameters'] = newParameters;
 
     console.log(requestBody);
     // console.log(JSON.stringify(requestBody));

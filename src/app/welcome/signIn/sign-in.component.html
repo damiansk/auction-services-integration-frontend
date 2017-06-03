@@ -1,22 +1,28 @@
 <div class="content">
   <form [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
 
-    <input formControlName="email" type="email" placeholder="E-mail">
-    <div *ngIf="modelForm.controls.email.touched">
-      <div class="error-label" *ngIf="modelForm.controls.email.invalid">{{validationMessages.required}}</div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" formControlName="email" type="email" id="email">
+      <label class="mdl-textfield__label" for="email">E-mail</label>
+      <div *ngIf="modelForm.controls.email.touched">
+        <div class="mdl-textfield__error error-label" *ngIf="modelForm.controls.email.invalid">{{validationMessages.required}}</div>
+      </div>
     </div>
 
-    <input formControlName="password" type="password" placeholder="Haslo">
-    <div *ngIf="modelForm.controls.password.touched" >
-      <div class="error-label" *ngIf="modelForm.controls.password.invalid">{{validationMessages.required}}</div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" formControlName="password" type="password" id="password">
+      <label class="mdl-textfield__label" for="password">Haslo</label>
+      <div *ngIf="modelForm.controls.password.touched" >
+        <div class="mdl-textfield__error error-label" *ngIf="modelForm.controls.password.invalid">{{validationMessages.required}}</div>
+      </div>
     </div>
 
-    <button class="btn btn-submit" [disabled]="!modelForm.valid" type="submit">Zaloguj</button>
+    <button class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent btn-login" [disabled]="!modelForm.valid" type="submit">Zaloguj</button>
   </form>
 
   <hr>
   <p>Nie posiadasz jeszcze konta?</p>
-  <button class="btn btn-submit" (click)="goToRegister()">Zarejestruj</button>
+  <button class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" (click)="goToRegister()">Zarejestruj</button>
   <button class="btn btn-fb">Zaloguj przez Facebook</button>
   <button class="btn btn-gp">Zaloguj przez Google+</button>
 </div>

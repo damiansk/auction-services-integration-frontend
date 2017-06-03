@@ -62,7 +62,7 @@ export class EbayCategoryAttributesService {
 
   getFulfillmentPolicy(marketplace: string = 'EBAY_US'): Observable<Response> {
     const params = new URLSearchParams();
-    params.append('marketPlace', marketplace);
+    params.append('marketplace', marketplace);
 
     return this.http.get(`${environment.API_URL}${environment.EBAY_URL.getFulfillmentPolicy}`,
       { search: params,

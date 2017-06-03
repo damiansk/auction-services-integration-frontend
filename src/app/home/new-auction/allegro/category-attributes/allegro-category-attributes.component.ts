@@ -88,8 +88,9 @@ export class AllegroCategoryAttributesComponent implements OnInit {
         value = attributes[attribute];
       }
 
-      parameters.push({ 'id': id,
-        'value': value });
+      if ( value !== null ) {
+        parameters.push({'id': id, 'value': value});
+      }
     }
 
     requestBody['parameters'] = parameters;

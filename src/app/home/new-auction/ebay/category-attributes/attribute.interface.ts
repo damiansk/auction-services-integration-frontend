@@ -1,5 +1,5 @@
 export interface Attribute {
-  id: number,
+  id: string,
   name: string,
   formType: string,
   fieldType: string,
@@ -8,6 +8,6 @@ export interface Attribute {
 }
 
 export interface AttributePossibleValue {
-  id: number,
+  id: string,
   value: string
 }
