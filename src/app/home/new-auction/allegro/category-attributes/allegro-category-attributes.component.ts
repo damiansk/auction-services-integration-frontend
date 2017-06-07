@@ -15,7 +15,7 @@ export class AllegroCategoryAttributesComponent implements OnInit {
 
   private attributes: Attribute[] = [];
   private attributesFormGroup: FormGroup;
-  private picturesBase64 = {};
+  private imagesCache = [];
 
 
   constructor(private allegroCategoryAttributesService: AllegroCategoryAttributesService,
@@ -43,65 +43,51 @@ export class AllegroCategoryAttributesComponent implements OnInit {
       );
   }
 
-  private getFile(event): void {
-    const formControlNumber = event.target.dataset.pic;
-    const picCache = this.picturesBase64;
-    const file = event.target.files[0];
-    const reader = new FileReader();
+  private addImage(event): void {
+    if ( event.target.files && event.target.files[0] ) {
+      const reader = new FileReader();
+      const file = event.target.files[0];
 
-    reader.readAsDataURL(file);
+      this.imagesCache.push(file);
+      reader.onload = (e: any) => {
+        this.showAddedImage(e.target.result);
+      };
 
-    reader.onload = function () {
-      //TODO Find better way to cache images
-      //picCache[formControlNumber] = reader.result;
-      console.log(`Pic ${formControlNumber} load`);
-    };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  private showAddedImage(pic): void{
+    const newImg = document.createElement('img');
+    newImg.src = pic;
+    newImg.style.width = `${100}px`;
+    newImg.style.height = `${100}px`;
+    document.getElementById('pictures').appendChild(newImg);
+    console.dir(newImg);
   }
 
   private addNewAuction(): void {
-    //TODO remove null and empty attributes
     const attributes = this.attributesFormGroup.value;
-    for (let obj in this.picturesBase64) {
-      attributes[obj] = this.picturesBase64[obj];
-    }
-
-    console.log(attributes);
-
     const requestBody = {'userId': this.authService.getEmail()};
-    const parameters = [];
 
-    for (const attribute in attributes) {
-      const id = attribute;
-      let value;
-      let subAttributes;
-
-      if (attributes[attribute] !== null) {
-        subAttributes = Object.keys(attributes[attribute]);
-      }
-
-      if (subAttributes && typeof subAttributes === 'string') {
-        value = [];
-
-        for (const attr of attributes[attribute]) {
-          if (attributes[attribute][attr] !== null) {
-            value.push(attributes[attribute][attr]);
-          }
-        }
-
-      } else {
-        value = attributes[attribute];
-      }
-
-      if (value !== null) {
-        parameters.push({'id': id, 'value': value});
-      }
-    }
-
-    requestBody['parameters'] = parameters;
+    requestBody['parameters'] = Object.keys(attributes)
+      .map( key => ({ 'id': key,
+                      'value': this._decodeValue(attributes[key]) })
+      )
+      .filter( attribute => attribute['value'] !== null );
 
     console.log(requestBody);
-    // console.log(JSON.stringify(requestBody));
   }
 
+
+  private _decodeValue(value: any): string {
+    if ( value !== null && typeof value === 'object' ) {
+     return `${Object.keys(value)
+      .filter( id => value[id] )
+      .map( id => parseInt(id) )
+      .reduce( (currentValue, newValue) => currentValue + newValue, 0 )}` || null;
+    }
+    return value;
+  }
 
 }
