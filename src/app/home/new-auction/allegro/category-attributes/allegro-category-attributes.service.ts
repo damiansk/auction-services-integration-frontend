@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, ResponseOptions, ResponseType, Headers } from '@angular/http';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { AuthService } from '../../../../_services/auth.service';
-import { environment } from '../../../../../environments/environment';
+import { environment, mocks } from '../../../../../environments/environment';
 import { Attribute } from './attribute.interface';
 import { Observable } from 'rxjs/Observable';
 
@@ -49,5 +49,8 @@ export class AllegroCategoryAttributesService {
     return new FormGroup(group);
   }
 
+  public updateAuthToken(token: string) {
+    this.authService.setAuthToken(token);
+  }
 
 }

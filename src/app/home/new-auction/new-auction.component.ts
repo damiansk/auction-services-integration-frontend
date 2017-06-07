@@ -8,7 +8,8 @@ import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'new-auction',
-  templateUrl: './new-auction.component.html'
+  templateUrl: './new-auction.component.html',
+  styleUrls: ['./new-auction.component.scss']
 })
 export class NewAuctionComponent implements OnInit {
 

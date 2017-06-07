@@ -1,12 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Attribute } from './attribute.interface';
+import {FormGroup} from '@angular/forms';
+import {Attribute} from './attribute.interface';
 import {AllegroCategoryAttributesService} from './allegro-category-attributes.service';
 import {AuthService} from '../../../../_services/auth.service';
 
 @Component({
   selector: 'allegro-category-attributes',
-  templateUrl: './allegro-category-attributes.component.html'
+  templateUrl: './allegro-category-attributes.component.html',
+  styleUrls: ['./allegro-category-attributes.component.scss']
 })
 export class AllegroCategoryAttributesComponent implements OnInit {
 
@@ -18,7 +19,8 @@ export class AllegroCategoryAttributesComponent implements OnInit {
 
 
   constructor(private allegroCategoryAttributesService: AllegroCategoryAttributesService,
-              private authService: AuthService) {}
+              private authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.getCategoryAttributes(this.categoryNumber);
@@ -29,8 +31,10 @@ export class AllegroCategoryAttributesComponent implements OnInit {
       .getCategoryAttributes(categoryNumber)
       .subscribe(
         (data) => {
+          this.allegroCategoryAttributesService.updateAuthToken(data.headers.get('authorization'));
           const body = data.json();
           console.log(body);
+
           this.attributes = body.parameters;
 
           this.attributesFormGroup = this.allegroCategoryAttributesService.toFormGroup(this.attributes);
@@ -63,19 +67,19 @@ export class AllegroCategoryAttributesComponent implements OnInit {
 
     console.log(attributes);
 
-    const requestBody = { 'userId': this.authService.getEmail() };
+    const requestBody = {'userId': this.authService.getEmail()};
     const parameters = [];
 
-    for (const attribute in attributes ) {
+    for (const attribute in attributes) {
       const id = attribute;
       let value;
       let subAttributes;
 
-      if ( attributes[attribute] !== null ) {
+      if (attributes[attribute] !== null) {
         subAttributes = Object.keys(attributes[attribute]);
       }
 
-      if ( subAttributes && typeof subAttributes === 'string' ) {
+      if (subAttributes && typeof subAttributes === 'string') {
         value = [];
 
         for (const attr of attributes[attribute]) {
@@ -88,7 +92,7 @@ export class AllegroCategoryAttributesComponent implements OnInit {
         value = attributes[attribute];
       }
 
-      if ( value !== null ) {
+      if (value !== null) {
         parameters.push({'id': id, 'value': value});
       }
     }
