@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Attribute} from './attribute.interface';
 import {AllegroCategoryAttributesService} from './allegro-category-attributes.service';
@@ -9,9 +9,9 @@ import {AuthService} from '../../../../_services/auth.service';
   templateUrl: './allegro-category-attributes.component.html',
   styleUrls: ['./allegro-category-attributes.component.scss']
 })
-export class AllegroCategoryAttributesComponent implements OnInit {
+export class AllegroCategoryAttributesComponent implements OnChanges {
 
-  @Input() categoryNumber: number;
+  @Input() categoryId: number;
   @ViewChild('pictures') pictures: ElementRef;
 
   private attributes: Attribute[] = [];
@@ -20,12 +20,15 @@ export class AllegroCategoryAttributesComponent implements OnInit {
 
 
   constructor(private allegroCategoryAttributesService: AllegroCategoryAttributesService,
-              private authService: AuthService) {
-  }
+              private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.getCategoryAttributes(this.categoryNumber);
-
+  ngOnChanges(): void {
+    if (!this.categoryId) {
+      this.attributes= [];
+      this.imagesCache = [];
+    } else {
+      this.getCategoryAttributes(this.categoryId);
+    }
   }
 
   private getCategoryAttributes(categoryNumber: number) {

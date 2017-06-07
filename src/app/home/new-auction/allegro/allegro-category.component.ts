@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 import { AllegroCategoryService } from './allegro-category.service';
 import {AllegroCategory} from './category.interface';
@@ -8,6 +8,8 @@ import {AllegroCategory} from './category.interface';
   templateUrl: './allegro-category.component.html'
 })
 export class AllegroCategoryComponent implements OnInit {
+
+  @Output() categoryId: EventEmitter<string> = new EventEmitter<string>();
 
   private categories: AllegroCategory[] = [];
   private chosenCategories: AllegroCategory[] = [];
@@ -52,10 +54,21 @@ export class AllegroCategoryComponent implements OnInit {
         response => {
           this.allegroCategoryService.updateAuthToken(response.headers.get('authorization'));
           this.categories = (response.json()).categories;
-          console.log(this.chosenCategories);
+
+          this.notifyParentComponent();
         },
         err => console.error(err)
       )
+  }
+
+  private notifyParentComponent(): void {
+    if ( this.categories.length === 0 ) {
+      const currentCategoryId = this.chosenCategories[this.chosenCategories.length - 1].id;
+      this.categoryId.emit(`${currentCategoryId}`);
+    } else {
+      this.categoryId.emit(null);
+    }
+
   }
 
 }
