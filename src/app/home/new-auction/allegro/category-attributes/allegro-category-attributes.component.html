@@ -54,11 +54,6 @@
           </div>
 
           <span *ngSwitchCase="'IMAGE'">
-             <!--<label>-->
-               <!--<span *ngIf="attribute.required === true" style="color: red;">*</span>-->
-               <!--{{attribute.name}}-->
-             <!--</label>-->
-             <!--<input [attr.data-pic]="attribute.id" type="file" accept="image/*" formControlName="{{attribute.id}}addImage)="saveImage($event)" value="gg" multiple />-->
             <p><span *ngIf="attribute.required === true" style="color: red;">*</span>
               {{attribute.name}}</p>
             <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
@@ -70,7 +65,11 @@
                      (change)="addImage($event)"
                      value="gg" multiple />
             </label>
-            <div id="pictures"></div>
+            <div id="pictures" #pictures>
+              <img *ngFor="let value of attribute.possibleValues"
+                   style="width: 150px; height: 150px; display: none;"
+                   [attr.data-picid]="value.id"/>
+            </div>
           </span>
 
 

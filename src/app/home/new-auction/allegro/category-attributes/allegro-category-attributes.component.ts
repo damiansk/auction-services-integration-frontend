@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Attribute} from './attribute.interface';
 import {AllegroCategoryAttributesService} from './allegro-category-attributes.service';
@@ -12,6 +12,7 @@ import {AuthService} from '../../../../_services/auth.service';
 export class AllegroCategoryAttributesComponent implements OnInit {
 
   @Input() categoryNumber: number;
+  @ViewChild('pictures') pictures: ElementRef;
 
   private attributes: Attribute[] = [];
   private attributesFormGroup: FormGroup;
@@ -24,6 +25,7 @@ export class AllegroCategoryAttributesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategoryAttributes(this.categoryNumber);
+
   }
 
   private getCategoryAttributes(categoryNumber: number) {
@@ -48,22 +50,27 @@ export class AllegroCategoryAttributesComponent implements OnInit {
       const reader = new FileReader();
       const file = event.target.files[0];
 
-      this.imagesCache.push(file);
       reader.onload = (e: any) => {
-        this.showAddedImage(e.target.result);
+        //TODO cut unnecessary begin 'data:image/jpeg;base64,'
+        this._connectAddedImage(e.target.result);
       };
 
       reader.readAsDataURL(file);
     }
   }
 
-  private showAddedImage(pic): void{
-    const newImg = document.createElement('img');
-    newImg.src = pic;
-    newImg.style.width = `${100}px`;
-    newImg.style.height = `${100}px`;
-    document.getElementById('pictures').appendChild(newImg);
-    console.dir(newImg);
+  private _connectAddedImage(base64: string): void{
+    const nodeHTMLCollection = this.pictures.nativeElement.children;
+    const nodeList = Array.prototype.slice.call(nodeHTMLCollection);
+    const firstEmptyTag = nodeList.filter(node => node.src === '')[0];
+
+    firstEmptyTag.src = base64;
+    firstEmptyTag.style.display = 'inline-flex';
+
+    this.imagesCache.push({
+      'id': firstEmptyTag.dataset.picid,
+      'value': firstEmptyTag
+    });
   }
 
   private addNewAuction(): void {
@@ -75,6 +82,15 @@ export class AllegroCategoryAttributesComponent implements OnInit {
                       'value': this._decodeValue(attributes[key]) })
       )
       .filter( attribute => attribute['value'] !== null );
+
+    this.imagesCache
+      .forEach( image => {
+        requestBody['parameters']
+          .push({
+            'id': image['id'],
+            'value': image['value'].src
+          })
+      });
 
     console.log(requestBody);
   }
