@@ -25,3 +25,11 @@
   margin: 0;
 
 }
+
+.service__logo {
+  margin: 0 0 20px 0;
+
+  & img {
+    width: 250px;
+  }
+}

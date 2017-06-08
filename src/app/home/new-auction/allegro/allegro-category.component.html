@@ -1,5 +1,7 @@
 <div *ngIf="categories" class="content mdl-shadow--2dp">
-  <h2>Allegro</h2>
+  <div class="service__logo">
+    <img src="../../../../assets/pic/allegro_logo.png">
+  </div>
   <p *ngFor="let category of chosenCategories"
      [attr.data-id]="category.id"
      class="categories-links"
