@@ -6,7 +6,8 @@ import { AllegroAuthComponent } from './allegro-auth/allegro-auth.component';
 
 @Component({
   selector: 'services-connections',
-  templateUrl: './services-connections.component.html'
+  templateUrl: './services-connections.component.html',
+  styleUrls: ['./services-connections.component.scss']
 })
 export class ServicesConnectionsComponent implements OnInit {
 

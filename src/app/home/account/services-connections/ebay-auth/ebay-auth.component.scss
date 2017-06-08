@@ -56,7 +56,7 @@
   }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 620px) and (max-width: 920px) {
   .service {
     //width: initial;
 
@@ -74,21 +74,11 @@
   }
 }
 
-@media (min-width: 720px) {
+@media (min-width: 921px) {
   .service {
-    //margin-top: 5pt;
-    //margin-bottom: 15pt;
-    //width: 89%;
-    //margin-left: 10pt;
-
-    &__logo {
-      width: 33%;
-      vertical-align: top;
-    }
-
-    &__status {
-      width: 62%;
-    }
-
+    width: 35%;
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: top;
   }
 }

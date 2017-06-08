@@ -12,7 +12,7 @@ import { EbayAuthService } from './ebay-auth.service';
 })
 export class EbayAuthComponent implements OnInit {
 
-  private green: string = 'rgba(124, 251, 81, 0.63)';
+  private green: string = 'rgb(105, 226, 127)';
   private red: string = '#ff7272';
 
   private expirationTime: string;

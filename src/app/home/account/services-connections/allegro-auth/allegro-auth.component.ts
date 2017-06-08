@@ -14,7 +14,7 @@ import { AllegroAuthService } from './allegro-auth.service';
 export class AllegroAuthComponent implements OnInit {
 
   private red: string = '#ff7272';
-  private green: string = 'rgba(124, 251, 81, 0.63)';
+  private green: string = 'rgb(105, 226, 127)';
 
   private expirationTime: string;
   private isActive: boolean = false;
