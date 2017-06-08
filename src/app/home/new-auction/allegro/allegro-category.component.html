@@ -1,13 +1,20 @@
-<div *ngIf="categories" style="margin: 10px; padding: 10px; background-color: rgba(255,255,255,0.45);">
+<div *ngIf="categories" class="content mdl-shadow--2dp">
   <h2>Allegro</h2>
   <p *ngFor="let category of chosenCategories"
      [attr.data-id]="category.id"
-     style="display: inline-block; padding: 10px; margin: 0; font-size: 12px; color: blue;"
+     class="categories-links"
     (click)="backToCategory($event)">{{category.name}}</p>
-
-  <select *ngIf="categories.length" (change)="updateCategory($event)" style="display: block;">
-    <option>-- Wybierz --</option>
-    <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
-  </select>
-
+  <br>
+  <div *ngIf="categories.length"
+       class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <h3 class="subtitle">Wybierz kategorie</h3>
+    <select class="mdl-textfield__input"
+            (change)="updateCategory($event)"
+            id="categories-list">
+      <option class="option-class">-- Wybierz --</option>
+      <option *ngFor="let category of categories"
+              value="{{category.id}}"
+              class="option-class">{{category.name}}</option>
+    </select>
+  </div>
 </div>

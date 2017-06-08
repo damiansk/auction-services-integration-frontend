@@ -5,7 +5,8 @@ import {AllegroCategory} from './category.interface';
 
 @Component({
   selector: 'allegro-category',
-  templateUrl: './allegro-category.component.html'
+  templateUrl: './allegro-category.component.html',
+  styleUrls: ['./allegro-category.component.scss']
 })
 export class AllegroCategoryComponent implements OnInit {
 

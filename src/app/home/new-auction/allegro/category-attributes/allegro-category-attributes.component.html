@@ -1,5 +1,6 @@
 
-<div *ngIf="attributes && attributesFormGroup">
+<div *ngIf="attributes && attributesFormGroup" class="content mdl-shadow--2dp">
+  <h2>Allegro</h2>
   <form [formGroup]="attributesFormGroup" novalidate>
 
     <span *ngFor="let attribute of attributes">

@@ -25,6 +25,7 @@ export class AllegroCategoryAttributesComponent implements OnChanges {
   ngOnChanges(): void {
     if (!this.categoryId) {
       this.attributes= [];
+      delete(this.attributesFormGroup);
       this.imagesCache = [];
     } else {
       this.getCategoryAttributes(this.categoryId);
