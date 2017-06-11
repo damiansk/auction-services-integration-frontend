@@ -27,6 +27,16 @@ export class AllegroCategoryAttributesService {
         });
   }
 
+  addAuction(parameters: string): Observable<Response> {
+    return this.http
+      .post(`${environment.API_URL}${environment.OFFER_URL.createOffer}?service=ALLEGRO`,
+        parameters,
+        {headers: new Headers( {
+          'Content-Type': 'application/json',
+          'Authorization': this.authService.getAuthToken()} )
+        });
+  }
+
   toFormGroup(attributes: Attribute[] ): FormGroup {
     let group: any = {};
 

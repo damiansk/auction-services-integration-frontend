@@ -97,6 +97,10 @@ export class AllegroCategoryAttributesComponent implements OnChanges {
       });
 
     console.log(requestBody);
+    this.allegroCategoryAttributesService
+      .addAuction(JSON.stringify(requestBody))
+      .subscribe( data => console.log(data),
+                  err => console.error(err) );
   }
 
 

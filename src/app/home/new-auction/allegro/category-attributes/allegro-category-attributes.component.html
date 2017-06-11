@@ -67,7 +67,7 @@
             </label>
             <div id="pictures" #pictures>
               <img *ngFor="let value of attribute.possibleValues"
-                   style="width: 150px; height: 150px; display: none;"
+                   style="height: 150px; margin: 10px; display: none;"
                    [attr.data-picid]="value.id"/>
             </div>
           </span>
@@ -110,6 +110,8 @@
         </div>
     </span>
 
-    <button type="submit" (click)="addNewAuction()">Submit</button>
+    <button class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+            type="submit"
+            (click)="addNewAuction()">Wystaw przedmiot</button>
   </form>
 </div>
