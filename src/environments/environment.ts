@@ -30,6 +30,9 @@ export const environment = {
     getTokenExpirationDate: '/secured/api/v1/allegro/auth/status',
     getCategoryList: '/secured/api/v1/allegro/category/',
     getCategoryParameters: '/secured/api/v1/allegro/category/parameters/'
+  },
+  OFFER_URL: {
+    createOffer: '/secured/api/v1/offer'
   }
 };
 
