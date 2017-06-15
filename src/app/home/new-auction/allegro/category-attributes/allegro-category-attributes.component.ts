@@ -78,12 +78,14 @@ export class AllegroCategoryAttributesComponent implements OnChanges {
   }
 
   private addNewAuction(): void {
-    const attributes = this.attributesFormGroup.value;
+    const formGroupValues = this.attributesFormGroup.value;
+    console.log(this.attributesFormGroup);
+    console.log(formGroupValues);
     const requestBody = {'userId': this.authService.getEmail()};
 
-    requestBody['parameters'] = Object.keys(attributes)
+    requestBody['parameters'] = Object.keys(formGroupValues)
       .map( key => ({ 'id': key,
-                      'value': this._decodeValue(attributes[key]) })
+                      'value': this._decodeValue(formGroupValues[key]) })
       )
       .filter( attribute => attribute['value'] !== null );
 
@@ -97,10 +99,10 @@ export class AllegroCategoryAttributesComponent implements OnChanges {
       });
 
     console.log(requestBody);
-    this.allegroCategoryAttributesService
+/*    this.allegroCategoryAttributesService
       .addAuction(JSON.stringify(requestBody))
       .subscribe( data => console.log(data),
-                  err => console.error(err) );
+                  err => console.error(err) );*/
   }
 
 
