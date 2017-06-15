@@ -1,4 +1,4 @@
-export interface AllegroActiveOffer {
+export interface Offer {
   auctionPrices: string,
   buyNowPrice: number,
   currency: string,
