@@ -22,6 +22,7 @@ export const environment = {
     getPaymentPolicy: '/secured/api/v1/ebay/policy/payment',
     getReturnPolicy: '/secured/api/v1/ebay/policy/return',
     getFulfillmentPolicy: '/secured/api/v1/ebay/policy/fulfillment',
+    getActiveOffers: '/secured/api/v1/ebay/rest/offers',
     TEST: '/secured/api/v1/ebay/categories/tree/'
   },
   ALLEGRO_URL: {
@@ -29,7 +30,8 @@ export const environment = {
     authRedirect: '/secured/api/v1/allegro/auth',
     getTokenExpirationDate: '/secured/api/v1/allegro/auth/status',
     getCategoryList: '/secured/api/v1/allegro/category/',
-    getCategoryParameters: '/secured/api/v1/allegro/category/parameters/'
+    getCategoryParameters: '/secured/api/v1/allegro/category/parameters/',
+    getActiveOffers: '/secured/api/v1/allegro/offers'
   },
   OFFER_URL: {
     createOffer: '/secured/api/v1/offer'
