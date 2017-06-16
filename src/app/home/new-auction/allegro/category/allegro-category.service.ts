@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 
-import { AuthService } from '../../../_services/auth.service';
+import { AuthService } from '../../../../_services/auth.service';
 import { Observable } from 'rxjs/Observable';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable()
 export class AllegroCategoryService {

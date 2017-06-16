@@ -7,8 +7,8 @@ import { NewAuctionComponent } from './new-auction.component';
 import { NewAuctionRoutingModule } from './new-auction.routing';
 import { NewAuctionService } from './new-auction.service';
 
-import { AllegroCategoryComponent } from './allegro/allegro-category.component';
-import { AllegroCategoryService } from './allegro/allegro-category.service';
+import { AllegroCategoryComponent } from './allegro/category/allegro-category.component';
+import { AllegroCategoryService } from './allegro/category/allegro-category.service';
 import { EbayCategoryComponent } from './ebay/category/ebay-category.component';
 import { EbayCategoryService } from './ebay/category/ebay-category.service';
 import { AllegroCategoryAttributesService } from './allegro/category-attributes/allegro-category-attributes.service';
@@ -16,10 +16,12 @@ import { AllegroCategoryAttributesComponent } from './allegro/category-attribute
 import {EbayCategoryAttributesComponent} from './ebay/category-attributes/ebay-category-attributes.component';
 import {EbayCategoryAttributesService} from './ebay/category-attributes/ebay-category-attributes.service';
 import {EbayNewAuctionComponent} from './ebay/ebay-new-auction.component';
+import {AllegroNewAuctionComponent} from './allegro/allegro-new-auction.component';
 
 @NgModule({
   declarations: [
     NewAuctionComponent,
+    AllegroNewAuctionComponent,
     EbayNewAuctionComponent,
     AllegroCategoryComponent,
     EbayCategoryComponent,
