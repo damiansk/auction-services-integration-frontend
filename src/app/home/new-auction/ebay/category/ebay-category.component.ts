@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { EbayCategoryService } from './ebay-category.service';
-import {EbayCategory} from './category.interface';
+import { EbayCategory } from './category.interface';
 
 @Component({
   selector: 'ebay-category',
@@ -9,6 +9,8 @@ import {EbayCategory} from './category.interface';
   styleUrls: ['./ebay-category.component.scss']
 })
 export class EbayCategoryComponent implements OnInit {
+
+  @Output() categoryId: EventEmitter<string> = new EventEmitter<string>();
 
   private rootId = '0';
   private categories: EbayCategory[] = [];
@@ -73,10 +75,21 @@ export class EbayCategoryComponent implements OnInit {
                                 .map( category => category.category );
           } else {
             this.categories = [];
+            this.notifyParentComponent();
           }
         },
         err => console.error(err)
       )
+  }
+
+  private notifyParentComponent(): void {
+    if ( this.categories.length === 0 ) {
+      const currentCategoryId = this.chosenCategories[this.chosenCategories.length - 1].categoryId;
+      this.categoryId.emit(`${currentCategoryId}`);
+    } else {
+      this.categoryId.emit(null);
+    }
+
   }
 
 }
