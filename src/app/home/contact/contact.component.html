@@ -1,8 +1,19 @@
-<form>
-  <h3>Formularz kontaktowy</h3>
-  <label for="email">E-mail</label>
-  <input id="email" type="email">
-  <label for="message">Tresc</label>
-  <input id="message" type="text">
-  <button type="submit">Wyslij</button>
-</form>
+<div class="content mdl-card mdl-shadow--2dp">
+  <form>
+    <div class="mdl-card__title mdl-card--expand">
+      <h2 class="title mdl-card__title-text">Formularz kontaktowy</h2>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" formControlName="email" type="text" id="email">
+      <label class="mdl-textfield__label" for="email">Krotki opis...</label>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield">
+      <textarea class="mdl-textfield__input" type="text" rows= "3" id="message" ></textarea>
+      <label class="mdl-textfield__label" for="message">Tresc...</label>
+    </div>
+
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Wyslij</button>
+  </form>
+</div>
