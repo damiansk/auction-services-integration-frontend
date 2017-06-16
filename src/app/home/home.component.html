@@ -21,7 +21,9 @@
       </div>
     </header>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" [routerLink]="['new-auction']">Wystaw przedmiot</a>
+      <a class="mdl-navigation__link">Wystaw przedmiot</a>
+      <a class="sublink mdl-navigation__link" [routerLink]="['new-auction/ebay-new-auction']">eBay</a>
+      <a class="sublink mdl-navigation__link" [routerLink]="['new-auction/allegro-new-auction']">Allegro</a>
       <a class="mdl-navigation__link" [routerLink]="['current-auctions']">Sprzedaze</a>
       <a class="mdl-navigation__link" [routerLink]="['account/services-connections']">Serwisy</a>
       <a class="mdl-navigation__link" [routerLink]="['account/password-management']">Zmiana hasla</a>

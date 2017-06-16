@@ -18,6 +18,7 @@ export class HomeComponent {
   }
 
   logOut(): void {
+    console.log('logout');
     this.authService.logOut();
     this.router.navigateByUrl('/');
   }
