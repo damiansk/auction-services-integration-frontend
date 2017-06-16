@@ -59,6 +59,7 @@ export class EbayCategoryComponent implements OnInit {
     this.updateCategoryList(categoryId);
     this.chosenCategories = this.chosenCategories
       .slice(0, categoryIndex+1);
+    this.notifyParentComponent();
   }
 
   private updateCategoryList(categoryId: string = '0'): void {
@@ -83,13 +84,12 @@ export class EbayCategoryComponent implements OnInit {
   }
 
   private notifyParentComponent(): void {
-    if ( this.categories.length === 0 ) {
+    if ( this.categories.length === 0 && this.chosenCategories[this.chosenCategories.length - 1] ) {
       const currentCategoryId = this.chosenCategories[this.chosenCategories.length - 1].categoryId;
       this.categoryId.emit(`${currentCategoryId}`);
     } else {
       this.categoryId.emit(null);
     }
-
   }
 
 }

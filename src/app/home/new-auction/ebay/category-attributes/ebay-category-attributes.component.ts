@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {EbayCategoryAttributesService} from './ebay-category-attributes.service';
 import {AuthService} from '../../../../_services/auth.service';
@@ -7,28 +7,38 @@ import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'ebay-category-attributes',
-  templateUrl: './ebay-category-attributes.component.html'
+  templateUrl: './ebay-category-attributes.component.html',
+  styleUrls: ['./ebay-category-attributes.component.scss']
 })
-export class EbayCategoryAttributesComponent implements OnInit {
+export class EbayCategoryAttributesComponent implements OnChanges {
 
   @Input() categoryNumber: number;
+  @ViewChild('pictures') pictures: ElementRef;
 
   private attributes: Attribute[] = [];
   private attributesFormGroup: FormGroup;
-  private picturesBase64 = {};
+
+  private imagesCache = [];
 
 
   constructor(private ebayCategoryAttributesService: EbayCategoryAttributesService,
               private authService: AuthService) {}
 
 
-  ngOnInit(): void {
-    this.getCategoryAttributes(this.categoryNumber);
+  ngOnChanges(): void {
+    if (!this.categoryNumber) {
+      this.attributes= [];
+      delete(this.attributesFormGroup);
+      this.imagesCache = [];
+    } else {
+      this.getCategoryAttributes(this.categoryNumber);
+    }
   }
+
 
   private getCategoryAttributes(categoryNumber: number) {
     Observable.forkJoin([
-      this.ebayCategoryAttributesService.getCategoryAttributes(2988).map( data => data.json()),
+      this.ebayCategoryAttributesService.getCategoryAttributes(categoryNumber).map( data => data.json()),
       this.ebayCategoryAttributesService.getPaymentPolicy().map( data => data.json()),
       this.ebayCategoryAttributesService.getFulfillmentPolicy().map( data => data.json()),
       this.ebayCategoryAttributesService.getReturnPolicy().map( data => data.json())
@@ -72,26 +82,39 @@ export class EbayCategoryAttributesComponent implements OnInit {
     );
   }
 
-  private getFile(event): void {
-    const formControlNumber = event.target.dataset.pic;
-    const picCache = this.picturesBase64;
-    const file = event.target.files[0];
-    const reader = new FileReader();
+  private addImage(event): void {
+    if ( event.target.files && event.target.files[0] ) {
+      const reader = new FileReader();
+      const file = event.target.files[0];
 
-    reader.readAsDataURL(file);
+      reader.onload = (e: any) => {
+        //TODO cut unnecessary begin 'data:image/jpeg;base64,'
+        this._connectAddedImage(e.target.result);
+      };
 
-    reader.onload = function () {
-      //TODO Find better way to cache images
-      //picCache[formControlNumber] = reader.result;
-      console.log(`Pic ${formControlNumber} load`);
-    };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  private _connectAddedImage(base64: string): void{
+    const nodeHTMLCollection = this.pictures.nativeElement.children;
+    const nodeList = Array.prototype.slice.call(nodeHTMLCollection);
+    const firstEmptyTag = nodeList.filter(node => node.src === '')[0];
+
+    firstEmptyTag.src = base64;
+    firstEmptyTag.style.display = 'inline-flex';
+
+    this.imagesCache.push({
+      'id': firstEmptyTag.dataset.picid,
+      'value': firstEmptyTag
+    });
   }
 
   private addNewAuction(): void {
     //TODO remove null and empty attributes
     const attributes = this.attributesFormGroup.value;
-    for (let obj in this.picturesBase64) {
-      attributes[obj] = this.picturesBase64[obj];
+    for (let obj in this.imagesCache) {
+      attributes[obj] = this.imagesCache[obj];
     }
 
     console.log(attributes);

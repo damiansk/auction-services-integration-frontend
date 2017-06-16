@@ -1,70 +1,117 @@
 
-<div *ngIf="attributes && attributesFormGroup">
+<div *ngIf="attributes && attributesFormGroup" class="content mdl-shadow--2dp">
   <form [formGroup]="attributesFormGroup" novalidate>
 
     <span *ngFor="let attribute of attributes">
-        <div [ngSwitch]="attribute.formType" style="background-color: rgba(255,255,255,0.45); margin: 10px; padding: 10px; font-size: 14px">
-          <span *ngIf="attribute.required === true" style="color: red;">*</span>
+        <div class="attribute-container" [ngSwitch]="attribute.formType">
 
           <span *ngSwitchCase="'RADIOBUTTON'">
             <fieldset>
-              <legend>{{attribute.name}}</legend>
+              <legend>
+                <span *ngIf="attribute.required === true" style="color: red;">*</span>
+                {{attribute.name}}
+              </legend>
               <div *ngFor="let val of attribute.possibleValues">
-                <input type="radio" name="{{attribute.id}}" id="{{attribute.id}}_{{val.id}}" formControlName="{{attribute.id}}" [value]="val.id"/>
-                <label for="{{attribute.id}}_{{val.id}}">{{val.value}}</label>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="{{attribute.id}}_{{val.id}}">
+                  <input class="mdl-radio__button" type="radio" name="{{attribute.id}}" id="{{attribute.id}}_{{val.id}}" formControlName="{{attribute.id}}" [value]="val.id"/>
+                  <span class="mdl-radio__label">{{val.value}}</span>
+                </label>
               </div>
             </fieldset>
           </span>
 
           <span *ngSwitchCase="'COMBOBOX'">
-            <label for="{{attribute.id}}">{{attribute.name}}</label>
-            <select id="{{attribute.id}}" name="{{attribute.name}}" formControlName="{{attribute.id}}">
-              <option *ngFor="let val of attribute.possibleValues" value="{{val.id}}">{{val.value}}</option>
-            </select>
-          </span>
-
-          <span *ngSwitchCase="'CHECKBOX'" formGroupName="{{attribute.id}}">
-            <span><b>{{attribute.name}}</b></span>
-            <div *ngFor="let val of attribute.possibleValues">
-              <input type="checkbox" formControlName="{{val.id}}">
-              <label>{{val.value}}</label>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <select class="mdl-textfield__input" id="{{attribute.id}}" name="{{attribute.name}}" formControlName="{{attribute.id}}">
+                <option class="option-class" *ngFor="let val of attribute.possibleValues" value="{{val.id}}">{{val.value}}</option>
+              </select>
+            <label class="mdl-textfield__label" for="{{attribute.id}}">
+              <span *ngIf="attribute.required === true" style="color: red;">*</span>
+              {{attribute.name}}
+            </label>
             </div>
           </span>
 
-          <span *ngSwitchCase="'INTEGER'">
-             <label>{{attribute.name}}</label>
-             <input type="number" formControlName="{{attribute.id}}">
+          <span *ngSwitchCase="'CHECKBOX'" formGroupName="{{attribute.id}}">
+            <span>
+              <span *ngIf="attribute.required === true" style="color: red;">*</span>
+              {{attribute.name}}
+            </span>
+            <div *ngFor="let val of attribute.possibleValues">
+              <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <input class="mdl-checkbox__input" type="checkbox" formControlName="{{val.id}}">
+                <span class="mdl-checkbox__label">{{val.value}}</span>
+              </label>
+            </div>
           </span>
+
+          <div *ngSwitchCase="'INTEGER'" class="mdl-textfield mdl-js-textfield">
+             <label class="mdl-textfield__label">
+               <span *ngIf="attribute.required === true" style="color: red;">*</span>
+               {{attribute.name}}
+             </label>
+             <input class="mdl-textfield__input" type="number" formControlName="{{attribute.id}}">
+          </div>
 
           <span *ngSwitchCase="'IMAGE'">
-             <label>{{attribute.name}}</label>
-             <input [attr.data-pic]="attribute.id" type="file" accept="image/*" formControlName="{{attribute.id}}" (change)="getFile($event)" value="gg">
+            <p><span *ngIf="attribute.required === true" style="color: red;">*</span>
+              {{attribute.name}}</p>
+            <label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored">
+              <i class="material-icons">file_upload</i>
+              <input [attr.data-pic]="attribute.id"
+                     type="file"
+                     accept="image/*"
+                     style="display: none;"
+                     (change)="addImage($event)"
+                     value="gg" multiple />
+            </label>
+            <div id="pictures" #pictures>
+              <img *ngFor="let value of attribute.possibleValues"
+                   style="height: 150px; margin: 10px; display: none;"
+                   [attr.data-picid]="value.id"/>
+            </div>
           </span>
 
 
-          <span *ngSwitchCase="'TEXTAREA'">
-             <label>{{attribute.name}}</label>
-            <textarea formControlName="{{attribute.id}}"></textarea>
-          </span>
+
+
+          <div *ngSwitchCase="'TEXTAREA'" class="mdl-textfield mdl-js-textfield">
+            <label class="mdl-textfield__label">
+              <span *ngIf="attribute.required === true" style="color: red;">*</span>
+              {{attribute.name}}
+            </label>
+            <textarea class="mdl-textfield__input" formControlName="{{attribute.id}}" rows="3"></textarea>
+          </div>
 
           <span *ngSwitchCase="'DATA'">
-             <label>{{attribute.name}}</label>
+             <label>
+               <span *ngIf="attribute.required === true" style="color: red;">*</span>
+               {{attribute.name}}
+             </label>
              <input type="date" formControlName="{{attribute.id}}">
           </span>
 
           <span *ngSwitchCase="'DATATIME'">
-             <label>{{attribute.name}}</label>
+             <label>
+               <span *ngIf="attribute.required === true" style="color: red;">*</span>
+               {{attribute.name}}
+             </label>
              <input type="datetime" formControlName="{{attribute.id}}">
           </span>
 
-          <span *ngSwitchDefault="">
-             <label>{{attribute.name}}</label>
-             <input type="text" formControlName="{{attribute.id}}">
-          </span>
+          <div *ngSwitchDefault="" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+             <label class="mdl-textfield__label">
+               <span *ngIf="attribute.required === true" style="color: red;">*</span>
+               {{attribute.name}}
+             </label>
+             <input class="mdl-textfield__input" type="text" formControlName="{{attribute.id}}">
+          </div>
 
         </div>
     </span>
 
-    <button type="submit" (click)="addNewAuction()">Submit</button>
+    <button class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+            type="submit"
+            (click)="addNewAuction()">Wystaw przedmiot</button>
   </form>
 </div>

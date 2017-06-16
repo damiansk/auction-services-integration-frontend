@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class EbayNewAuctionComponent {
 
-  private chosenCategoryId: number;
+  chosenCategoryId: number;
 
   updateCategoryId(categoryId): void {
     this.chosenCategoryId = categoryId;
