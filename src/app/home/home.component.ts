@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../_services/auth.service';
 
 
 @Component({
@@ -8,6 +10,16 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  constructor() {}
+  private mail: string;
+
+  constructor(private authService: AuthService,
+              private router: Router) {
+    this.mail = authService.getEmail();
+  }
+
+  logOut(): void {
+    this.authService.logOut();
+    this.router.navigateByUrl('/');
+  }
 
 }

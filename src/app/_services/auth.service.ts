@@ -26,6 +26,10 @@ export class AuthService {
     this.cookieService.set('authorization', token, null, '/');
   }
 
+  private removeAuthToken(): void {
+    this.cookieService.delete('authorization');
+  }
+
   public getEmail(): string {
     return this.cookieService.get('email');
   }
@@ -34,12 +38,26 @@ export class AuthService {
     this.cookieService.set('email', email, null, '/');
   }
 
+  private removeEmail(): void {
+    this.cookieService.delete('email');
+  }
+
   public getRole(): string {
     return this.cookieService.get('role');
   }
 
   public setRole(role: string): void {
     this.cookieService.set('role', role, null, '/');
+  }
+
+  private removeRole(): void {
+    this.cookieService.delete('role');
+  }
+
+  public logOut(): void {
+    this.removeAuthToken();
+    this.removeEmail();
+    this.removeRole();
   }
 
 }

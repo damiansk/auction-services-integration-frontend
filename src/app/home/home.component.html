@@ -14,7 +14,7 @@
       <div style="position: absolute; bottom: 0; padding: 0 20px;">
         <img class="demo-avatar" src="../../assets/pic/user.jpg" style="border-radius: 50%; width: 52%; margin: 0 10px;">
         <div style="padding: 10px;">
-          <span style="font-size: 16px;">damian.s.ja@o2.pl</span>
+          <span style="font-size: 16px;">{{mail}}</span>
         </div>
         <div>
         </div>
@@ -22,11 +22,11 @@
     </header>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" [routerLink]="['new-auction']">Wystaw przedmiot</a>
-      <a class="mdl-navigation__link" [routerLink]="['current-auctions']">Aktualne sprzedaze</a>
-      <a class="mdl-navigation__link" [routerLink]="['auctions-history']">Historia</a>
+      <a class="mdl-navigation__link" [routerLink]="['current-auctions']">Sprzedaze</a>
       <a class="mdl-navigation__link" [routerLink]="['account/services-connections']">Serwisy</a>
       <a class="mdl-navigation__link" [routerLink]="['account/password-management']">Zmiana hasla</a>
-      <a class="mdl-navigation__link" href="#">Wyloguj</a>
+      <a class="mdl-navigation__link" [routerLink]="['contact']">Kontakt</a>
+      <button class="logout mdl-navigation__link" (click)="logOut()">Wyloguj</button>
     </nav>
   </div>
   <main class="mdl-layout__content">
