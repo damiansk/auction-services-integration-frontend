@@ -1,13 +1,36 @@
-<div *ngIf="categories" style="margin: 10px; padding: 10px; background-color: rgba(255,255,255,0.45);">
-  <h2>eBay</h2>
+<!--<div *ngIf="categories" style="margin: 10px; padding: 10px; background-color: rgba(255,255,255,0.45);">-->
+  <!--<h2>eBay</h2>-->
+  <!--<p *ngFor="let category of chosenCategories"-->
+     <!--[attr.data-id]="category.categoryId"-->
+     <!--style="display: inline-block; padding: 10px; margin: 0; font-size: 12px; color: blue;"-->
+     <!--(click)="backToCategory($event)">{{category.categoryName}}</p>-->
+
+  <!--<select *ngIf="categories.length" (change)="updateCategory($event)" style="display: block;">-->
+    <!--<option>&#45;&#45; Wybierz &#45;&#45;</option>-->
+    <!--<option *ngFor="let category of categories" value="{{category.categoryId}}">{{category.categoryName}}</option>-->
+  <!--</select>-->
+
+<!--</div>-->
+
+<div *ngIf="categories" class="content mdl-shadow--2dp">
+  <div class="service__logo">
+    <img src="../../../../../assets/pic/ebay_logo.png">
+  </div>
   <p *ngFor="let category of chosenCategories"
-     [attr.data-id]="category.categoryId"
-     style="display: inline-block; padding: 10px; margin: 0; font-size: 12px; color: blue;"
+     [attr.data-id]="category.id"
+     class="categories-links"
      (click)="backToCategory($event)">{{category.categoryName}}</p>
-
-  <select *ngIf="categories.length" (change)="updateCategory($event)" style="display: block;">
-    <option>-- Wybierz --</option>
-    <option *ngFor="let category of categories" value="{{category.categoryId}}">{{category.categoryName}}</option>
-  </select>
-
+  <br>
+  <div *ngIf="categories.length"
+       class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <h3 class="subtitle">Wybierz kategorie</h3>
+    <select class="mdl-textfield__input"
+            (change)="updateCategory($event)"
+            id="categories-list">
+      <option class="option-class">-- Wybierz --</option>
+      <option *ngFor="let category of categories"
+              value="{{category.categoryId}}"
+              class="option-class">{{category.categoryName}}</option>
+    </select>
+  </div>
 </div>

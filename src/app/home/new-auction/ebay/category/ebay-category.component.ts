@@ -5,7 +5,8 @@ import {EbayCategory} from './category.interface';
 
 @Component({
   selector: 'ebay-category',
-  templateUrl: './ebay-category.component.html'
+  templateUrl: './ebay-category.component.html',
+  styleUrls: ['./ebay-category.component.scss']
 })
 export class EbayCategoryComponent implements OnInit {
 
