@@ -84,4 +84,12 @@ export class EbayCategoryAttributesService {
       });
   }
 
+  getLocation(): Observable<Response> {
+    return this.http.get(`${environment.API_URL}${environment.EBAY_URL.getLocation}`,
+      { headers: new Headers( {
+        'Content-Type': 'application/json',
+        'Authorization': this.authService.getAuthToken()} )
+      });
+  }
+
 }

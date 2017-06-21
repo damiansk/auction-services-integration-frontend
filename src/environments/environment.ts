@@ -23,6 +23,7 @@ export const environment = {
     getPaymentPolicy: '/secured/api/v1/ebay/policy/payment',
     getReturnPolicy: '/secured/api/v1/ebay/policy/return',
     getFulfillmentPolicy: '/secured/api/v1/ebay/policy/fulfillment',
+    getLocation: '/secured/api/v1/ebay/inventory/location',
     getActiveOffers: '/secured/api/v1/ebay/rest/offers',
     TEST: '/secured/api/v1/ebay/categories/tree/'
   },

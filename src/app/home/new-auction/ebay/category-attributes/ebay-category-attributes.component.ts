@@ -41,7 +41,8 @@ export class EbayCategoryAttributesComponent implements OnChanges {
       this.ebayCategoryAttributesService.getCategoryAttributes(categoryNumber).map( data => data.json()),
       this.ebayCategoryAttributesService.getPaymentPolicy().map( data => data.json()),
       this.ebayCategoryAttributesService.getFulfillmentPolicy().map( data => data.json()),
-      this.ebayCategoryAttributesService.getReturnPolicy().map( data => data.json())
+      this.ebayCategoryAttributesService.getReturnPolicy().map( data => data.json()),
+      this.ebayCategoryAttributesService.getLocation().map( data => data.json())
     ]).subscribe(
       (data) => {
         console.log(data);
@@ -68,16 +69,26 @@ export class EbayCategoryAttributesComponent implements OnChanges {
             'value': data.name
           }
         });
+        const location = data[4].locations.map( data => {
+          return {
+             'id': data.merchantLocationKey,
+             'value': data.name
+          }
+        });
+
+        console.log(location);
 
         this.attributes
+          .map( attr => attr.id == '14' ? attr.possibleValues = location : attr )
           .map( attr => attr.id == '13' ? attr.possibleValues = paymentPolicies : attr )
           .map( attr => attr.id == '12' ? attr.possibleValues = returnPolicies : attr )
           .map( attr => attr.id == '11' ? attr.possibleValues = fulfillmentPolicies : attr );
 
 
-        console.log(this.attributes);
+        // console.log(this.attributes);
 
         this.attributesFormGroup = this.ebayCategoryAttributesService.toFormGroup(this.attributes);
+
       }
     );
   }
