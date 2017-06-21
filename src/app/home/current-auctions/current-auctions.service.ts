@@ -27,17 +27,17 @@ export class CurrentAuctionsService {
   }
 
   getEbayActiveAuctions(pageSize: string = '20', pageNumber: string = '0'): Observable<Response> {
-    const params = {
-      'limit': pageSize,
-      'offset': pageNumber
-    };
+    const params = new URLSearchParams();
+    params.append('pageSize', pageSize);
+    params.append('pageNumber', pageNumber);
+
     const headers = new Headers({'Content-Type': 'application/json;charset=UTF-8;',
       'Authorization': this.authService.getAuthToken() });
 
     return this.http
-      .post(`${environment.API_URL}${environment.EBAY_URL.getActiveOffers}`,
-        JSON.stringify(params),
-        { headers: headers });
+      .get(`${environment.API_URL}${environment.EBAY_URL.getActiveOffers}`,
+        { search: params,
+          headers: headers });
   }
 
 }

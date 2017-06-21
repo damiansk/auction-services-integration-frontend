@@ -6,7 +6,8 @@
 export const environment = {
   production: false,
   API_URL: 'https://192.168.1.2:9112',
-  //API_URL: 'https://localhost:9112',
+  // API_URL: 'https://localhost:9112',
+  // API_URL: 'https://192.168.137.153:9112',
   AUTH_URL: {
     login: '/api/v1/rest/auth',
     register: '/api/v1/rest/auth/register',
