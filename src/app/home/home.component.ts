@@ -8,7 +8,7 @@ import { AuthService } from '../_services/auth.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements DoCheck {
+export class HomeComponent {
 
   private mail: string;
 
@@ -21,10 +21,6 @@ export class HomeComponent implements DoCheck {
     console.log('logout');
     this.authService.logOut();
     this.router.navigateByUrl('/');
-  }
-
-  ngDoCheck(): void {
-    window['componentHandler'].upgradeDom();
   }
 
 }

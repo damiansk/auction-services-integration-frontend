@@ -8,17 +8,13 @@ import { AuthService } from '../_services/auth.service';
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss']
 })
-export class WelcomeComponent implements OnInit, DoCheck {
+export class WelcomeComponent implements OnInit {
 
   constructor(private router: Router,
               private authService: AuthService) {}
 
   ngOnInit(): void {
     this.authService.isLogged() ? this.router.navigate(['home']) : null;
-  }
-
-  ngDoCheck(): void {
-    window['componentHandler'] ? window['componentHandler'].upgradeDom() : null;
   }
 
 }
