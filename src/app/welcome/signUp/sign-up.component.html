@@ -21,7 +21,6 @@
       <input class="mdl-textfield__input" name="matchingPassword" formControlName="matchingPassword" type="password" id="repassword">
       <label class="mdl-textfield__label" for="repassword">Powtorz haslo</label>
       <div *ngIf="modelForm.controls.matchingPassword.touched">
-        <span *ngIf="formErrors.matchingPassword">{{ formErrors.matchingPassword }}</span>
         <div class="mdl-textfield__error error-label" *ngIf="modelForm.hasError('mismatchedPasswords')">{{ validationMessages.mismatchedPasswords }}</div>
       </div>
     </div>
