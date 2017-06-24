@@ -155,25 +155,55 @@ export class EbayCategoryAttributesComponent implements OnChanges {
         value = attributes[attribute];
       }
 
-      parameters.push({ 'id': id, 'value': value });
+      parameters.push({ 'id': id, 'value': `${value}`});
     }
 
     let newParameters = parameters.filter( data => !isNaN(parseInt(data.id)) );
-    let newAspects = parameters
+    let newAspects = {};
+    parameters
       .filter( data => isNaN(parseInt(data.id)) )
-      .map( data => {
-        const temp = {};
-        temp[data.id] = data.value;
-        return temp;
+      .forEach( data => {
+        // const temp = {};
+        newAspects[`${data.id}`] = data.value;
+        // return temp;
       } );
 
-    newParameters[25] = newAspects;
-    console.log(newParameters);
 
-    requestBody['parameters'] = newParameters;
+    // newParameters[25] = newAspects;
 
-    console.log(requestBody);
-    // console.log(JSON.stringify(requestBody));
+    requestBody['idToValueMap'] = newParameters;
+
+    this.imagesCache
+      .forEach( image => {
+        requestBody['idToValueMap']
+          .filter( dataObj => dataObj.id == '16' )
+          .forEach( dataObj => dataObj.value = (image['value'].src).slice(23));
+          // .push({
+          //   'id': image['id'],
+          //   'value': (image['value'].src).slice(23)
+          // })
+      });
+
+    requestBody['idToValueMap']
+      .filter( dataObj => dataObj.id == '25' )
+      .forEach( dataObj => dataObj.value = newAspects);
+
+    let newRequestBody = {};
+    let idToValueMap = {};
+
+    requestBody['idToValueMap']
+      .forEach( mapObj => {
+        idToValueMap[mapObj.id] = mapObj.value;
+      });
+
+    newRequestBody['idToValueMap'] = idToValueMap;
+
+    console.log(newRequestBody);
+    this.ebayCategoryAttributesService.addAuction( JSON.stringify(newRequestBody) )
+      .subscribe(
+        data => console.log(data),
+        err => console.error(err)
+      );
   }
 
 }

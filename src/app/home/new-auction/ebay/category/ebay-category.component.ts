@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {AfterViewInit, Component, DoCheck, EventEmitter, OnInit, Output} from '@angular/core';
 
 import { EbayCategoryService } from './ebay-category.service';
 import { EbayCategory } from './category.interface';

@@ -92,4 +92,14 @@ export class EbayCategoryAttributesService {
       });
   }
 
+  addAuction(parameters: string): Observable<Response> {
+    return this.http
+      .post(`${environment.API_URL}${environment.OFFER_URL.createOffer}?service=EBAY`,
+        parameters,
+        {headers: new Headers( {
+          'Content-Type': 'application/json',
+          'Authorization': this.authService.getAuthToken()} )
+        });
+  }
+
 }

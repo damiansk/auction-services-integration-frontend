@@ -14,6 +14,7 @@ export class AllegroCategoryAttributesComponent implements OnChanges {
   @Input() categoryId: number;
   @ViewChild('pictures') pictures: ElementRef;
 
+
   private attributes: Attribute[] = [];
   private attributesFormGroup: FormGroup;
   private imagesCache = [];
