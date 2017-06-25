@@ -36,6 +36,7 @@ export const environment = {
     getCategoryList: '/secured/api/v1/allegro/category/',
     getCategoryParameters: '/secured/api/v1/allegro/category/parameters/',
     getActiveOffers: '/secured/api/v1/allegro/offers',
+    deleteOffer: '/secured/api/v1/allegro/offers',
     deleteService: '/secured/api/v1/allegro/auth'
   },
   OFFER_URL: {

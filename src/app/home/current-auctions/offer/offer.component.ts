@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Offer } from './offer.interface';
-import {Http, Headers} from '@angular/http';
+import {Http, Headers, URLSearchParams} from '@angular/http';
 import {environment} from '../../../../environments/environment';
 import {AuthService} from '../../../_services/auth.service';
 
@@ -37,16 +37,23 @@ export class OfferComponent {
   }
 
   deleteAuction(): void {
+    const params = new URLSearchParams();
+    params.append('offerId', this.offer.offerId);
+
     const headers = new Headers({'Content-Type': 'application/json;charset=UTF-8;',
       'Authorization': this.authService.getAuthToken() });
 
+
     this.http.delete(`${environment.API_URL}${this.getDeleteUrl()}/${this.offer.offerId}`,
-        {headers: headers })
+      { headers: headers })
       .subscribe(data => location.reload() );
+
   }
 
   private getDeleteUrl(): string {
-    return this.offer.auctionService == 'EBAY' ? `${environment.EBAY_URL.deleteOffer}` : '';
+    return this.offer.auctionService == 'EBAY' ? `${environment.EBAY_URL.deleteOffer}` :
+            this.offer.auctionService == 'ALLEGRO' ? `${environment.ALLEGRO_URL.deleteOffer}` :
+            '';
   }
 
 }
