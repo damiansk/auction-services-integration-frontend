@@ -25,6 +25,7 @@ export const environment = {
     getFulfillmentPolicy: '/secured/api/v1/ebay/policy/fulfillment',
     getLocation: '/secured/api/v1/ebay/inventory/location',
     getActiveOffers: '/secured/api/v1/ebay/rest/offers',
+    deleteOffer: '/secured/api/v1/ebay/rest/offers/',
     TEST: '/secured/api/v1/ebay/categories/tree/'
   },
   ALLEGRO_URL: {

@@ -1,14 +1,17 @@
 <div class="content mdl-card mdl-shadow--2dp">
   <div class="container-offer-title mdl-card__title mdl-card--expand">
     <h2 class="offer-title mdl-card__title-text" (click)="openInNewTab()">{{offer.title}}</h2>
-    <button class="offer-remove"><img src="../../../../assets/pic/delete.svg"></button>
+    <button class="offer-remove"
+            (click)="deleteAuction()"
+            [attr.data-service]="offer.auctionService"><img src="../../../../assets/pic/delete.svg"></button>
   </div>
   <div class="offer-content">
     <img *ngIf="offer.auctionService == 'EBAY'" src="../../../../assets/pic/ebay_logo.png" class="offer-service-logo">
     <img *ngIf="offer.auctionService == 'ALLEGRO'" src="../../../../assets/pic/allegro_logo.png" class="offer-service-logo">
 
     <div class="offer-data--picture">
-      <img style="width: 200px;" src="{{offer.thumbnailUrl}}">
+      <img *ngIf="isNull(offer.thumbnailUrl)" style="width: 150px;" src="{{offer.thumbnailUrl}}">
+      <img *ngIf="!isNull(offer.thumbnailUrl)" style="width: 150px;" src="../../../../assets/pic/pic_placeholder.png">
     </div>
     <div class="offer-data">
       <div class="offer-data--item">Typ oferty:

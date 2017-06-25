@@ -6,6 +6,8 @@ export interface Offer {
   listedQuantity: number,
   offerStatus: string,
   offerType: string,
+  offerId: string,
+  auctionService: string,
   soldQuantity: number,
   thumbnailUrl: string,
   title: string,
