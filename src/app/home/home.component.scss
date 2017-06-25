@@ -1,3 +1,5 @@
+@import "../../_colors";
+
 .logout {
   background-color: inherit;
   border: none;
@@ -7,4 +9,57 @@
 
 .sublink {
   padding-left: 60px !important;
+  font-weight: 100;
+}
+
+.mdl-layout__drawer-button {
+  color: $baseBlack !important;
+}
+
+.col-green {
+  background-color: #ffffff;
+}
+
+.logo {
+  height: 100px;
+  margin-left: -25px;
+}
+
+.user-pic {
+  border-radius: 50%;
+  width: 55%;
+}
+
+.user-mail {
+  font-size: 13pt;
+  color: $baseGreen;
+  font-weight: bold;
+}
+
+.user-mail--wrapper {
+  padding: 10px;
+}
+
+.user-information {
+  background-color: #ffffff;
+  min-height: 150px;
+  position: relative;
+}
+
+.navigation {
+  background-color: #fafafa;
+}
+
+.mdl-navigation__link:hover {
+  background-color: #e0f2f1 !important;
+}
+
+.no-link:hover {
+  background-color: inherit !important;
+  cursor: inherit;
+}
+
+.active-page {
+  color: $baseGreen !important;
+  font-weight: 400;
 }

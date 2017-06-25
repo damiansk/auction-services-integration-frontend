@@ -9,6 +9,7 @@ import { AuthGuard } from '../_guards/auth.guard';
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'current-auctions', pathMatch: 'full' },
       { path: 'account', loadChildren: './account/account.module#AccountModule'},
       { path: 'auctions-history', loadChildren: './auctions-history/auctions-history.module#AuctionsHistoryModule'},
       { path: 'new-auction', loadChildren: './new-auction/new-auction.module#NewAuctionModule'},

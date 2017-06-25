@@ -3,28 +3,29 @@
   even in small screens. -->
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
             mdl-layout--fixed-header">
-  <header class="mdl-layout__header">
+  <header class="mdl-layout__header col-green">
+    <div class="mdl-layout__drawer-button"><i class="material-icons"></i></div>
     <div class="mdl-layout__header-row">
-      <h1 style="font-family: Roboto, SansSerif"> aLinker </h1>
+      <img src="../../assets/pic/Logo.svg" alt="logo" class="logo"/>
       <div class="mdl-layout-spacer"></div>
     </div>
   </header>
   <div class="mdl-layout__drawer">
-    <header style="background-color: #e0e0e0; min-height: 150px; position: relative;">
-      <div style="position: absolute; bottom: 0; padding: 0 20px;">
-        <img class="demo-avatar" src="../../assets/pic/user.jpg" style="border-radius: 50%; width: 52%; margin: 0 10px;">
-        <div style="padding: 10px;">
-          <span style="font-size: 16px;">{{mail}}</span>
+    <header class="user-information">
+      <div style="position: absolute; bottom: 0; padding: 0 20px; text-align: center">
+        <img class="demo-avatar user-pic" src="../../assets/pic/user.jpg" >
+        <div class="user-mail--wrapper">
+          <span class="user-mail">{{mail}}</span>
         </div>
         <div>
         </div>
       </div>
     </header>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link">Wystaw przedmiot</a>
+    <nav class="mdl-navigation navigation">
+      <a class="mdl-navigation__link active-page" [routerLink]="['current-auctions']">Aktualne sprzedaze</a>
+      <a class="mdl-navigation__link no-link">Wystaw przedmiot</a>
       <a class="sublink mdl-navigation__link" [routerLink]="['new-auction/ebay-new-auction']">eBay</a>
       <a class="sublink mdl-navigation__link" [routerLink]="['new-auction/allegro-new-auction']">Allegro</a>
-      <a class="mdl-navigation__link" [routerLink]="['current-auctions']">Sprzedaze</a>
       <a class="mdl-navigation__link" [routerLink]="['account/services-connections']">Serwisy</a>
       <a class="mdl-navigation__link" [routerLink]="['account/password-management']">Zmiana hasla</a>
       <a class="mdl-navigation__link" [routerLink]="['help/contact']">Kontakt</a>
