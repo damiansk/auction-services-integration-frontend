@@ -30,6 +30,7 @@
 
 .offer-content {
   padding: 20px;
+  position: relative;
 }
 
 .offer-data--picture {
@@ -57,3 +58,9 @@
   border: none;
 }
 
+.offer-service-logo {
+  height: 30px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
