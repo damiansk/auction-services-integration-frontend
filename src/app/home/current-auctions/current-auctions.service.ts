@@ -5,6 +5,7 @@ import {environment} from '../../../environments/environment';
 import {AuthService} from '../../_services/auth.service';
 
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/merge';
 
 @Injectable()
 export class CurrentAuctionsService {
@@ -39,5 +40,6 @@ export class CurrentAuctionsService {
         { search: params,
           headers: headers });
   }
+
 
 }
