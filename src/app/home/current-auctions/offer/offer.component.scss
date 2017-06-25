@@ -1,14 +1,16 @@
 .content {
-  width: 81%;
-  margin: 20px auto;
+  width: 45%;
+  min-width: 350px;
+  margin: 20px;
   text-align: center;
-  min-height: 10px;
+  display: inline-block;
+  position: relative;
+  font-family: OpenSans serif;
 }
 
 .offer-title {
   align-self: center;
   font-size: 32px;
-  font-family: Robo, sans-serif;
 }
 
 .container-offer-title {
@@ -24,5 +26,34 @@
     text-decoration:none;
     cursor:pointer;
   }
+}
+
+.offer-content {
+  padding: 20px;
+}
+
+.offer-data--picture {
+  vertical-align: top;
+  float: left;
+  height: 200px;
+}
+
+.offer-data {
+  display: inline-block;
+}
+
+.offer-data--item {
+  width: 260px;
+  vertical-align: top;
+  text-align: left;
+  margin: 10px;
+}
+
+.offer-remove {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-color: initial;
+  border: none;
 }
 

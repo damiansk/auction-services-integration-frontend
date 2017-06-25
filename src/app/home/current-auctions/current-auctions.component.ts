@@ -19,7 +19,7 @@ export class CurrentAuctionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentAuctionService
-      .getAllegroActiveAuctions()
+      .getEbayActiveAuctions()
       .subscribe( data => {
         this.authService.setAuthToken( data.headers.get('authorization') );
         this.showOffers((data.json()).genericOfferDTOS);
@@ -28,6 +28,7 @@ export class CurrentAuctionsComponent implements OnInit {
 
   private showOffers(offers) {
     this.offers = this.decodeOffers(offers);
+    console.log(this.offers);
   }
 
   private decodeOffers(offers: any) {
