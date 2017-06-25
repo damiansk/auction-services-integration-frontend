@@ -19,7 +19,7 @@
       <div class="offer-data--item">Cena przedmiotu: {{offer.buyNowPrice}} {{offer.currency}}</div>
       <div class="offer-data--item">Ilosc przedmiotow: {{offer.listedQuantity}}</div>
       <div class="offer-data--item">Ilosc sprzedanych przedmiotow: {{offer.soldQuantity}}</div>
-      <div class="offer-data--item">Data wygasniecia oferty: {{offer.endDate ? offer.endDate : ' - '}}</div>
+      <div class="offer-data--item">Data wygasniecia oferty: {{offer.endDate ? getDate(offer.endDate) : ' - '}}</div>
     </div>
   </div>
 </div>

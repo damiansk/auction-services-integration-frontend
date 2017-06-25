@@ -11,4 +11,14 @@ export class OfferComponent {
   @Input('offer')
   offer: Offer;
 
+  getDate(date: string): string {
+    const decodeDate: Date = new Date(date);
+    let returnDate = "";
+    const day = decodeDate.getDay() + 1;
+    const month = decodeDate.getMonth() + 1;
+    const year = decodeDate.getFullYear();
+
+    return `${day}/${month < 10 ? '0'+month : month}/${year}`;
+  }
+
 }
