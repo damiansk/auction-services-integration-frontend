@@ -22,13 +22,13 @@
       </div>
     </header>
     <nav class="mdl-navigation navigation">
-      <a class="mdl-navigation__link active-page" [routerLink]="['current-auctions']">Aktualne sprzedaze</a>
+      <a class="mdl-navigation__link active-page" [routerLink]="['current-auctions']" (click)="updateNavigationPanel($event)">Aktualne sprzedaze</a>
       <a class="mdl-navigation__link no-link">Wystaw przedmiot</a>
-      <a class="sublink mdl-navigation__link" [routerLink]="['new-auction/ebay-new-auction']">eBay</a>
-      <a class="sublink mdl-navigation__link" [routerLink]="['new-auction/allegro-new-auction']">Allegro</a>
-      <a class="mdl-navigation__link" [routerLink]="['account/services-connections']">Serwisy</a>
-      <a class="mdl-navigation__link" [routerLink]="['account/password-management']">Zmiana hasla</a>
-      <a class="mdl-navigation__link" [routerLink]="['help/contact']">Kontakt</a>
+      <a class="sublink mdl-navigation__link" [routerLink]="['new-auction/ebay-new-auction']" (click)="updateNavigationPanel($event)">eBay</a>
+      <a class="sublink mdl-navigation__link" [routerLink]="['new-auction/allegro-new-auction']" (click)="updateNavigationPanel($event)">Allegro</a>
+      <a class="mdl-navigation__link" [routerLink]="['account/services-connections']" (click)="updateNavigationPanel($event)">Serwisy</a>
+      <a class="mdl-navigation__link" [routerLink]="['account/password-management']" (click)="updateNavigationPanel($event)">Zmiana hasla</a>
+      <a class="mdl-navigation__link" [routerLink]="['help/contact']" (click)="updateNavigationPanel($event)">Kontakt</a>
       <button class="logout mdl-navigation__link" (click)="logOut()">Wyloguj</button>
     </nav>
   </div>

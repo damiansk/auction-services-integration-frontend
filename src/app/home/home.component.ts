@@ -1,4 +1,4 @@
-import {Component, DoCheck, ViewEncapsulation} from '@angular/core';
+import {Component, DoCheck, OnChanges, ViewEncapsulation} from '@angular/core';
 import {NavigationEnd, Router, RoutesRecognized} from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 
@@ -8,28 +8,26 @@ import { AuthService } from '../_services/auth.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnChanges {
 
   private mail: string;
 
   constructor(private authService: AuthService,
               private router: Router) {
     this.mail = authService.getEmail();
+  }
 
-    this.router.events.subscribe(event => {
-      if (event instanceof RoutesRecognized) {
-        console.log('navigated to:', event.url);
-      }
-      else if (event instanceof NavigationEnd) {
-        // if u dont need the state, you could even use this event-type..
-      }
-    });
+  ngOnChanges(): void {
+    console.log('changed');
   }
 
   logOut(): void {
     // console.log('logout');
     // this.authService.logOut();
     // this.router.navigateByUrl('/');
+  }
+
+  updateNavigationPanel1(): void {
     const nodes: any = Array.from(document.getElementsByClassName('mdl-navigation__link'));
 
     nodes
@@ -42,6 +40,14 @@ export class HomeComponent {
 
   isContainCurrentUrl(node): boolean {
     return node.href ? node.href.indexOf(this.router.url) != -1 : false;
+  }
+
+  updateNavigationPanel(event): void {
+    console.log(event);
+    const node = event.target;
+
+    !node.classList.contains('active-page') ? node.classList.add('active-page') : false;
+    // this.updateNavigationPanel();
   }
 
 }

@@ -87,8 +87,14 @@ export class AllegroCategoryAttributesComponent implements OnChanges {
     requestBody['parameters'] = Object.keys(formGroupValues)
       .map( key => ({ 'id': key,
                       'value': this._decodeValue(formGroupValues[key]) })
-      )
-      .filter( attribute => attribute['value'] !== null );
+      );
+    console.log(requestBody['parameters']);
+
+    requestBody['parameters'] = requestBody['parameters'].filter( attribute => attribute['value'] !== null );
+    console.log(requestBody['parameters']);
+    requestBody['parameters'] = requestBody['parameters'].map( attribute => ({ 'id': attribute['id'],
+                                                                            'value': `${attribute['value']}` }) );
+    console.log(requestBody['parameters']);
 
     this.imagesCache
       .forEach( image => {
@@ -100,10 +106,10 @@ export class AllegroCategoryAttributesComponent implements OnChanges {
       });
 
     console.log(requestBody);
-/*    this.allegroCategoryAttributesService
+    this.allegroCategoryAttributesService
       .addAuction(JSON.stringify(requestBody))
       .subscribe( data => console.log(data),
-                  err => console.error(err) );*/
+                  err => console.error(err) );
   }
 
 
