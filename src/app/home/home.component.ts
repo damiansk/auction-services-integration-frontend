@@ -22,20 +22,9 @@ export class HomeComponent implements OnChanges {
   }
 
   logOut(): void {
-    // console.log('logout');
-    // this.authService.logOut();
-    // this.router.navigateByUrl('/');
-  }
-
-  updateNavigationPanel1(): void {
-    const nodes: any = Array.from(document.getElementsByClassName('mdl-navigation__link'));
-
-    nodes
-      .filter( node => {
-        node.classList.remove('active-page');
-        return this.isContainCurrentUrl(node);
-      })
-      .forEach( node => node.classList.add('active-page') );
+    console.log('logout');
+    this.authService.logOut();
+    this.router.navigateByUrl('/');
   }
 
   isContainCurrentUrl(node): boolean {
@@ -43,11 +32,12 @@ export class HomeComponent implements OnChanges {
   }
 
   updateNavigationPanel(event): void {
-    console.log(event);
     const node = event.target;
+    Array
+      .from(document.getElementsByClassName('mdl-navigation__link'))
+      .forEach( node => node.classList.remove('active-page') );
 
     !node.classList.contains('active-page') ? node.classList.add('active-page') : false;
-    // this.updateNavigationPanel();
   }
 
 }
