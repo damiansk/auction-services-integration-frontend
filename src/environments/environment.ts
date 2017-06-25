@@ -26,6 +26,7 @@ export const environment = {
     getLocation: '/secured/api/v1/ebay/inventory/location',
     getActiveOffers: '/secured/api/v1/ebay/rest/offers',
     deleteOffer: '/secured/api/v1/ebay/rest/offers/',
+    deleteService: '/secured/api/v1/rest/ebay/auth',
     TEST: '/secured/api/v1/ebay/categories/tree/'
   },
   ALLEGRO_URL: {
@@ -34,7 +35,8 @@ export const environment = {
     getTokenExpirationDate: '/secured/api/v1/allegro/auth/status',
     getCategoryList: '/secured/api/v1/allegro/category/',
     getCategoryParameters: '/secured/api/v1/allegro/category/parameters/',
-    getActiveOffers: '/secured/api/v1/allegro/offers'
+    getActiveOffers: '/secured/api/v1/allegro/offers',
+    deleteService: '/secured/api/v1/allegro/auth'
   },
   OFFER_URL: {
     createOffer: '/secured/api/v1/offer'

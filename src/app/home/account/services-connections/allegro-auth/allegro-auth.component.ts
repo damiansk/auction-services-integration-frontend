@@ -14,7 +14,7 @@ import { AllegroAuthService } from './allegro-auth.service';
 export class AllegroAuthComponent implements OnInit {
 
   private red: string = '#ff7272';
-  private green: string = 'rgb(105, 226, 127)';
+  private green: string = '#009688';
 
   private expirationTime: string;
   private isActive: boolean = false;
@@ -68,6 +68,8 @@ export class AllegroAuthComponent implements OnInit {
       if (status.active) {
         document.getElementById('allegro-connection-button').style.display = 'none';
       }
+    } else {
+      document.getElementById('disconnect-allegro-button').style.display = 'none';
     }
   }
 
@@ -88,6 +90,12 @@ export class AllegroAuthComponent implements OnInit {
           err => console.error(err)
         );
     }
+  }
+
+  removeService(): void {
+    this.allegroAuthService
+      .removeService()
+      .subscribe( data => console.log( data ) );
   }
 
 }

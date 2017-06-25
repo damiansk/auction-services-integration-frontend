@@ -12,7 +12,7 @@ import { EbayAuthService } from './ebay-auth.service';
 })
 export class EbayAuthComponent implements OnInit {
 
-  private green: string = 'rgb(105, 226, 127)';
+  private green: string = '#009688';
   private red: string = '#ff7272';
 
   private expirationTime: string;
@@ -62,6 +62,8 @@ export class EbayAuthComponent implements OnInit {
       if (status.isActive) {
         document.getElementById('ebay-connection-button').style.display = 'none';
       }
+    } else {
+      document.getElementById('disconnect-ebay-button').style.display = 'none';
     }
   }
 
@@ -81,6 +83,12 @@ export class EbayAuthComponent implements OnInit {
           err => console.error(err)
         );
     }
+  }
+
+  removeService(): void {
+    this.ebayAuthService
+      .removeService()
+      .subscribe( data => console.log( data ) );
   }
 
 }

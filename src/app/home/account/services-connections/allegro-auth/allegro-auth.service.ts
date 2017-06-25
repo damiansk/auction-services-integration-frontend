@@ -40,6 +40,16 @@ export class AllegroAuthService {
         });
   }
 
+  removeService(): Observable<Response> {
+    return this.http
+      .delete(`${environment.API_URL}${environment.ALLEGRO_URL.deleteService}`,
+        { headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': this.authService.getAuthToken()
+          })
+        });
+  }
+
   public decodeDate(date: Date): string {
     if ( isNaN(date.getMinutes()) ) return '-';
 
@@ -49,7 +59,6 @@ export class AllegroAuthService {
 
     return `${day}/${month}/${year}`;
   }
-
 }
 
 

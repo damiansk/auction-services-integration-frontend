@@ -54,6 +54,15 @@ export class EbayAuthService {
     return `${day}/${month}/${year}`;
   }
 
+  removeService(): Observable<Response> {
+    return this.http
+      .delete(`${environment.API_URL}${environment.EBAY_URL.deleteService}`,
+        { headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': this.authService.getAuthToken()
+        })
+        });
+  }
 }
 
 

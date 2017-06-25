@@ -15,7 +15,8 @@
 
     img {
       width: 100%;
-      vertical-align: baseline;
+      vertical-align: initial;
+      padding: 0 0 20px;
     }
 
   }
@@ -38,12 +39,12 @@
       }
 
       .expiration-date {
-        color: rgb(105, 226, 127);
+        color: #009688;
       }
     }
 
     &__button {
-      background-color: rgb(105, 226, 127);
+      background-color: #009688;
       border: none;
       font-size: 1.4em;
       padding: 8pt 20pt;
@@ -54,6 +55,18 @@
       margin-top: 10pt;
     }
   }
+}
+
+.disconnect-button {
+  background-color: rgba(125, 26, 26, 0.75);
+  border: none;
+  font-size: 1.4em;
+  padding: 8pt 20pt;
+  color: $baseWhite;
+  width: 100%;
+  font-weight: 400;
+  margin-bottom: 5pt;
+  margin-top: 10pt;
 }
 
 @media (min-width: 620px) and (max-width: 920px) {
