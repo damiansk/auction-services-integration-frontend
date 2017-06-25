@@ -45,12 +45,21 @@
             </div>
           </span>
 
-          <div *ngSwitchCase="'INTEGER'" class="mdl-textfield mdl-js-textfield">
+          <div *ngSwitchCase="'INTEGER'">
+            <div *ngIf="attribute.id != '2'" class="mdl-textfield mdl-js-textfield">
              <label class="mdl-textfield__label">
                <span *ngIf="attribute.required === true" style="color: red;">*</span>
                {{attribute.name}}
              </label>
              <input class="mdl-textfield__input" type="number" formControlName="{{attribute.id}}">
+            </div>
+            <!--<div *ngIf="attribute.id == '2'" class="mdl-textfield mdl-js-textfield" style="display: none;">-->
+             <!--<label class="mdl-textfield__label">-->
+               <!--<span *ngIf="attribute.required === true" style="color: red;">*</span>-->
+               <!--{{attribute.name}}-->
+             <!--</label>-->
+             <!--<input class="mdl-textfield__input" type="number" formControlName="{{attribute.id}}" value="{{categoryId}}">-->
+            <!--</div>-->
           </div>
 
           <span *ngSwitchCase="'IMAGE'">

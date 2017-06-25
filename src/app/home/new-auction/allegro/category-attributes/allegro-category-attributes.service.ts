@@ -41,9 +41,9 @@ export class AllegroCategoryAttributesService {
     let group: any = {};
 
     attributes.forEach( attribute => {
-      if ( attribute.formType === 'CHECKBOX' ) {
+      if (attribute.formType === 'CHECKBOX') {
         let subGroup: any = {};
-        for ( const val of attribute.possibleValues ) {
+        for (const val of attribute.possibleValues) {
           subGroup[val.id] = new FormControl();
         }
         group[attribute.id] = new FormGroup(subGroup);

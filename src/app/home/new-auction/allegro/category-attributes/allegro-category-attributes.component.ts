@@ -105,6 +105,12 @@ export class AllegroCategoryAttributesComponent implements OnChanges {
           })
       });
 
+    requestBody['parameters']
+      .push({
+        'id': '2',
+        'value': `${this.categoryId}`
+      });
+
     console.log(requestBody);
     this.allegroCategoryAttributesService
       .addAuction(JSON.stringify(requestBody))
