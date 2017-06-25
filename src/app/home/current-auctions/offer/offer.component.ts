@@ -46,7 +46,7 @@ export class OfferComponent {
 
     this.http.delete(`${environment.API_URL}${this.getDeleteUrl()}/${this.offer.offerId}`,
       { headers: headers })
-      .subscribe(data => location.reload() );
+      .subscribe( data => location.reload() );
 
   }
 

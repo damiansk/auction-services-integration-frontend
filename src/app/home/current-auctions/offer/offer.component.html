@@ -1,31 +1,33 @@
-<div class="content mdl-card mdl-shadow--2dp">
-  <div class="container-offer-title mdl-card__title mdl-card--expand">
-    <h2 class="offer-title mdl-card__title-text" (click)="openInNewTab()">{{offer.title}}</h2>
-    <button class="offer-remove"
-            (click)="deleteAuction()"
-            [attr.data-service]="offer.auctionService"><img src="../../../../assets/pic/delete.svg"></button>
-  </div>
-  <div class="offer-content">
-    <img *ngIf="offer.auctionService == 'EBAY'" src="../../../../assets/pic/ebay_logo.png" class="offer-service-logo">
-    <img *ngIf="offer.auctionService == 'ALLEGRO'" src="../../../../assets/pic/allegro_logo.png" class="offer-service-logo">
-
-    <div class="offer-data--picture">
-      <img *ngIf="isNull(offer.thumbnailUrl)" style="width: 150px;" src="{{offer.thumbnailUrl}}">
-      <img *ngIf="!isNull(offer.thumbnailUrl)" style="width: 150px;" src="../../../../assets/pic/pic_placeholder.png">
+<div id="offer">
+  <div class="content mdl-card mdl-shadow--2dp">
+    <div class="container-offer-title mdl-card__title mdl-card--expand">
+      <h2 class="offer-title mdl-card__title-text" (click)="openInNewTab()">{{offer.title}}</h2>
+      <button class="offer-remove"
+              (click)="deleteAuction()"
+              [attr.data-service]="offer.auctionService"><img src="../../../../assets/pic/delete.svg"></button>
     </div>
-    <div class="offer-data">
-      <div class="offer-data--item">Typ oferty:
-        <span *ngIf="offer.offerType == 'BUY_NOW'">Kup teraz</span>
+    <div class="offer-content">
+      <img *ngIf="offer.auctionService == 'EBAY'" src="../../../../assets/pic/ebay_logo.png" class="offer-service-logo">
+      <img *ngIf="offer.auctionService == 'ALLEGRO'" src="../../../../assets/pic/allegro_logo.png" class="offer-service-logo">
+
+      <div class="offer-data--picture">
+        <img *ngIf="isNull(offer.thumbnailUrl)" style="width: 150px;" src="{{offer.thumbnailUrl}}">
+        <img *ngIf="!isNull(offer.thumbnailUrl)" style="width: 150px;" src="../../../../assets/pic/pic_placeholder.png">
       </div>
-      <div class="offer-data--item">Status oferty:
-        <span *ngIf="offer.offerStatus == 'ACTIVE'">Aktywna</span>
-        <span *ngIf="offer.offerStatus == 'UNSOLD'">Zakonczona (niesprzedana)</span>
-        <span *ngIf="offer.offerStatus == 'SOLD'">Zakonczona (sprzedana)</span>
+      <div class="offer-data">
+        <div class="offer-data--item">Typ oferty:
+          <span *ngIf="offer.offerType == 'BUY_NOW'">Kup teraz</span>
+        </div>
+        <div class="offer-data--item">Status oferty:
+          <span *ngIf="offer.offerStatus == 'ACTIVE'">Aktywna</span>
+          <span *ngIf="offer.offerStatus == 'UNSOLD'">Zakonczona (niesprzedana)</span>
+          <span *ngIf="offer.offerStatus == 'SOLD'">Zakonczona (sprzedana)</span>
+        </div>
+        <div class="offer-data--item">Cena przedmiotu: {{offer.buyNowPrice}} {{offer.currency}}</div>
+        <div class="offer-data--item">Ilosc przedmiotow: {{offer.listedQuantity}}</div>
+        <div class="offer-data--item">Ilosc sprzedanych przedmiotow: {{offer.soldQuantity}}</div>
+        <div class="offer-data--item">Data wygasniecia oferty: {{offer.endDate ? getDate(offer.endDate) : ' - '}}</div>
       </div>
-      <div class="offer-data--item">Cena przedmiotu: {{offer.buyNowPrice}} {{offer.currency}}</div>
-      <div class="offer-data--item">Ilosc przedmiotow: {{offer.listedQuantity}}</div>
-      <div class="offer-data--item">Ilosc sprzedanych przedmiotow: {{offer.soldQuantity}}</div>
-      <div class="offer-data--item">Data wygasniecia oferty: {{offer.endDate ? getDate(offer.endDate) : ' - '}}</div>
     </div>
   </div>
 </div>

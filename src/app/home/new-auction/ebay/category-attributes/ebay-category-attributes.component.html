@@ -99,12 +99,14 @@
              <input type="datetime" formControlName="{{attribute.id}}">
           </span>
 
-          <div *ngSwitchDefault="" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <div *ngSwitchDefault="">
+            <div *ngIf="attribute.id != '3'" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
              <label class="mdl-textfield__label">
                <span *ngIf="attribute.required === true" style="color: red;">*</span>
                {{attribute.name}}
              </label>
              <input class="mdl-textfield__input" type="text" formControlName="{{attribute.id}}">
+            </div>
           </div>
 
         </div>

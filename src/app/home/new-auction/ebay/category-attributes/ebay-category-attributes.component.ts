@@ -164,7 +164,9 @@ export class EbayCategoryAttributesComponent implements OnChanges {
       .filter( data => isNaN(parseInt(data.id)) )
       .forEach( data => {
         // const temp = {};
-        newAspects[`${data.id}`] = data.value;
+        if ( data.value != 0 ) {
+          newAspects[`${data.id}`] = data.value;
+        }
         // return temp;
       } );
 
@@ -195,6 +197,8 @@ export class EbayCategoryAttributesComponent implements OnChanges {
       .forEach( mapObj => {
         idToValueMap[mapObj.id] = mapObj.value;
       });
+
+    idToValueMap['3'] = this.categoryNumber;
 
     newRequestBody['idToValueMap'] = idToValueMap;
 
